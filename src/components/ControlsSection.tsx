@@ -36,7 +36,7 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
   content,
 }) => {
   return (
-    <div className="bg-card border-b border-border">
+    <div className="controls-frame">
       <div className="flex items-center justify-between p-3 border-b border-border/50">
         <div className="flex items-center gap-2">
           <Settings className="w-4 h-4 text-muted-foreground" />
@@ -56,26 +56,34 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
       
       {!isCollapsed && (
         <div className="p-4 space-y-4 max-h-64 overflow-y-auto">
-          <TemplateSelector onSelectTemplate={onSelectTemplate} />
+          <div className="control-group-frame">
+            <TemplateSelector onSelectTemplate={onSelectTemplate} />
+          </div>
           
-          <VisualThemeSelector 
-            selectedTheme={selectedTheme}
-            onThemeChange={onThemeChange}
-          />
+          <div className="control-group-frame">
+            <VisualThemeSelector 
+              selectedTheme={selectedTheme}
+              onThemeChange={onThemeChange}
+            />
+          </div>
           
-          <FontSelector
-            selectedHeadingFont={selectedHeadingFont}
-            selectedBodyFont={selectedBodyFont}
-            onHeadingFontChange={onHeadingFontChange}
-            onBodyFontChange={onBodyFontChange}
-          />
+          <div className="control-group-frame">
+            <FontSelector
+              selectedHeadingFont={selectedHeadingFont}
+              selectedBodyFont={selectedBodyFont}
+              onHeadingFontChange={onHeadingFontChange}
+              onBodyFontChange={onBodyFontChange}
+            />
+          </div>
           
-          <ExportButtons
-            title={title}
-            subtitle={subtitle}
-            content={content}
-            selectedTheme={selectedTheme}
-          />
+          <div className="control-group-frame">
+            <ExportButtons
+              title={title}
+              subtitle={subtitle}
+              content={content}
+              selectedTheme={selectedTheme}
+            />
+          </div>
         </div>
       )}
     </div>

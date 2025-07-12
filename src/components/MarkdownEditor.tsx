@@ -85,7 +85,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   };
 
   return (
-    <div className="h-full flex flex-col bg-card border-r border-border">
+    <div className="h-full flex flex-col editor-panel-frame">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border/50">
         <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
             value={title}
             onChange={(e) => onTitleChange(e.target.value)}
             placeholder="Your zine title..."
-            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground placeholder:text-muted-foreground"
+            className="w-full editor-input-frame border-0 focus:outline-none text-foreground placeholder:text-muted-foreground"
           />
         </div>
         <div>
@@ -145,7 +145,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
             value={subtitle}
             onChange={(e) => onSubtitleChange(e.target.value)}
             placeholder="Optional subtitle..."
-            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-muted-foreground placeholder:text-muted-foreground"
+            className="w-full editor-input-frame border-0 focus:outline-none text-muted-foreground placeholder:text-muted-foreground"
           />
         </div>
       </div>
@@ -170,7 +170,7 @@ Write your fragments here. You can use:
 - Lists and more!
 
 Add as many sections as you need."
-          className="w-full h-full resize-none border border-input rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground font-mono text-sm leading-relaxed placeholder:text-muted-foreground"
+          className="w-full h-full resize-none editor-input-frame border-0 focus:outline-none text-foreground font-mono text-sm leading-relaxed placeholder:text-muted-foreground"
         />
       </div>
 

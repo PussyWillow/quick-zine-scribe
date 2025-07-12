@@ -49,7 +49,7 @@ const FloatingPhotoGallery: React.FC<FloatingPhotoGalleryProps> = ({
       {!isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="group relative bg-card/80 backdrop-blur-sm border border-border rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+          className="group relative elegant-frame p-3 hover:scale-105 transition-all duration-300"
         >
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent/20 to-primary/20 animate-pulse" />
           <Camera className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors relative z-10" />
@@ -66,7 +66,7 @@ const FloatingPhotoGallery: React.FC<FloatingPhotoGalleryProps> = ({
 
       {/* Expanded State - Photo Gallery */}
       {isExpanded && (
-        <div className="bg-card/95 backdrop-blur-md border border-border rounded-xl p-4 shadow-2xl min-w-[280px] animate-in slide-in-from-top-2 duration-300">
+        <div className="photo-gallery-frame p-4 min-w-[280px] animate-in slide-in-from-top-2 duration-300">
           {/* Header */}
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
@@ -90,10 +90,8 @@ const FloatingPhotoGallery: React.FC<FloatingPhotoGalleryProps> = ({
                   onPhotoChange(photo.id);
                   setIsExpanded(false);
                 }}
-                className={`group relative aspect-square rounded-lg overflow-hidden border-2 transition-all duration-200 hover:scale-105 ${
-                  selectedPhoto === photo.id
-                    ? 'border-accent shadow-lg'
-                    : 'border-border hover:border-accent/50'
+                className={`group relative aspect-square photo-thumbnail-frame transition-all duration-200 ${
+                  selectedPhoto === photo.id ? 'selected' : ''
                 }`}
               >
                 {photo.id === 'none' ? (
