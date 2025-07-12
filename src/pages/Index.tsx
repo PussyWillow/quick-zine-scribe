@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { AppHeader } from '../components/AppHeader';
 import { EditorPanel } from '../components/EditorPanel';
 import { PreviewPanel } from '../components/PreviewPanel';
+import FloatingPhotoGallery from '../components/FloatingPhotoGallery';
 import { fonts } from '../components/FontSelector';
 import { Template } from '../components/TemplateSelector';
 
@@ -81,7 +82,6 @@ Start writing and watch your words come to life with beautiful themes.
           onBodyFontChange={setSelectedBodyFont}
           onSelectTemplate={handleSelectTemplate}
           selectedPhoto={selectedPhoto}
-          onPhotoChange={setSelectedPhoto}
           title={title}
           subtitle={subtitle}
           content={content}
@@ -89,6 +89,12 @@ Start writing and watch your words come to life with beautiful themes.
           bodyFont={bodyFont}
         />
       </div>
+
+      {/* Floating Photo Gallery */}
+      <FloatingPhotoGallery
+        selectedPhoto={selectedPhoto}
+        onPhotoChange={setSelectedPhoto}
+      />
     </div>
   );
 };
