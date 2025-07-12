@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import MarkdownEditor from '../components/MarkdownEditor';
 import ZinePreview from '../components/ZinePreview';
-import ThemeSelector from '../components/ThemeSelector';
+import VisualThemeSelector from '../components/VisualThemeSelector';
 import FontSelector, { fonts } from '../components/FontSelector';
 import TemplateSelector, { Template } from '../components/TemplateSelector';
 import ExportButtons from '../components/ExportButtons';
@@ -90,7 +89,7 @@ Start writing and watch your words come to life with beautiful themes.
           <div className="bg-white border-b border-gray-200 p-4 space-y-4 max-h-80 overflow-y-auto">
             <TemplateSelector onSelectTemplate={handleSelectTemplate} />
             
-            <ThemeSelector 
+            <VisualThemeSelector 
               selectedTheme={selectedTheme}
               onThemeChange={setSelectedTheme}
             />
