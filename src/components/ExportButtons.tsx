@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Download, Mail, Globe, FileText } from 'lucide-react';
 import html2pdf from 'html2pdf.js';
-import { Theme, themes } from './ThemeSelector';
+import { Theme } from '../types/theme';
+import { themes } from '../data/themes';
 
 interface ExportButtonsProps {
   title: string;
