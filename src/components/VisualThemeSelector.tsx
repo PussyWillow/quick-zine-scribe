@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { Palette, Shuffle, Grid3X3 } from 'lucide-react';
-import { Theme, themes } from './ThemeSelector';
+import { Theme } from '../types/theme';
+import { themes } from '../data/themes';
 
 interface VisualThemeSelectorProps {
   selectedTheme: string;

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { themes } from './ThemeSelector';
+import { themes } from '../data/themes';
 import { getBorderRadiusClass, getShadowClass } from '../utils/themeUtils';
 import ZinePreviewHeader from './ZinePreviewHeader';
 import BackgroundTexture from './BackgroundTexture';

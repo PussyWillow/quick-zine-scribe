@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Theme } from './ThemeSelector';
+import { Theme } from '../types/theme';
 import { getSpacingClass, getListStyleClass, getBorderRadiusClass, getTextShadow } from '../utils/themeUtils';
 
 interface ZineMarkdownContentProps {
