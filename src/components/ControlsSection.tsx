@@ -4,6 +4,10 @@ import VisualThemeSelector from './VisualThemeSelector';
 import FontSelector from './FontSelector';
 import TemplateSelector, { Template } from './TemplateSelector';
 import ExportButtons from './ExportButtons';
+import { ArchetypeGenerator } from './ArchetypeGenerator';
+import { Button } from './ui/button';
+import { HelpCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Settings, ChevronUp, ChevronDown } from 'lucide-react';
 
 interface ControlsSectionProps {
@@ -35,6 +39,12 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
   subtitle,
   content,
 }) => {
+  const navigate = useNavigate();
+
+  const handleQuestionsClick = () => {
+    navigate('/questions');
+  };
+
   return (
     <div className="controls-frame">
       <div className="flex items-center justify-between p-3 border-b border-border/50">
@@ -74,6 +84,26 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
               onHeadingFontChange={onHeadingFontChange}
               onBodyFontChange={onBodyFontChange}
             />
+          </div>
+
+          <div className="control-group-frame">
+            <div className="space-y-3">
+              <h3 className="text-sm font-semibold text-muted-foreground mb-4 tracking-wide uppercase">
+                Creative Tools
+              </h3>
+              <div className="flex gap-2">
+                <ArchetypeGenerator />
+                <Button
+                  onClick={handleQuestionsClick}
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 bg-blue-500/10 border-blue-500/30 text-blue-500 hover:bg-blue-500/20 hover:border-blue-500/50 hover:text-blue-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+                >
+                  <HelpCircle className="w-4 h-4" />
+                  Questions?
+                </Button>
+              </div>
+            </div>
           </div>
           
           <div className="control-group-frame">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Mail, Globe, FileText, HelpCircle } from 'lucide-react';
+import { Download, Mail, Globe, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import html2pdf from 'html2pdf.js';
 import { Button } from './ui/button';
@@ -20,7 +20,6 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
   selectedTheme 
 }) => {
   const theme = themes.find(t => t.id === selectedTheme) || themes[0];
-  const navigate = useNavigate();
 
   const exportToPDF = async () => {
     const element = document.getElementById('zine-preview');
@@ -57,14 +56,14 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
 
   const exportToWebPage = () => {
     const webContent = generateWebPage();
-    const blob = new Blob([webContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
     const newWindow = window.open('', '_blank');
     if (newWindow) {
       newWindow.document.write(webContent);
       newWindow.document.close();
     } else {
       // Fallback: download the file if popup is blocked
+      const blob = new Blob([webContent], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = `${title || 'zine'}-webpage.html`;
@@ -73,10 +72,6 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     }
-  };
-
-  const handleQuestionsClick = () => {
-    navigate('/questions');
   };
 
   const generateHTMLEmail = () => {
@@ -226,7 +221,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
         Export Options
       </h3>
       
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-3 gap-2">
         <Button
           onClick={exportToPDF}
           variant="outline"
@@ -255,16 +250,6 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
         >
           <Globe className="w-4 h-4 mr-1" />
           Web
-        </Button>
-        
-        <Button
-          onClick={handleQuestionsClick}
-          variant="outline"
-          size="sm"
-          className="bg-blue-500/10 border-blue-500/30 text-blue-500 hover:bg-blue-500/20 hover:border-blue-500/50 hover:text-blue-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
-        >
-          <HelpCircle className="w-4 h-4 mr-1" />
-          Questions
         </Button>
       </div>
     </div>
