@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Download, Mail, Globe, FileText } from 'lucide-react';
 import html2pdf from 'html2pdf.js';
+import { Button } from './ui/button';
 import { Theme } from '../types/theme';
 import { themes } from '../data/themes';
 
@@ -186,38 +188,37 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
         Export Options
       </h3>
       
-      <button
-        onClick={exportToPDF}
-        className="w-full flex items-center gap-4 px-5 py-4 export-btn-pdf rounded-lg font-medium text-sm tracking-wide"
-      >
-        <FileText className="w-5 h-5" />
-        <div className="flex flex-col items-start">
-          <span className="font-semibold">Export as PDF</span>
-          <span className="text-xs opacity-80 font-normal">High-quality document</span>
-        </div>
-      </button>
-      
-      <button
-        onClick={exportToHTML}
-        className="w-full flex items-center gap-4 px-5 py-4 export-btn-html rounded-lg font-medium text-sm tracking-wide"
-      >
-        <Mail className="w-5 h-5" />
-        <div className="flex flex-col items-start">
-          <span className="font-semibold">Export as HTML Email</span>
-          <span className="text-xs opacity-80 font-normal">Email-ready format</span>
-        </div>
-      </button>
-      
-      <button
-        onClick={exportToWebPage}
-        className="w-full flex items-center gap-4 px-5 py-4 export-btn-web rounded-lg font-medium text-sm tracking-wide"
-      >
-        <Globe className="w-5 h-5" />
-        <div className="flex flex-col items-start">
-          <span className="font-semibold">Preview as Web Page</span>
-          <span className="text-xs opacity-80 font-normal">Interactive preview</span>
-        </div>
-      </button>
+      <div className="flex gap-2">
+        <Button
+          onClick={exportToPDF}
+          variant="outline"
+          size="sm"
+          className="flex-1 bg-sage-green/10 border-sage-green/30 text-sage-green hover:bg-sage-green/20 hover:border-sage-green/50 hover:text-sage-green transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+        >
+          <FileText className="w-4 h-4 mr-1" />
+          PDF
+        </Button>
+        
+        <Button
+          onClick={exportToHTML}
+          variant="outline"
+          size="sm"
+          className="flex-1 bg-lavender/10 border-lavender/30 text-lavender hover:bg-lavender/20 hover:border-lavender/50 hover:text-lavender transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+        >
+          <Mail className="w-4 h-4 mr-1" />
+          HTML
+        </Button>
+        
+        <Button
+          onClick={exportToWebPage}
+          variant="outline"
+          size="sm"
+          className="flex-1 bg-dusty-rose/10 border-dusty-rose/30 text-dusty-rose hover:bg-dusty-rose/20 hover:border-dusty-rose/50 hover:text-dusty-rose transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+        >
+          <Globe className="w-4 h-4 mr-1" />
+          Web
+        </Button>
+      </div>
     </div>
   );
 };

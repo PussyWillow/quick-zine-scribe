@@ -1,104 +1,65 @@
 
-/* Export Buttons - Smaller, Row of 3, Pastel Colors */
+/* Export Buttons - Row Layout with Elegant Styling */
 @layer components {
-  .export-buttons-container {
-    @apply flex flex-row gap-2 justify-center;
+  /* Gothic mode button overrides */
+  .gothic .export-button,
+  .gothic button[class*="bg-sage-green"],
+  .gothic button[class*="bg-lavender"],
+  .gothic button[class*="bg-dusty-rose"] {
+    @apply bg-gray-900/80 text-red-100 border-red-800/50;
+    font-family: 'Cinzel', serif;
+    backdrop-filter: blur(8px);
+    box-shadow: 
+      0 0 12px hsla(0, 100%, 20%, 0.3),
+      inset 0 0 12px hsla(15, 50%, 10%, 0.4);
   }
 
-  .export-button {
-    @apply relative px-3 py-2 text-sm rounded-lg transition-all duration-300 cursor-pointer;
-    @apply border border-border bg-card text-foreground;
-    @apply hover:scale-105 hover:shadow-md;
-    font-family: 'Lora', serif;
-    font-weight: 500;
-    flex: 1;
-    min-width: 0; /* Allow buttons to shrink */
-    text-align: center;
+  .gothic button[class*="bg-sage-green"]:hover {
+    background: linear-gradient(135deg, hsl(0, 60%, 15%) 0%, hsl(0, 60%, 10%) 100%);
+    border-color: hsl(0, 60%, 25%);
+    color: hsl(0, 0%, 95%);
+    box-shadow: 
+      0 0 16px hsla(0, 100%, 25%, 0.5),
+      inset 0 0 16px hsla(15, 50%, 10%, 0.6),
+      0 4px 12px hsla(0, 0%, 0%, 0.8);
   }
 
-  /* PDF Export - Sage Green */
-  .export-button.pdf {
-    background: linear-gradient(135deg, hsl(var(--sage-green)) 0%, hsla(var(--sage-green), 0.8) 100%);
-    border-color: hsl(var(--sage-green));
-    color: hsl(var(--foreground));
+  .gothic button[class*="bg-lavender"]:hover {
+    background: linear-gradient(135deg, hsl(15, 50%, 15%) 0%, hsl(15, 50%, 10%) 100%);
+    border-color: hsl(15, 50%, 25%);
+    color: hsl(0, 0%, 95%);
+    box-shadow: 
+      0 0 16px hsla(15, 80%, 25%, 0.5),
+      inset 0 0 16px hsla(20, 50%, 10%, 0.6),
+      0 4px 12px hsla(0, 0%, 0%, 0.8);
   }
 
-  .export-button.pdf:hover {
-    background: linear-gradient(135deg, hsla(var(--sage-green), 0.9) 0%, hsla(var(--sage-green), 0.7) 100%);
-    box-shadow: 0 4px 12px hsla(var(--sage-green), 0.3);
+  .gothic button[class*="bg-dusty-rose"]:hover {
+    background: linear-gradient(135deg, hsl(30, 40%, 15%) 0%, hsl(30, 40%, 10%) 100%);
+    border-color: hsl(30, 40%, 25%);
+    color: hsl(0, 0%, 95%);
+    box-shadow: 
+      0 0 16px hsla(30, 60%, 25%, 0.5),
+      inset 0 0 16px hsla(35, 50%, 10%, 0.6),
+      0 4px 12px hsla(0, 0%, 0%, 0.8);
   }
 
-  /* PNG Export - Muted Lavender */
-  .export-button.png {
-    background: linear-gradient(135deg, hsl(var(--lavender)) 0%, hsla(var(--lavender), 0.8) 100%);
-    border-color: hsl(var(--lavender));
-    color: hsl(var(--foreground));
+  /* Enhanced hover effects for gothic mode */
+  .gothic button:hover {
+    transform: translateY(-2px) scale(1.02);
+    text-shadow: 0 0 8px hsla(0, 100%, 50%, 0.6);
   }
 
-  .export-button.png:hover {
-    background: linear-gradient(135deg, hsla(var(--lavender), 0.9) 0%, hsla(var(--lavender), 0.7) 100%);
-    box-shadow: 0 4px 12px hsla(var(--lavender), 0.3);
+  /* Normal mode enhanced styling */
+  button[class*="bg-sage-green"]:not(.gothic *) {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Text Export - Dusty Rose */
-  .export-button.text {
-    background: linear-gradient(135deg, hsl(var(--dusty-rose)) 0%, hsla(var(--dusty-rose), 0.8) 100%);
-    border-color: hsl(var(--dusty-rose));
-    color: hsl(var(--foreground));
+  button[class*="bg-lavender"]:not(.gothic *) {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .export-button.text:hover {
-    background: linear-gradient(135deg, hsla(var(--dusty-rose), 0.9) 0%, hsla(var(--dusty-rose), 0.7) 100%);
-    box-shadow: 0 4px 12px hsla(var(--dusty-rose), 0.3);
-  }
-
-  /* Icon styling within buttons */
-  .export-button .icon {
-    @apply w-4 h-4 mr-1 inline-block;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 640px) {
-    .export-buttons-container {
-      @apply flex-col gap-2;
-    }
-    
-    .export-button {
-      @apply py-2.5;
-      flex: none;
-    }
-  }
-
-  /* Loading state */
-  .export-button:disabled {
-    @apply opacity-60 cursor-not-allowed;
-  }
-
-  .export-button:disabled:hover {
-    @apply scale-100 shadow-none;
-  }
-
-  /* Gothic mode overrides */
-  .gothic .export-button {
-    @apply bg-gray-900 text-red-100 border-red-800;
-  }
-
-  .gothic .export-button.pdf {
-    background: linear-gradient(135deg, hsl(0, 60%, 25%) 0%, hsl(0, 60%, 20%) 100%);
-    border-color: hsl(0, 60%, 30%);
-  }
-
-  .gothic .export-button.png {
-    background: linear-gradient(135deg, hsl(15, 50%, 25%) 0%, hsl(15, 50%, 20%) 100%);
-    border-color: hsl(15, 50%, 30%);
-  }
-
-  .gothic .export-button.text {
-    background: linear-gradient(135deg, hsl(30, 40%, 25%) 0%, hsl(30, 40%, 20%) 100%);
-    border-color: hsl(30, 40%, 30%);
-  }
-
-  .gothic .export-button:hover {
-    box-shadow: 0 4px 12px hsla(0, 100%, 20%, 0.5);
+  button[class*="bg-dusty-rose"]:not(.gothic *) {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
