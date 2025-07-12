@@ -69,6 +69,23 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
           <div className="control-group-frame">
             <TemplateSelector onSelectTemplate={onSelectTemplate} />
           </div>
+
+          <div className="control-group-frame">
+            <div className="space-y-3">
+              <h3 className="text-sm font-semibold text-muted-foreground mb-4 tracking-wide uppercase">
+                Need Help?
+              </h3>
+              <Button
+                onClick={handleQuestionsClick}
+                variant="outline"
+                size="sm"
+                className="w-full gap-2 bg-blue-500/10 border-blue-500/30 text-blue-500 hover:bg-blue-500/20 hover:border-blue-500/50 hover:text-blue-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+              >
+                <HelpCircle className="w-4 h-4" />
+                Questions?
+              </Button>
+            </div>
+          </div>
           
           <div className="control-group-frame">
             <VisualThemeSelector 
@@ -91,18 +108,7 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
               <h3 className="text-sm font-semibold text-muted-foreground mb-4 tracking-wide uppercase">
                 Creative Tools
               </h3>
-              <div className="flex gap-2">
-                <ArchetypeGenerator />
-                <Button
-                  onClick={handleQuestionsClick}
-                  variant="outline"
-                  size="sm"
-                  className="gap-2 bg-blue-500/10 border-blue-500/30 text-blue-500 hover:bg-blue-500/20 hover:border-blue-500/50 hover:text-blue-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
-                >
-                  <HelpCircle className="w-4 h-4" />
-                  Questions?
-                </Button>
-              </div>
+              <ArchetypeGenerator />
             </div>
           </div>
           
