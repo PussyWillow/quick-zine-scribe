@@ -1,5 +1,4 @@
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -166,12 +165,13 @@ All colors MUST be HSL.
     transition: all 0.3s ease-in-out;
   }
 
+  /* Gothic mode uses system fonts for better readability */
   .gothic {
-    font-family: 'Crimson Text', 'Georgia', serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   .gothic h1, .gothic h2, .gothic h3, .gothic h4, .gothic h5, .gothic h6 {
-    font-family: 'Cinzel', 'Pirata One', serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     text-shadow: 0 0 12px hsla(0, 100%, 30%, 0.8), 0 0 24px hsla(0, 100%, 20%, 0.4);
     font-weight: 600;
   }
@@ -195,6 +195,8 @@ All colors MUST be HSL.
     border: 1px solid hsl(var(--border));
     color: hsl(var(--foreground));
     font-family: 'Crimson Text', serif;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   .gothic input:focus, .gothic textarea:focus, .gothic select:focus {
@@ -203,13 +205,13 @@ All colors MUST be HSL.
   }
 
   .gothic button {
-    font-family: 'Butcherman', serif;
-    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 500;
     text-shadow: 0 0 6px hsla(0, 100%, 50%, 0.5);
   }
 
   .gothic .font-gothic-heading {
-    font-family: 'Cinzel', serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   .gothic .font-gothic-body {
@@ -217,7 +219,7 @@ All colors MUST be HSL.
   }
 
   .gothic .font-gothic-display {
-    font-family: 'Butcherman', serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   .gothic code, .gothic pre {

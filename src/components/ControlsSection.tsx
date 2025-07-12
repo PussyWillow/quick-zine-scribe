@@ -4,6 +4,7 @@ import VisualThemeSelector from './VisualThemeSelector';
 import FontSelector from './FontSelector';
 import TemplateSelector, { Template } from './TemplateSelector';
 import ExportButtons from './ExportButtons';
+import PhotoSelector from './PhotoSelector';
 import { Settings, ChevronUp, ChevronDown } from 'lucide-react';
 
 interface ControlsSectionProps {
@@ -16,6 +17,8 @@ interface ControlsSectionProps {
   onHeadingFontChange: (font: string) => void;
   onBodyFontChange: (font: string) => void;
   onSelectTemplate: (template: Template) => void;
+  selectedPhoto: string;
+  onPhotoChange: (photoId: string) => void;
   title: string;
   subtitle: string;
   content: string;
@@ -31,6 +34,8 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
   onHeadingFontChange,
   onBodyFontChange,
   onSelectTemplate,
+  selectedPhoto,
+  onPhotoChange,
   title,
   subtitle,
   content,
@@ -68,6 +73,11 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
             selectedBodyFont={selectedBodyFont}
             onHeadingFontChange={onHeadingFontChange}
             onBodyFontChange={onBodyFontChange}
+          />
+          
+          <PhotoSelector
+            selectedPhoto={selectedPhoto}
+            onPhotoChange={onPhotoChange}
           />
           
           <ExportButtons

@@ -16,6 +16,8 @@ interface PreviewPanelProps {
   onHeadingFontChange: (font: string) => void;
   onBodyFontChange: (font: string) => void;
   onSelectTemplate: (template: Template) => void;
+  selectedPhoto: string;
+  onPhotoChange: (photoId: string) => void;
   title: string;
   subtitle: string;
   content: string;
@@ -35,6 +37,8 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
   onHeadingFontChange,
   onBodyFontChange,
   onSelectTemplate,
+  selectedPhoto,
+  onPhotoChange,
   title,
   subtitle,
   content,
@@ -53,6 +57,8 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
         onHeadingFontChange={onHeadingFontChange}
         onBodyFontChange={onBodyFontChange}
         onSelectTemplate={onSelectTemplate}
+        selectedPhoto={selectedPhoto}
+        onPhotoChange={onPhotoChange}
         title={title}
         subtitle={subtitle}
         content={content}
@@ -65,6 +71,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
         title={title}
         subtitle={subtitle}
         selectedTheme={selectedTheme}
+        selectedPhoto={selectedPhoto}
         headingFont={headingFont}
         bodyFont={bodyFont}
       />

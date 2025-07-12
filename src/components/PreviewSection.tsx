@@ -10,6 +10,7 @@ interface PreviewSectionProps {
   title: string;
   subtitle: string;
   selectedTheme: string;
+  selectedPhoto: string;
   headingFont: string;
   bodyFont: string;
 }
@@ -21,6 +22,7 @@ export const PreviewSection: React.FC<PreviewSectionProps> = ({
   title,
   subtitle,
   selectedTheme,
+  selectedPhoto,
   headingFont,
   bodyFont,
 }) => {
@@ -50,6 +52,7 @@ export const PreviewSection: React.FC<PreviewSectionProps> = ({
             title={title}
             subtitle={subtitle}
             selectedTheme={selectedTheme}
+            selectedPhoto={selectedPhoto}
             headingFont={headingFont}
             bodyFont={bodyFont}
           />

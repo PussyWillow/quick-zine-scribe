@@ -35,6 +35,7 @@ Start writing and watch your words come to life with beautiful themes.
   const [selectedTheme, setSelectedTheme] = useState('dreamy');
   const [selectedHeadingFont, setSelectedHeadingFont] = useState('playfair');
   const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
+  const [selectedPhoto, setSelectedPhoto] = useState('none');
   const [isControlsCollapsed, setIsControlsCollapsed] = useState(false);
   const [isPreviewCollapsed, setIsPreviewCollapsed] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -79,6 +80,8 @@ Start writing and watch your words come to life with beautiful themes.
           onHeadingFontChange={setSelectedHeadingFont}
           onBodyFontChange={setSelectedBodyFont}
           onSelectTemplate={handleSelectTemplate}
+          selectedPhoto={selectedPhoto}
+          onPhotoChange={setSelectedPhoto}
           title={title}
           subtitle={subtitle}
           content={content}
