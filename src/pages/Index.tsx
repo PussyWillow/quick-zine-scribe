@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { AppHeader } from '../components/AppHeader';
 import { EditorPanel } from '../components/EditorPanel';
 import { PreviewPanel } from '../components/PreviewPanel';
 import FloatingPhotoGallery from '../components/FloatingPhotoGallery';
 import { fonts } from '../components/FontSelector';
-import { Template } from '../components/TemplateSelector';
+import { Template } from '../data/templates';
 
 const Index = () => {
   const [content, setContent] = useState(`# Welcome to Flash Zine

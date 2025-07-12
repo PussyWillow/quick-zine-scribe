@@ -2,9 +2,10 @@
 import React from 'react';
 import VisualThemeSelector from './VisualThemeSelector';
 import FontSelector from './FontSelector';
-import TemplateSelector, { Template } from './TemplateSelector';
+import TemplateSelector from './TemplateSelector';
 import ExportButtons from './ExportButtons';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
+import { Template } from '../data/templates';
 
 interface ControlsAccordionProps {
   selectedTheme: string;
