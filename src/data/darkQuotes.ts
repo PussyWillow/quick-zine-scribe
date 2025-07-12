@@ -1,4 +1,3 @@
-
 export interface DarkQuote {
   id: string;
   text: string;
@@ -51,7 +50,7 @@ export const darkQuotes: DarkQuote[] = [
     text: 'A book must be the axe for the frozen sea inside us.',
     author: 'Franz Kafka',
     category: 'writing-darkness',
-    mood: 'existential'
+    mood: 'gothic'
   },
   {
     id: 'gothic-writer',
@@ -111,7 +110,7 @@ export const darkQuotes: DarkQuote[] = [
     text: 'In the depth of winter, I finally learned that there was in me an invincible summer.',
     author: 'Albert Camus',
     category: 'midnight-motivation',
-    mood: 'existential'
+    mood: 'gothic'
   },
   {
     id: 'night-writing',
