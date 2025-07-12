@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ControlsAccordion } from './ControlsAccordion';
-import { Template } from './TemplateSelector';
+import { Template } from '../data/templates';
 import { Settings, ChevronUp, ChevronDown } from 'lucide-react';
 
 interface ControlsSectionProps {

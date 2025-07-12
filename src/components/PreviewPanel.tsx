@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { ControlsSection } from './ControlsSection';
 import { PreviewSection } from './PreviewSection';
-import { Template } from './TemplateSelector';
+import { Template } from '../data/templates';
 
 interface PreviewPanelProps {
   isControlsCollapsed: boolean;
