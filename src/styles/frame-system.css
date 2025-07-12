@@ -1,5 +1,5 @@
 
-/* Enhanced Frame System */
+/* Enhanced Frame System with Pastel Colors */
 @layer components {
   /* Base frame styles */
   .elegant-frame {
@@ -13,11 +13,11 @@
     box-shadow: 0 4px 12px hsla(var(--foreground), 0.08);
   }
 
-  /* Enhanced frames for normal mode with sophisticated hover effects */
+  /* Enhanced frames for normal mode with soft pastel hover effects */
   .refined-frame {
     @apply elegant-frame;
     box-shadow: 
-      0 1px 3px hsla(var(--foreground), 0.08),
+      0 1px 3px hsla(var(--foreground), 0.06),
       0 0 0 1px hsla(var(--border), 0.4);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -25,9 +25,9 @@
   .refined-frame:hover {
     transform: translateY(-1px);
     box-shadow: 
-      0 8px 25px hsla(var(--foreground), 0.12),
-      0 0 0 1px hsla(var(--accent), 0.6),
-      0 0 20px hsla(var(--accent), 0.1);
+      0 6px 20px hsla(var(--foreground), 0.08),
+      0 0 0 1px hsl(var(--sage-green)),
+      0 0 15px hsla(var(--sage-green), 0.15);
   }
 
   .interactive-frame {
@@ -38,9 +38,9 @@
   .interactive-frame:hover {
     transform: translateY(-2px) scale(1.01);
     box-shadow: 
-      0 12px 30px hsla(var(--foreground), 0.15),
-      0 0 0 2px hsla(var(--accent), 0.8),
-      0 0 30px hsla(var(--accent), 0.15);
+      0 8px 25px hsla(var(--foreground), 0.1),
+      0 0 0 2px hsl(var(--sage-green)),
+      0 0 20px hsla(var(--sage-green), 0.2);
   }
 
   .section-frame {
@@ -59,49 +59,67 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      hsl(var(--accent)) 50%,
+      hsl(var(--sage-green)) 50%,
       transparent 100%
     );
-    opacity: 0.3;
+    opacity: 0.4;
     transition: opacity 0.3s ease;
   }
 
   .section-frame:hover::before {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
-  /* Enhanced normal mode frames with glow effects */
-  .enhanced-frame {
+  /* Pastel gradient frames */
+  .pastel-frame {
     @apply refined-frame;
-    position: relative;
-    backdrop-filter: blur(8px);
-    background: hsla(var(--card), 0.95);
-  }
-
-  .enhanced-frame::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
     background: linear-gradient(
       135deg,
-      hsla(var(--accent), 0.6),
-      hsla(var(--primary), 0.4),
-      hsla(var(--accent), 0.6)
+      hsl(var(--card)) 0%,
+      hsla(var(--sage-green), 0.1) 50%,
+      hsla(var(--lavender), 0.1) 100%
     );
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
   }
 
-  .enhanced-frame:hover::after {
-    opacity: 1;
+  .pastel-frame:hover {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--card)) 0%,
+      hsla(var(--sage-green), 0.15) 50%,
+      hsla(var(--lavender), 0.15) 100%
+    );
   }
 
-  /* Gothic ornate frames */
+  /* Photo gallery specific frames */
+  .photo-gallery-frame {
+    @apply refined-frame;
+    background: linear-gradient(
+      145deg,
+      hsl(var(--card)) 0%,
+      hsla(var(--warm-blue), 0.1) 100%
+    );
+    backdrop-filter: blur(10px);
+  }
+
+  .photo-thumbnail-frame {
+    @apply border-2 rounded-md overflow-hidden transition-all duration-200;
+    border-color: hsl(var(--border));
+    background: hsl(var(--card));
+  }
+
+  .photo-thumbnail-frame:hover {
+    border-color: hsl(var(--sage-green));
+    box-shadow: 0 4px 12px hsla(var(--sage-green), 0.2);
+  }
+
+  .photo-thumbnail-frame.selected {
+    border-color: hsl(var(--sage-green));
+    box-shadow: 
+      0 0 0 3px hsla(var(--sage-green), 0.3),
+      0 4px 12px hsla(var(--sage-green), 0.25);
+  }
+
+  /* Gothic ornate frames (preserved for gothic mode) */
   .gothic .elegant-frame {
     border: 2px solid hsl(var(--border));
     background: hsl(var(--card));

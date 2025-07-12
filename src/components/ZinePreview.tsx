@@ -6,14 +6,7 @@ import ZinePreviewHeader from './ZinePreviewHeader';
 import BackgroundTexture from './BackgroundTexture';
 import ZineTitleSection from './ZineTitleSection';
 import ZineMarkdownContent from './ZineMarkdownContent';
-
-const eeriePhotos = [
-  { id: 'none', url: '' },
-  { id: 'foggy-mountain', url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80' },
-  { id: 'cathedral', url: 'https://images.unsplash.com/photo-1473177104440-ffee2f376098?w=800&q=80' },
-  { id: 'starry-night', url: 'https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=800&q=80' },
-  { id: 'building', url: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=800&q=80' }
-];
+import { useGalleryImages } from '@/hooks/useGalleryImages';
 
 interface ZinePreviewProps {
   content: string;
@@ -35,7 +28,12 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
   bodyFont
 }) => {
   const theme = themes.find(t => t.id === selectedTheme) || themes[0];
-  const selectedPhotoData = eeriePhotos.find(p => p.id === selectedPhoto);
+  const { data: galleryImages = [] } = useGalleryImages();
+  
+  // Find the selected photo from either gallery images or fallback to none
+  const selectedPhotoData = selectedPhoto === 'none' 
+    ? { id: 'none', url: '' }
+    : galleryImages.find(img => img.id === selectedPhoto) || { id: 'none', url: '' };
   
   // Use font overrides if provided, otherwise fall back to theme fonts
   const actualHeadingFont = headingFont || theme.styles.headingFont;
