@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { GothicModeProvider } from "@/contexts/GothicModeContext";
+import { CollectionsProvider } from "@/contexts/CollectionsContext";
+import { GothicNotebookDrawer } from "@/components/GothicNotebookDrawer";
 import Index from "./pages/Index";
 import Questions from "./pages/Questions";
 import NotFound from "./pages/NotFound";
@@ -16,17 +18,20 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <GothicModeProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/questions" element={<Questions />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
+        <CollectionsProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/questions" element={<Questions />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+            <GothicNotebookDrawer />
+          </TooltipProvider>
+        </CollectionsProvider>
       </GothicModeProvider>
     </AuthProvider>
   </QueryClientProvider>

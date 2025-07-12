@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useArchetypes } from '@/hooks/useArchetypes';
 import { useToast } from '@/hooks/use-toast';
+import { useCollections } from '@/contexts/CollectionsContext';
 import { Sparkles, Loader2 } from 'lucide-react';
 
 interface ArchetypeData {
@@ -16,6 +17,7 @@ export const ArchetypeGenerator = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [archetype, setArchetype] = useState<ArchetypeData | null>(null);
   const { archetypes, isLoading, getRandomArchetype } = useArchetypes();
+  const { addArchetype } = useCollections();
   const { toast } = useToast();
 
   const generateArchetype = () => {
@@ -30,15 +32,20 @@ export const ArchetypeGenerator = () => {
       return;
     }
 
-    setArchetype({
+    const newArchetype = {
       name: randomArchetype.Name,
       motto: randomArchetype.Motto,
       description: randomArchetype.Description,
-    });
+    };
+
+    setArchetype(newArchetype);
+    
+    // Add to collections
+    addArchetype(newArchetype);
     
     toast({
       title: '✨ Archetype Generated!',
-      description: 'Your mystical zine-writer identity has been revealed.',
+      description: 'Your mystical zine-writer identity has been revealed and added to your grimoire.',
     });
   };
 
@@ -121,7 +128,7 @@ export const ArchetypeGenerator = () => {
                   )}
                 </div>
                 <p className="text-sm text-gray-500">
-                  This archetype reflects your creative spirit for this moment.
+                  This archetype has been added to your gothic grimoire and reflects your creative spirit for this moment.
                 </p>
                 <Button 
                   onClick={() => setIsOpen(false)}
