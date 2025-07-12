@@ -182,30 +182,41 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
 
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-medium text-gray-600 mb-3">Export Options</h3>
+      <h3 className="text-sm font-semibold text-muted-foreground mb-4 tracking-wide uppercase">
+        Export Options
+      </h3>
       
       <button
         onClick={exportToPDF}
-        className="w-full flex items-center gap-3 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-md transition-colors"
+        className="w-full flex items-center gap-4 px-5 py-4 export-btn-pdf rounded-lg font-medium text-sm tracking-wide"
       >
-        <FileText className="w-4 h-4" />
-        <span>Export as PDF</span>
+        <FileText className="w-5 h-5" />
+        <div className="flex flex-col items-start">
+          <span className="font-semibold">Export as PDF</span>
+          <span className="text-xs opacity-80 font-normal">High-quality document</span>
+        </div>
       </button>
       
       <button
         onClick={exportToHTML}
-        className="w-full flex items-center gap-3 px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors"
+        className="w-full flex items-center gap-4 px-5 py-4 export-btn-html rounded-lg font-medium text-sm tracking-wide"
       >
-        <Mail className="w-4 h-4" />
-        <span>Export as HTML Email</span>
+        <Mail className="w-5 h-5" />
+        <div className="flex flex-col items-start">
+          <span className="font-semibold">Export as HTML Email</span>
+          <span className="text-xs opacity-80 font-normal">Email-ready format</span>
+        </div>
       </button>
       
       <button
         onClick={exportToWebPage}
-        className="w-full flex items-center gap-3 px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors"
+        className="w-full flex items-center gap-4 px-5 py-4 export-btn-web rounded-lg font-medium text-sm tracking-wide"
       >
-        <Globe className="w-4 h-4" />
-        <span>Preview as Web Page</span>
+        <Globe className="w-5 h-5" />
+        <div className="flex flex-col items-start">
+          <span className="font-semibold">Preview as Web Page</span>
+          <span className="text-xs opacity-80 font-normal">Interactive preview</span>
+        </div>
       </button>
     </div>
   );

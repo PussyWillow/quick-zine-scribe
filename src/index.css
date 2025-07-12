@@ -245,23 +245,40 @@ All colors MUST be HSL.
     box-shadow: 0 4px 12px hsla(var(--foreground), 0.08);
   }
 
-  /* Enhanced frames for normal mode */
+  /* Enhanced frames for normal mode with sophisticated hover effects */
   .refined-frame {
     @apply elegant-frame;
     box-shadow: 
-      0 1px 3px hsla(var(--foreground), 0.1),
-      0 0 0 1px hsla(var(--border), 0.5);
+      0 1px 3px hsla(var(--foreground), 0.08),
+      0 0 0 1px hsla(var(--border), 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .refined-frame:hover {
+    transform: translateY(-1px);
     box-shadow: 
-      0 4px 12px hsla(var(--foreground), 0.15),
-      0 0 0 1px hsla(var(--accent), 0.8);
+      0 8px 25px hsla(var(--foreground), 0.12),
+      0 0 0 1px hsla(var(--accent), 0.6),
+      0 0 20px hsla(var(--accent), 0.1);
+  }
+
+  .interactive-frame {
+    @apply refined-frame cursor-pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .interactive-frame:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 12px 30px hsla(var(--foreground), 0.15),
+      0 0 0 2px hsla(var(--accent), 0.8),
+      0 0 30px hsla(var(--accent), 0.15);
   }
 
   .section-frame {
     @apply refined-frame p-4;
     position: relative;
+    overflow: hidden;
   }
 
   .section-frame::before {
@@ -278,6 +295,42 @@ All colors MUST be HSL.
       transparent 100%
     );
     opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+
+  .section-frame:hover::before {
+    opacity: 0.6;
+  }
+
+  /* Enhanced normal mode frames with glow effects */
+  .enhanced-frame {
+    @apply refined-frame;
+    position: relative;
+    backdrop-filter: blur(8px);
+    background: hsla(var(--card), 0.95);
+  }
+
+  .enhanced-frame::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsla(var(--accent), 0.6),
+      hsla(var(--primary), 0.4),
+      hsla(var(--accent), 0.6)
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .enhanced-frame:hover::after {
+    opacity: 1;
   }
 
   /* Gothic ornate frames */
@@ -360,9 +413,110 @@ All colors MUST be HSL.
     border-bottom-right-radius: var(--radius);
   }
 
+  /* Export Button Styles */
+  .export-btn-pdf {
+    background: linear-gradient(135deg, hsl(265, 85%, 60%) 0%, hsl(260, 75%, 50%) 100%);
+    color: white;
+    border: 1px solid hsla(265, 85%, 60%, 0.3);
+    box-shadow: 
+      0 4px 12px hsla(265, 85%, 60%, 0.25),
+      inset 0 1px 0 hsla(255, 255%, 255%, 0.15);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .export-btn-pdf:hover {
+    background: linear-gradient(135deg, hsl(265, 85%, 65%) 0%, hsl(260, 75%, 55%) 100%);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 
+      0 8px 20px hsla(265, 85%, 60%, 0.35),
+      inset 0 1px 0 hsla(255, 255%, 255%, 0.2);
+  }
+
+  .export-btn-html {
+    background: linear-gradient(135deg, hsl(200, 85%, 60%) 0%, hsl(185, 75%, 50%) 100%);
+    color: white;
+    border: 1px solid hsla(200, 85%, 60%, 0.3);
+    box-shadow: 
+      0 4px 12px hsla(200, 85%, 60%, 0.25),
+      inset 0 1px 0 hsla(255, 255%, 255%, 0.15);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .export-btn-html:hover {
+    background: linear-gradient(135deg, hsl(200, 85%, 65%) 0%, hsl(185, 75%, 55%) 100%);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 
+      0 8px 20px hsla(200, 85%, 60%, 0.35),
+      inset 0 1px 0 hsla(255, 255%, 255%, 0.2);
+  }
+
+  .export-btn-web {
+    background: linear-gradient(135deg, hsl(150, 85%, 60%) 0%, hsl(140, 75%, 50%) 100%);
+    color: white;
+    border: 1px solid hsla(150, 85%, 60%, 0.3);
+    box-shadow: 
+      0 4px 12px hsla(150, 85%, 60%, 0.25),
+      inset 0 1px 0 hsla(255, 255%, 255%, 0.15);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .export-btn-web:hover {
+    background: linear-gradient(135deg, hsl(150, 85%, 65%) 0%, hsl(140, 75%, 55%) 100%);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 
+      0 8px 20px hsla(150, 85%, 60%, 0.35),
+      inset 0 1px 0 hsla(255, 255%, 255%, 0.2);
+  }
+
+  /* Gothic mode export buttons */
+  .gothic .export-btn-pdf {
+    background: linear-gradient(135deg, hsl(0, 60%, 40%) 0%, hsl(15, 50%, 25%) 100%);
+    border-color: hsla(0, 100%, 40%, 0.6);
+    box-shadow: 
+      0 0 20px hsla(0, 100%, 30%, 0.4),
+      inset 0 0 10px hsla(15, 50%, 15%, 0.5);
+  }
+
+  .gothic .export-btn-pdf:hover {
+    background: linear-gradient(135deg, hsl(0, 60%, 45%) 0%, hsl(15, 50%, 30%) 100%);
+    box-shadow: 
+      0 0 30px hsla(0, 100%, 35%, 0.6),
+      inset 0 0 15px hsla(15, 50%, 15%, 0.6);
+  }
+
+  .gothic .export-btn-html {
+    background: linear-gradient(135deg, hsl(0, 60%, 40%) 0%, hsl(10, 50%, 25%) 100%);
+    border-color: hsla(0, 100%, 40%, 0.6);
+    box-shadow: 
+      0 0 20px hsla(0, 100%, 30%, 0.4),
+      inset 0 0 10px hsla(15, 50%, 15%, 0.5);
+  }
+
+  .gothic .export-btn-html:hover {
+    background: linear-gradient(135deg, hsl(0, 60%, 45%) 0%, hsl(10, 50%, 30%) 100%);
+    box-shadow: 
+      0 0 30px hsla(0, 100%, 35%, 0.6),
+      inset 0 0 15px hsla(15, 50%, 15%, 0.6);
+  }
+
+  .gothic .export-btn-web {
+    background: linear-gradient(135deg, hsl(0, 60%, 40%) 0%, hsl(5, 50%, 25%) 100%);
+    border-color: hsla(0, 100%, 40%, 0.6);
+    box-shadow: 
+      0 0 20px hsla(0, 100%, 30%, 0.4),
+      inset 0 0 10px hsla(15, 50%, 15%, 0.5);
+  }
+
+  .gothic .export-btn-web:hover {
+    background: linear-gradient(135deg, hsl(0, 60%, 45%) 0%, hsl(5, 50%, 30%) 100%);
+    box-shadow: 
+      0 0 30px hsla(0, 100%, 35%, 0.6),
+      inset 0 0 15px hsla(15, 50%, 15%, 0.6);
+  }
+
   /* Zine preview frame enhancement */
   .zine-preview-frame {
-    @apply elegant-frame;
+    @apply enhanced-frame;
     background: hsl(var(--background));
     min-height: 600px;
     position: relative;
@@ -394,12 +548,12 @@ All colors MUST be HSL.
 
   /* Editor panel frame */
   .editor-panel-frame {
-    @apply section-frame;
+    @apply enhanced-frame;
     height: 100%;
   }
 
   .editor-input-frame {
-    @apply elegant-frame px-3 py-2;
+    @apply refined-frame px-3 py-2;
     background: hsl(var(--background));
     transition: all 0.2s ease;
   }
@@ -407,6 +561,7 @@ All colors MUST be HSL.
   .editor-input-frame:focus-within {
     border-color: hsl(var(--accent));
     box-shadow: 0 0 0 2px hsla(var(--accent), 0.2);
+    transform: translateY(-1px);
   }
 
   .gothic .editor-input-frame:focus-within {
@@ -417,12 +572,12 @@ All colors MUST be HSL.
 
   /* Controls section frame */
   .controls-frame {
-    @apply elegant-frame;
+    @apply enhanced-frame;
     background: hsl(var(--card));
   }
 
   .control-group-frame {
-    @apply border border-border/50 rounded-md p-3;
+    @apply interactive-frame p-3;
     background: hsla(var(--muted), 0.3);
     transition: all 0.2s ease;
   }
@@ -448,8 +603,8 @@ All colors MUST be HSL.
 
   /* Floating photo gallery frame */
   .photo-gallery-frame {
-    @apply elegant-frame;
-    backdrop-filter: blur(16px);
+    @apply enhanced-frame;
+    backdrop-filter: blur(20px);
     background: hsla(var(--card), 0.95);
     border-color: hsla(var(--border), 0.8);
   }
@@ -471,7 +626,7 @@ All colors MUST be HSL.
   }
 
   .gothic .photo-gallery-frame {
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px);
     background: hsla(20, 30%, 8%, 0.95);
     border-color: hsla(0, 100%, 25%, 0.6);
     box-shadow: 
