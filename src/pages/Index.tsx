@@ -87,7 +87,7 @@ Start writing and watch your words come to life with beautiful themes.
         {/* Right Panel - Preview & Controls */}
         <div className="w-1/2 flex flex-col">
           {/* Controls */}
-          <div className="bg-white border-b border-gray-200 p-4 space-y-4 max-h-96 overflow-y-auto">
+          <div className="bg-white border-b border-gray-200 p-4 space-y-4 max-h-64 overflow-y-auto">
             <TemplateSelector onSelectTemplate={handleSelectTemplate} />
             
             <VisualThemeSelector 
