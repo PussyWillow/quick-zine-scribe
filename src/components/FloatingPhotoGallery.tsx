@@ -8,6 +8,16 @@ interface FloatingPhotoGalleryProps {
   onPhotoChange: (photoId: string) => void;
 }
 
+interface PhotoItem {
+  id: string;
+  name: string;
+  url: string;
+  preview: string;
+  description?: string | null;
+  category?: string | null;
+  tags?: string[] | null;
+}
+
 const FloatingPhotoGallery: React.FC<FloatingPhotoGalleryProps> = ({
   selectedPhoto,
   onPhotoChange
@@ -16,8 +26,16 @@ const FloatingPhotoGallery: React.FC<FloatingPhotoGalleryProps> = ({
   const { data: galleryImages = [], isLoading, error } = useGalleryImages();
 
   // Create the complete photo list with 'none' option + dynamic images
-  const allPhotos = [
-    { id: 'none', name: 'None', url: '', preview: '' },
+  const allPhotos: PhotoItem[] = [
+    { 
+      id: 'none', 
+      name: 'None', 
+      url: '', 
+      preview: '',
+      description: null,
+      category: null,
+      tags: null
+    },
     ...galleryImages.map((img: GalleryImage) => ({
       id: img.id,
       name: img.name,
