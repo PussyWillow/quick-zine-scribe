@@ -6,7 +6,9 @@ import { useQuery } from '@tanstack/react-query';
 
 interface Profile {
   id: string;
-  archetype_title?: string;
+  Name?: string;
+  Motto?: string;
+  Description?: string;
   archetype_generated_at?: string;
   created_at: string;
   updated_at: string;

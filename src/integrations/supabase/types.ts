@@ -49,25 +49,19 @@ export type Database = {
       }
       profiles: {
         Row: {
-          archetype_generated_at: string | null
-          archetype_title: string | null
-          created_at: string
-          id: string
-          updated_at: string
+          Description: string | null
+          Motto: string | null
+          Name: string
         }
         Insert: {
-          archetype_generated_at?: string | null
-          archetype_title?: string | null
-          created_at?: string
-          id: string
-          updated_at?: string
+          Description?: string | null
+          Motto?: string | null
+          Name: string
         }
         Update: {
-          archetype_generated_at?: string | null
-          archetype_title?: string | null
-          created_at?: string
-          id?: string
-          updated_at?: string
+          Description?: string | null
+          Motto?: string | null
+          Name?: string
         }
         Relationships: []
       }

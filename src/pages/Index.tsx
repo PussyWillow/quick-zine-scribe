@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import MarkdownEditor from '../components/MarkdownEditor';
 import ZinePreview from '../components/ZinePreview';
@@ -86,9 +85,16 @@ Start writing and watch your words come to life with beautiful themes.
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-3">
-                {profile?.archetype_title && (
-                  <div className="hidden md:block text-sm text-purple-600 italic">
-                    {profile.archetype_title}
+                {profile?.Name && (
+                  <div className="hidden md:block text-right">
+                    <div className="text-sm text-purple-600 font-medium">
+                      {profile.Name}
+                    </div>
+                    {profile.Motto && (
+                      <div className="text-xs text-gray-500 italic">
+                        "{profile.Motto}"
+                      </div>
+                    )}
                   </div>
                 )}
                 <ArchetypeGenerator />

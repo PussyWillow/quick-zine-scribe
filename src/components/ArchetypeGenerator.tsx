@@ -7,10 +7,16 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Sparkles, Loader2 } from 'lucide-react';
 
+interface ArchetypeData {
+  name: string;
+  motto?: string;
+  description?: string;
+}
+
 export const ArchetypeGenerator = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [archetype, setArchetype] = useState<string | null>(null);
+  const [archetype, setArchetype] = useState<ArchetypeData | null>(null);
   const { user } = useAuth();
   const { toast } = useToast();
 
@@ -35,7 +41,12 @@ export const ArchetypeGenerator = () => {
 
       if (error) throw error;
 
-      setArchetype(data.archetype_title);
+      setArchetype({
+        name: data.name,
+        motto: data.motto,
+        description: data.description,
+      });
+      
       toast({
         title: '✨ Archetype Generated!',
         description: 'Your mystical zine-writer identity has been revealed.',
@@ -107,9 +118,27 @@ export const ArchetypeGenerator = () => {
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">
                     Your Archetype:
                   </h3>
-                  <p className="text-xl font-medium text-purple-800 italic">
-                    {archetype}
+                  <p className="text-xl font-medium text-purple-800 mb-3">
+                    {archetype.name}
                   </p>
+                  
+                  {archetype.motto && (
+                    <div className="mb-3">
+                      <p className="text-sm font-medium text-gray-700 mb-1">Motto:</p>
+                      <p className="text-base italic text-purple-700">
+                        "{archetype.motto}"
+                      </p>
+                    </div>
+                  )}
+                  
+                  {archetype.description && (
+                    <div>
+                      <p className="text-sm font-medium text-gray-700 mb-1">Description:</p>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {archetype.description}
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <p className="text-sm text-gray-500">
                   This archetype has been saved to your profile and reflects your creative spirit in this moment.
