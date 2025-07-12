@@ -6,7 +6,7 @@ import VisualThemeSelector from '../components/VisualThemeSelector';
 import FontSelector, { fonts } from '../components/FontSelector';
 import TemplateSelector, { Template } from '../components/TemplateSelector';
 import ExportButtons from '../components/ExportButtons';
-import { Zap } from 'lucide-react';
+import { Zap, ChevronUp, ChevronDown, Eye, EyeOff, Settings } from 'lucide-react';
 
 const Index = () => {
   const [content, setContent] = useState(`# Welcome to Flash Zine
@@ -37,6 +37,8 @@ Start writing and watch your words come to life with beautiful themes.
   const [selectedTheme, setSelectedTheme] = useState('dreamy');
   const [selectedHeadingFont, setSelectedHeadingFont] = useState('playfair');
   const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
+  const [isControlsCollapsed, setIsControlsCollapsed] = useState(false);
+  const [isPreviewCollapsed, setIsPreviewCollapsed] = useState(false);
 
   const handleSelectTemplate = (template: Template) => {
     setTitle(template.title);
@@ -87,39 +89,81 @@ Start writing and watch your words come to life with beautiful themes.
         {/* Right Panel - Preview & Controls */}
         <div className="w-1/2 flex flex-col">
           {/* Controls */}
-          <div className="bg-white border-b border-gray-200 p-4 space-y-4 max-h-64 overflow-y-auto">
-            <TemplateSelector onSelectTemplate={handleSelectTemplate} />
+          <div className="bg-white border-b border-gray-200">
+            <div className="flex items-center justify-between p-3 border-b border-gray-100">
+              <div className="flex items-center gap-2">
+                <Settings className="w-4 h-4 text-gray-600" />
+                <span className="text-sm font-medium text-gray-700">Controls</span>
+              </div>
+              <button
+                onClick={() => setIsControlsCollapsed(!isControlsCollapsed)}
+                className="p-1 hover:bg-gray-100 rounded transition-colors"
+              >
+                {isControlsCollapsed ? (
+                  <ChevronDown className="w-4 h-4 text-gray-600" />
+                ) : (
+                  <ChevronUp className="w-4 h-4 text-gray-600" />
+                )}
+              </button>
+            </div>
             
-            <VisualThemeSelector 
-              selectedTheme={selectedTheme}
-              onThemeChange={setSelectedTheme}
-            />
-            
-            <FontSelector
-              selectedHeadingFont={selectedHeadingFont}
-              selectedBodyFont={selectedBodyFont}
-              onHeadingFontChange={setSelectedHeadingFont}
-              onBodyFontChange={setSelectedBodyFont}
-            />
-            
-            <ExportButtons
-              title={title}
-              subtitle={subtitle}
-              content={content}
-              selectedTheme={selectedTheme}
-            />
+            {!isControlsCollapsed && (
+              <div className="p-4 space-y-4 max-h-64 overflow-y-auto">
+                <TemplateSelector onSelectTemplate={handleSelectTemplate} />
+                
+                <VisualThemeSelector 
+                  selectedTheme={selectedTheme}
+                  onThemeChange={setSelectedTheme}
+                />
+                
+                <FontSelector
+                  selectedHeadingFont={selectedHeadingFont}
+                  selectedBodyFont={selectedBodyFont}
+                  onHeadingFontChange={setSelectedHeadingFont}
+                  onBodyFontChange={setSelectedBodyFont}
+                />
+                
+                <ExportButtons
+                  title={title}
+                  subtitle={subtitle}
+                  content={content}
+                  selectedTheme={selectedTheme}
+                />
+              </div>
+            )}
           </div>
           
           {/* Preview */}
-          <div className="flex-1">
-            <ZinePreview
-              content={content}
-              title={title}
-              subtitle={subtitle}
-              selectedTheme={selectedTheme}
-              headingFont={headingFont}
-              bodyFont={bodyFont}
-            />
+          <div className="flex flex-col flex-1">
+            <div className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
+              <div className="flex items-center gap-2">
+                <Eye className="w-4 h-4 text-gray-600" />
+                <span className="text-sm font-medium text-gray-700">Preview</span>
+              </div>
+              <button
+                onClick={() => setIsPreviewCollapsed(!isPreviewCollapsed)}
+                className="p-1 hover:bg-gray-100 rounded transition-colors"
+              >
+                {isPreviewCollapsed ? (
+                  <EyeOff className="w-4 h-4 text-gray-600" />
+                ) : (
+                  <Eye className="w-4 h-4 text-gray-600" />
+                )}
+              </button>
+            </div>
+            
+            {!isPreviewCollapsed && (
+              <div className="flex-1">
+                <ZinePreview
+                  content={content}
+                  title={title}
+                  subtitle={subtitle}
+                  selectedTheme={selectedTheme}
+                  headingFont={headingFont}
+                  bodyFont={bodyFont}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
