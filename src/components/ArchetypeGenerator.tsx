@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { useAuth } from '@/hooks/useAuth';
-import { supabase } from '@/integrations/supabase/client';
+import { useArchetypes } from '@/hooks/useArchetypes';
 import { useToast } from '@/hooks/use-toast';
 import { Sparkles, Loader2 } from 'lucide-react';
 
@@ -15,52 +14,32 @@ interface ArchetypeData {
 
 export const ArchetypeGenerator = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
   const [archetype, setArchetype] = useState<ArchetypeData | null>(null);
-  const { user } = useAuth();
+  const { archetypes, isLoading, getRandomArchetype } = useArchetypes();
   const { toast } = useToast();
 
-  const generateArchetype = async () => {
-    if (!user) {
+  const generateArchetype = () => {
+    const randomArchetype = getRandomArchetype();
+    
+    if (!randomArchetype) {
       toast({
-        title: 'Authentication required',
-        description: 'Please sign in to generate your archetype.',
+        title: 'No archetypes available',
+        description: 'Please try again later.',
         variant: 'destructive',
       });
       return;
     }
 
-    setIsGenerating(true);
+    setArchetype({
+      name: randomArchetype.Name,
+      motto: randomArchetype.Motto,
+      description: randomArchetype.Description,
+    });
     
-    try {
-      const { data, error } = await supabase.functions.invoke('generate-archetype', {
-        headers: {
-          Authorization: `Bearer ${(await supabase.auth.getSession()).data.session?.access_token}`,
-        },
-      });
-
-      if (error) throw error;
-
-      setArchetype({
-        name: data.name,
-        motto: data.motto,
-        description: data.description,
-      });
-      
-      toast({
-        title: '✨ Archetype Generated!',
-        description: 'Your mystical zine-writer identity has been revealed.',
-      });
-    } catch (error: any) {
-      console.error('Error generating archetype:', error);
-      toast({
-        title: 'Generation failed',
-        description: error.message || 'Failed to generate archetype. Please try again.',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsGenerating(false);
-    }
+    toast({
+      title: '✨ Archetype Generated!',
+      description: 'Your mystical zine-writer identity has been revealed.',
+    });
   };
 
   const handleOpen = () => {
@@ -88,28 +67,29 @@ export const ArchetypeGenerator = () => {
           </DialogHeader>
           
           <div className="text-center space-y-6 py-4">
-            {!archetype && !isGenerating && (
+            {!archetype && (
               <>
                 <p className="text-gray-600">
                   Discover your mystical zine-writer identity—a poetic title that captures your creative essence in this moment.
                 </p>
                 <Button 
                   onClick={generateArchetype}
+                  disabled={isLoading}
                   className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
                 >
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Generate My Archetype
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Loading Archetypes...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Generate My Archetype
+                    </>
+                  )}
                 </Button>
               </>
-            )}
-
-            {isGenerating && (
-              <div className="space-y-4">
-                <Loader2 className="w-8 h-8 animate-spin mx-auto text-purple-600" />
-                <p className="text-gray-600">
-                  Consulting the cosmic archives...
-                </p>
-              </div>
             )}
 
             {archetype && (
@@ -141,7 +121,7 @@ export const ArchetypeGenerator = () => {
                   )}
                 </div>
                 <p className="text-sm text-gray-500">
-                  This archetype has been saved to your profile and reflects your creative spirit in this moment.
+                  This archetype reflects your creative spirit for this moment.
                 </p>
                 <Button 
                   onClick={() => setIsOpen(false)}

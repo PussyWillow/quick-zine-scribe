@@ -3,7 +3,6 @@ import React from 'react';
 import { ArchetypeGenerator } from './ArchetypeGenerator';
 import { AuthModal } from './AuthModal';
 import { useAuth } from '@/hooks/useAuth';
-import { useProfile } from '@/hooks/useProfile';
 import { Zap, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -14,7 +13,6 @@ interface AppHeaderProps {
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ showAuthModal, setShowAuthModal }) => {
   const { user, signOut } = useAuth();
-  const { profile } = useProfile();
 
   const handleSignOut = async () => {
     try {
@@ -39,31 +37,17 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ showAuthModal, setShowAuth
           </div>
           
           <div className="flex items-center gap-4">
+            <ArchetypeGenerator />
             {user ? (
-              <div className="flex items-center gap-3">
-                {profile?.Name && (
-                  <div className="hidden md:block text-right">
-                    <div className="text-sm text-purple-600 font-medium">
-                      {profile.Name}
-                    </div>
-                    {profile.Motto && (
-                      <div className="text-xs text-gray-500 italic">
-                        "{profile.Motto}"
-                      </div>
-                    )}
-                  </div>
-                )}
-                <ArchetypeGenerator />
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleSignOut}
-                  className="gap-2"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Sign Out
-                </Button>
-              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleSignOut}
+                className="gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign Out
+              </Button>
             ) : (
               <Button
                 variant="outline"

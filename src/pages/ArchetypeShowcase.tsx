@@ -2,15 +2,13 @@
 import React from 'react';
 import { ArchetypePreview } from '@/components/ArchetypePreview';
 import { ArchetypeGenerator } from '@/components/ArchetypeGenerator';
-import { useAuth } from '@/hooks/useAuth';
-import { useProfile } from '@/hooks/useProfile';
+import { useArchetypes } from '@/hooks/useArchetypes';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ArchetypeShowcase = () => {
-  const { user } = useAuth();
-  const { profile } = useProfile();
+  const { archetypes, isLoading } = useArchetypes();
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -35,37 +33,31 @@ const ArchetypeShowcase = () => {
             </div>
           </div>
           
-          {user && (
-            <div className="text-right">
-              {profile?.Name && (
-                <div className="mb-2">
-                  <p className="text-sm text-gray-600">Your Current Archetype:</p>
-                  <p className="text-purple-700 font-medium italic">
-                    {profile.Name}
-                  </p>
-                </div>
-              )}
-              <ArchetypeGenerator />
-            </div>
-          )}
+          <div className="text-right">
+            {!isLoading && archetypes && archetypes.length > 0 && (
+              <div className="mb-2">
+                <p className="text-sm text-gray-600">Available Archetypes:</p>
+                <p className="text-purple-700 font-medium">
+                  {archetypes.length} unique identities
+                </p>
+              </div>
+            )}
+            <ArchetypeGenerator />
+          </div>
         </div>
 
         {/* Main Content */}
         <div className="space-y-8">
           <ArchetypePreview />
           
-          {!user && (
-            <div className="text-center p-6 bg-white rounded-lg border border-gray-200">
-              <p className="text-gray-600 mb-4">
-                Sign in to generate and save your own archetype!
-              </p>
-              <Link to="/">
-                <Button variant="outline">
-                  Go to Main App
-                </Button>
-              </Link>
-            </div>
-          )}
+          <div className="text-center p-6 bg-white rounded-lg border border-gray-200">
+            <p className="text-gray-600 mb-4">
+              Generate your archetype to discover your creative identity!
+            </p>
+            <p className="text-sm text-gray-500">
+              Each archetype represents a unique way of seeing and creating in the world.
+            </p>
+          </div>
         </div>
       </div>
     </div>
