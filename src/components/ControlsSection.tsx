@@ -53,7 +53,7 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
       </div>
       
       {!isCollapsed && (
-        <div className="flex-1 p-6 overflow-y-auto max-h-96">
+        <div className="flex-1 p-6 overflow-y-auto min-h-0">
           <ControlsAccordion
             selectedTheme={selectedTheme}
             onThemeChange={onThemeChange}

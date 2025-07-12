@@ -45,7 +45,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
 }) => {
   return (
     <div className="w-1/2 flex flex-col h-full">
-      <div className={`${isControlsCollapsed ? 'h-auto flex-shrink-0' : 'flex-[0_1_50%] min-h-0 max-h-[50vh]'}`}>
+      <div className={`${isControlsCollapsed ? 'h-auto flex-shrink-0' : 'flex-[0_0_40%] min-h-[200px]'}`}>
         <ControlsSection
           isCollapsed={isControlsCollapsed}
           onToggleCollapse={onToggleControls}
@@ -62,7 +62,7 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
         />
       </div>
       
-      <div className={`${isPreviewCollapsed ? 'h-auto flex-shrink-0' : 'flex-1'}`}>
+      <div className={`${isPreviewCollapsed ? 'h-auto flex-shrink-0' : 'flex-[1_1_60%] min-h-[300px]'}`}>
         <PreviewSection
           isCollapsed={isPreviewCollapsed}
           onToggleCollapse={onTogglePreview}
