@@ -6,6 +6,7 @@ import ZinePreviewHeader from './ZinePreviewHeader';
 import BackgroundTexture from './BackgroundTexture';
 import ZineTitleSection from './ZineTitleSection';
 import ZineMarkdownContent from './ZineMarkdownContent';
+import ZineSignature from './ZineSignature';
 import { useGalleryImages } from '@/hooks/useGalleryImages';
 
 interface ZinePreviewProps {
@@ -88,6 +89,8 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
             headingFont={actualHeadingFont}
             bodyFont={actualBodyFont}
           />
+          
+          <ZineSignature theme={theme} />
         </div>
       </div>
     </div>
