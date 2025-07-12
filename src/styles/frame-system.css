@@ -1,0 +1,183 @@
+
+/* Enhanced Frame System */
+@layer components {
+  /* Base frame styles */
+  .elegant-frame {
+    @apply border border-border rounded-lg shadow-sm transition-all duration-300;
+    background: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+
+  .elegant-frame:hover {
+    @apply shadow-md;
+    box-shadow: 0 4px 12px hsla(var(--foreground), 0.08);
+  }
+
+  /* Enhanced frames for normal mode with sophisticated hover effects */
+  .refined-frame {
+    @apply elegant-frame;
+    box-shadow: 
+      0 1px 3px hsla(var(--foreground), 0.08),
+      0 0 0 1px hsla(var(--border), 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .refined-frame:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      0 8px 25px hsla(var(--foreground), 0.12),
+      0 0 0 1px hsla(var(--accent), 0.6),
+      0 0 20px hsla(var(--accent), 0.1);
+  }
+
+  .interactive-frame {
+    @apply refined-frame cursor-pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .interactive-frame:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 12px 30px hsla(var(--foreground), 0.15),
+      0 0 0 2px hsla(var(--accent), 0.8),
+      0 0 30px hsla(var(--accent), 0.15);
+  }
+
+  .section-frame {
+    @apply refined-frame p-4;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--accent)) 50%,
+      transparent 100%
+    );
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+
+  .section-frame:hover::before {
+    opacity: 0.6;
+  }
+
+  /* Enhanced normal mode frames with glow effects */
+  .enhanced-frame {
+    @apply refined-frame;
+    position: relative;
+    backdrop-filter: blur(8px);
+    background: hsla(var(--card), 0.95);
+  }
+
+  .enhanced-frame::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsla(var(--accent), 0.6),
+      hsla(var(--primary), 0.4),
+      hsla(var(--accent), 0.6)
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .enhanced-frame:hover::after {
+    opacity: 1;
+  }
+
+  /* Gothic ornate frames */
+  .gothic .elegant-frame {
+    border: 2px solid hsl(var(--border));
+    background: hsl(var(--card));
+    position: relative;
+    box-shadow: 
+      0 0 20px hsla(0, 100%, 15%, 0.4),
+      inset 0 0 20px hsla(15, 50%, 15%, 0.3),
+      0 4px 12px hsla(0, 0%, 0%, 0.6);
+  }
+
+  .gothic .elegant-frame::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid hsla(0, 100%, 30%, 0.6);
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .gothic .elegant-frame::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px solid hsla(0, 100%, 40%, 0.3);
+    border-radius: calc(var(--radius) - 4px);
+    z-index: -1;
+  }
+
+  .gothic .refined-frame {
+    box-shadow: 
+      0 0 30px hsla(0, 100%, 20%, 0.6),
+      inset 0 0 30px hsla(15, 50%, 15%, 0.4),
+      0 8px 24px hsla(0, 0%, 0%, 0.8);
+  }
+
+  .gothic .refined-frame:hover {
+    box-shadow: 
+      0 0 40px hsla(0, 100%, 25%, 0.8),
+      inset 0 0 40px hsla(15, 50%, 15%, 0.5),
+      0 12px 32px hsla(0, 0%, 0%, 0.9);
+  }
+
+  /* Ornate corner decorations for gothic mode */
+  .gothic .ornate-frame {
+    position: relative;
+  }
+
+  .gothic .ornate-frame::before,
+  .gothic .ornate-frame::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid hsla(0, 100%, 35%, 0.8);
+    z-index: 1;
+  }
+
+  .gothic .ornate-frame::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: var(--radius);
+  }
+
+  .gothic .ornate-frame::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+    border-bottom-right-radius: var(--radius);
+  }
+}
