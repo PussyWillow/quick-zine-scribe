@@ -5,6 +5,7 @@ import { Theme } from '../types/theme';
 import { themes } from '../data/themes';
 import { useGothicMode } from '@/contexts/GothicModeContext';
 import { getGothicThemes } from '../utils/themeUtils';
+import { useCollections } from '@/contexts/CollectionsContext';
 
 interface VisualThemeSelectorProps {
   selectedTheme: string;
@@ -17,6 +18,7 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const { isGothicMode } = useGothicMode();
+  const { collections, addTheme } = useCollections();
   
   // Filter themes based on gothic mode
   const availableThemes = isGothicMode 
@@ -39,6 +41,18 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
     const availableForRandom = selectedCategory === 'all' ? availableThemes : filteredThemes;
     const randomTheme = availableForRandom[Math.floor(Math.random() * availableForRandom.length)];
     onThemeChange(randomTheme.id);
+  };
+
+  const handleFavoriteTheme = (e: React.MouseEvent, theme: Theme) => {
+    e.stopPropagation();
+    addTheme({
+      name: theme.name,
+      description: theme.description
+    });
+  };
+
+  const isThemeFavorited = (themeId: string) => {
+    return collections.themes.some(t => t.name === themes.find(theme => theme.id === themeId)?.name);
   };
 
   const getThemePreviewStyle = (theme: Theme) => ({
@@ -161,9 +175,18 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
               </span>
             </div>
 
+            {/* Heart Favorite Button */}
+            <button
+              onClick={(e) => handleFavoriteTheme(e, theme)}
+              className="absolute bottom-1 right-1 text-sm hover:scale-110 transition-transform z-20"
+              title="Add to Grimoire"
+            >
+              {isThemeFavorited(theme.id) ? '❤️' : '🤍'}
+            </button>
+
             {/* Selected Indicator */}
             {selectedTheme === theme.id && (
-              <div className={`absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center ${
+              <div className={`absolute -top-1 -left-1 w-4 h-4 rounded-full flex items-center justify-center ${
                 isGothicMode ? 'bg-red-600' : 'bg-purple-500'
               } text-white`}>
                 <Grid3X3 className="w-2 h-2" />

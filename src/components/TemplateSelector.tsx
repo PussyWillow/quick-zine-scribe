@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Plus, Sparkles, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useCollections } from '@/contexts/CollectionsContext';
 
 export interface Template {
   id: string;
@@ -603,6 +604,7 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate })
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showTimeTravelJournal, setShowTimeTravelJournal] = useState(false);
   const [showCultDigest, setShowCultDigest] = useState(false);
+  const { collections, addTemplate } = useCollections();
 
   const handleClockClick = () => {
     setShowTimeTravelJournal(true);
@@ -610,6 +612,18 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate })
 
   const handleCultClick = () => {
     setShowCultDigest(true);
+  };
+
+  const handleFavoriteTemplate = (e: React.MouseEvent, template: Template) => {
+    e.stopPropagation();
+    addTemplate({
+      name: template.name,
+      category: template.category
+    });
+  };
+
+  const isTemplateFavorited = (templateId: string) => {
+    return collections.templates.some(t => t.name === templates.find(template => template.id === templateId)?.name);
   };
 
   const categories = [
@@ -672,7 +686,7 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate })
         {filteredTemplates.map(template => (
           <div
             key={template.id}
-            className="border border-gray-200 rounded-md p-3 hover:border-blue-300 cursor-pointer transition-colors group"
+            className="border border-gray-200 rounded-md p-3 hover:border-blue-300 cursor-pointer transition-colors group relative"
             onClick={() => onSelectTemplate(template)}
           >
             <div className="flex items-start justify-between">
@@ -716,7 +730,16 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate })
                   </span>
                 </div>
               </div>
-              <Plus className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors ml-2 flex-shrink-0" />
+              <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+                <button
+                  onClick={(e) => handleFavoriteTemplate(e, template)}
+                  className="text-lg hover:scale-110 transition-transform"
+                  title="Add to Grimoire"
+                >
+                  {isTemplateFavorited(template.id) ? '❤️' : '🤍'}
+                </button>
+                <Plus className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+              </div>
             </div>
           </div>
         ))}

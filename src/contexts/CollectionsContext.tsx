@@ -76,6 +76,10 @@ export const CollectionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, [collections]);
 
   const addArchetype = (archetype: Omit<CollectedArchetype, 'id' | 'collectedAt'>) => {
+    // Check for duplicates
+    const exists = collections.archetypes.some(existing => existing.name === archetype.name);
+    if (exists) return;
+
     const newArchetype: CollectedArchetype = {
       ...archetype,
       id: crypto.randomUUID(),
@@ -93,6 +97,10 @@ export const CollectionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
   };
 
   const addTemplate = (template: Omit<CollectedTemplate, 'id' | 'collectedAt'>) => {
+    // Check for duplicates
+    const exists = collections.templates.some(existing => existing.name === template.name);
+    if (exists) return;
+
     const newTemplate: CollectedTemplate = {
       ...template,
       id: crypto.randomUUID(),
@@ -106,6 +114,10 @@ export const CollectionsProvider: React.FC<{ children: React.ReactNode }> = ({ c
   };
 
   const addTheme = (theme: Omit<CollectedTheme, 'id' | 'collectedAt'>) => {
+    // Check for duplicates
+    const exists = collections.themes.some(existing => existing.name === theme.name);
+    if (exists) return;
+
     const newTheme: CollectedTheme = {
       ...theme,
       id: crypto.randomUUID(),
