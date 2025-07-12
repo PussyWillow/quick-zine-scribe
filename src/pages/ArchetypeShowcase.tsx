@@ -37,11 +37,11 @@ const ArchetypeShowcase = () => {
           
           {user && (
             <div className="text-right">
-              {profile?.archetype_title && (
+              {profile?.Name && (
                 <div className="mb-2">
                   <p className="text-sm text-gray-600">Your Current Archetype:</p>
                   <p className="text-purple-700 font-medium italic">
-                    {profile.archetype_title}
+                    {profile.Name}
                   </p>
                 </div>
               )}
