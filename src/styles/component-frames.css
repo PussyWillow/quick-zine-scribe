@@ -3,7 +3,7 @@
 @layer components {
   /* Zine preview frame enhancement */
   .zine-preview-frame {
-    @apply enhanced-frame;
+    @apply refined-frame;
     background: hsl(var(--background));
     min-height: 600px;
     position: relative;
@@ -35,7 +35,7 @@
 
   /* Editor panel frame */
   .editor-panel-frame {
-    @apply enhanced-frame;
+    @apply refined-frame;
     height: 100%;
   }
 
@@ -59,7 +59,7 @@
 
   /* Controls section frame */
   .controls-frame {
-    @apply enhanced-frame;
+    @apply refined-frame;
     background: hsl(var(--card));
   }
 
@@ -90,7 +90,7 @@
 
   /* Floating photo gallery frame */
   .photo-gallery-frame {
-    @apply enhanced-frame;
+    @apply refined-frame;
     backdrop-filter: blur(20px);
     background: hsla(var(--card), 0.95);
     border-color: hsla(var(--border), 0.8);
