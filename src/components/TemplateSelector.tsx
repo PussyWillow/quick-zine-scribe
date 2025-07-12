@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { FileText, Plus, Sparkles, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -149,6 +148,7 @@ Special thanks to our volunteers who make everything possible. Your dedication c
     subtitle: 'Sacred updates for devoted members',
     suggestedTheme: 'gothic',
     description: 'Mysterious community updates with dark humor',
+    isHidden: true,
     content: `# The Inner Circle - Monthly Devotion Report
 
 Greetings, Devoted Ones,
@@ -192,7 +192,6 @@ We welcome these fresh souls to our sacred brotherhood:
 
 **P.S.** - Remember, we're definitely not a cult. We're a "spiritual community with very specific membership requirements."`
   },
-  // Zine Templates
   {
     id: 'art-culture-zine',
     name: 'Art & Culture Zine',
@@ -494,7 +493,6 @@ Found a note from my future self: "Don't trust the guy with the monocle in 1923.
 
 **P.S.** - If you're reading this in the future (which you are, unless you're also time traveling), remember: don't change anything major. The butterfly effect is real, and I already accidentally invented the high-five 200 years too early.`
   },
-  // Creative Templates
   {
     id: 'poetry-collection',
     name: 'Poetry Collection',
@@ -603,27 +601,15 @@ interface TemplateSelectorProps {
 
 const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [clockClickCount, setClockClickCount] = useState(0);
   const [showTimeTravelJournal, setShowTimeTravelJournal] = useState(false);
-
-  // Reset click count after 2 seconds of inactivity
-  useEffect(() => {
-    if (clockClickCount > 0) {
-      const timer = setTimeout(() => {
-        setClockClickCount(0);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [clockClickCount]);
+  const [showCultDigest, setShowCultDigest] = useState(false);
 
   const handleClockClick = () => {
-    const newCount = clockClickCount + 1;
-    setClockClickCount(newCount);
-    
-    if (newCount >= 3) {
-      setShowTimeTravelJournal(true);
-      setClockClickCount(0);
-    }
+    setShowTimeTravelJournal(true);
+  };
+
+  const handleCultClick = () => {
+    setShowCultDigest(true);
   };
 
   const categories = [
@@ -633,9 +619,11 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate })
     { id: 'creative', name: 'Creative' }
   ];
 
-  const allTemplates = showTimeTravelJournal 
-    ? templates 
-    : templates.filter(t => !t.isHidden);
+  const allTemplates = templates.filter(t => {
+    if (t.id === 'time-travel-journal') return showTimeTravelJournal;
+    if (t.id === 'cult-digest') return showCultDigest;
+    return !t.isHidden;
+  });
 
   const filteredTemplates = selectedCategory === 'all' 
     ? allTemplates 
@@ -703,6 +691,18 @@ const TemplateSelector: React.FC<TemplateSelectorProps> = ({ onSelectTemplate })
                       title="⏰"
                     >
                       <Clock className="w-3 h-3" />
+                    </button>
+                  )}
+                  {template.id === 'community-digest' && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCultClick();
+                      }}
+                      className="text-xs opacity-60 hover:opacity-100 transition-opacity"
+                      title="👁️"
+                    >
+                      👁️
                     </button>
                   )}
                 </div>
