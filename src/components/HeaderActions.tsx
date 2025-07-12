@@ -38,25 +38,25 @@ export const HeaderActions: React.FC = () => {
           Questions?
         </Button>
         
-        <div className="relative">
-          <Button
-            onClick={handleNotebookClick}
-            variant="outline"
-            size="sm"
-            className="gap-2 bg-purple-500/10 border-purple-500/30 text-purple-500 hover:bg-purple-500/20 hover:border-purple-500/50 hover:text-purple-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
-          >
-            <BookOpen className="w-4 h-4" />
-            📜 Grimoire
-          </Button>
-          {totalCollections > 0 && (
+        {totalCollections > 0 && (
+          <div className="relative">
+            <Button
+              onClick={handleNotebookClick}
+              variant="outline"
+              size="sm"
+              className="gap-2 bg-purple-500/10 border-purple-500/30 text-purple-500 hover:bg-purple-500/20 hover:border-purple-500/50 hover:text-purple-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+            >
+              <BookOpen className="w-4 h-4" />
+              📜 Grimoire
+            </Button>
             <Badge 
               variant="destructive" 
               className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs bg-red-600 hover:bg-red-600"
             >
               {totalCollections}
             </Badge>
-          )}
-        </div>
+          </div>
+        )}
         
         <ArchetypeGenerator />
       </div>
