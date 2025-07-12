@@ -25,14 +25,14 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ showAuthModal, setShowAuth
 
   return (
     <>
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
+      <header className="bg-card border-b border-border px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
               <Zap className="w-6 h-6 text-purple-600" />
-              <h1 className="text-2xl font-bold text-gray-800">Flash Zine</h1>
+              <h1 className="text-2xl font-bold text-foreground">Flash Zine</h1>
             </div>
-            <span className="text-sm text-gray-500 hidden sm:inline">
+            <span className="text-sm text-muted-foreground hidden sm:inline">
               Quick newsletter & zine creator
             </span>
           </div>

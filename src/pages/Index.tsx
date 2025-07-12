@@ -51,7 +51,7 @@ Start writing and watch your words come to life with beautiful themes.
   const bodyFont = fonts.find(f => f.id === selectedBodyFont)?.fontFamily || fonts[4].fontFamily;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <AppHeader 
         showAuthModal={showAuthModal}
         setShowAuthModal={setShowAuthModal}

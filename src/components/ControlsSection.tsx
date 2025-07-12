@@ -36,20 +36,20 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
   content,
 }) => {
   return (
-    <div className="bg-white border-b border-gray-200">
-      <div className="flex items-center justify-between p-3 border-b border-gray-100">
+    <div className="bg-card border-b border-border">
+      <div className="flex items-center justify-between p-3 border-b border-border/50">
         <div className="flex items-center gap-2">
-          <Settings className="w-4 h-4 text-gray-600" />
-          <span className="text-sm font-medium text-gray-700">Controls</span>
+          <Settings className="w-4 h-4 text-muted-foreground" />
+          <span className="text-sm font-medium text-foreground">Controls</span>
         </div>
         <button
           onClick={onToggleCollapse}
-          className="p-1 hover:bg-gray-100 rounded transition-colors"
+          className="p-1 hover:bg-muted rounded transition-colors"
         >
           {isCollapsed ? (
-            <ChevronDown className="w-4 h-4 text-gray-600" />
+            <ChevronDown className="w-4 h-4 text-muted-foreground" />
           ) : (
-            <ChevronUp className="w-4 h-4 text-gray-600" />
+            <ChevronUp className="w-4 h-4 text-muted-foreground" />
           )}
         </button>
       </div>

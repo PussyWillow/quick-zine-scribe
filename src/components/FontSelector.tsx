@@ -57,21 +57,21 @@ const FontSelector: React.FC<FontSelectorProps> = ({
 
   return (
     <div className="space-y-4">
-      <label className="block text-sm font-medium text-gray-600 mb-2">
+      <label className="block text-sm font-medium text-muted-foreground mb-2">
         <Type className="inline w-4 h-4 mr-1" />
         Typography
       </label>
       
       {/* Heading Font */}
       <div>
-        <label className="block text-xs font-medium text-gray-500 mb-1">
+        <label className="block text-xs font-medium text-muted-foreground mb-1">
           Heading Font
         </label>
         <div className="relative">
           <select
             value={selectedHeadingFont}
             onChange={(e) => onHeadingFontChange(e.target.value)}
-            className="w-full appearance-none bg-white border border-gray-200 rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm"
+            className="w-full appearance-none bg-background border border-input rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent text-foreground text-sm"
             style={{ fontFamily: currentHeadingFont.fontFamily }}
           >
             {fonts.map(font => (
@@ -80,21 +80,21 @@ const FontSelector: React.FC<FontSelectorProps> = ({
               </option>
             ))}
           </select>
-          <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
         </div>
-        <div className="mt-1 text-xs text-gray-500">{currentHeadingFont.description}</div>
+        <div className="mt-1 text-xs text-muted-foreground">{currentHeadingFont.description}</div>
       </div>
 
       {/* Body Font */}
       <div>
-        <label className="block text-xs font-medium text-gray-500 mb-1">
+        <label className="block text-xs font-medium text-muted-foreground mb-1">
           Body Font
         </label>
         <div className="relative">
           <select
             value={selectedBodyFont}
             onChange={(e) => onBodyFontChange(e.target.value)}
-            className="w-full appearance-none bg-white border border-gray-200 rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 text-sm"
+            className="w-full appearance-none bg-background border border-input rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent text-foreground text-sm"
             style={{ fontFamily: currentBodyFont.fontFamily }}
           >
             {fonts.map(font => (
@@ -103,21 +103,21 @@ const FontSelector: React.FC<FontSelectorProps> = ({
               </option>
             ))}
           </select>
-          <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+          <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
         </div>
-        <div className="mt-1 text-xs text-gray-500">{currentBodyFont.description}</div>
+        <div className="mt-1 text-xs text-muted-foreground">{currentBodyFont.description}</div>
       </div>
 
       {/* Font Preview */}
-      <div className="mt-3 p-3 rounded-md border border-gray-200 bg-gray-50">
+      <div className="mt-3 p-3 rounded-md border border-border bg-muted/30">
         <div 
-          className="text-lg font-semibold mb-1"
+          className="text-lg font-semibold mb-1 text-foreground"
           style={{ fontFamily: currentHeadingFont.fontFamily }}
         >
           Heading Preview
         </div>
         <div 
-          className="text-sm text-gray-600"
+          className="text-sm text-muted-foreground"
           style={{ fontFamily: currentBodyFont.fontFamily }}
         >
           This is how your body text will look in the selected font.

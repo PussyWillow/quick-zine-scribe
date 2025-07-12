@@ -26,19 +26,19 @@ export const PreviewSection: React.FC<PreviewSectionProps> = ({
 }) => {
   return (
     <div className="flex flex-col flex-1">
-      <div className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
+      <div className="flex items-center justify-between p-3 bg-card border-b border-border">
         <div className="flex items-center gap-2">
-          <Eye className="w-4 h-4 text-gray-600" />
-          <span className="text-sm font-medium text-gray-700">Preview</span>
+          <Eye className="w-4 h-4 text-muted-foreground" />
+          <span className="text-sm font-medium text-foreground">Preview</span>
         </div>
         <button
           onClick={onToggleCollapse}
-          className="p-1 hover:bg-gray-100 rounded transition-colors"
+          className="p-1 hover:bg-muted rounded transition-colors"
         >
           {isCollapsed ? (
-            <EyeOff className="w-4 h-4 text-gray-600" />
+            <EyeOff className="w-4 h-4 text-muted-foreground" />
           ) : (
-            <Eye className="w-4 h-4 text-gray-600" />
+            <Eye className="w-4 h-4 text-muted-foreground" />
           )}
         </button>
       </div>

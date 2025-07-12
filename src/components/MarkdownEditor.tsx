@@ -85,12 +85,12 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   };
 
   return (
-    <div className="h-full flex flex-col bg-white border-r border-gray-200">
+    <div className="h-full flex flex-col bg-card border-r border-border">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-100">
+      <div className="flex items-center justify-between p-4 border-b border-border/50">
         <div className="flex items-center gap-2">
-          <FileText className="w-5 h-5 text-gray-600" />
-          <h2 className="text-lg font-semibold text-gray-800">Editor</h2>
+          <FileText className="w-5 h-5 text-muted-foreground" />
+          <h2 className="text-lg font-semibold text-foreground">Editor</h2>
         </div>
         
         <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
 
           {user ? (
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">{user.email}</span>
+              <span className="text-sm text-muted-foreground">{user.email}</span>
               <Button size="sm" variant="ghost" onClick={handleSignOut}>
                 <LogOut className="w-4 h-4" />
               </Button>
@@ -123,9 +123,9 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       </div>
       
       {/* Metadata Section */}
-      <div className="p-4 border-b border-gray-100 space-y-3">
+      <div className="p-4 border-b border-border/50 space-y-3">
         <div>
-          <label className="block text-sm font-medium text-gray-600 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             Title
           </label>
           <input
@@ -133,11 +133,11 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
             value={title}
             onChange={(e) => onTitleChange(e.target.value)}
             placeholder="Your zine title..."
-            className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
+            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground placeholder:text-muted-foreground"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-600 mb-1">
+          <label className="block text-sm font-medium text-muted-foreground mb-1">
             Subtitle
           </label>
           <input
@@ -145,14 +145,14 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
             value={subtitle}
             onChange={(e) => onSubtitleChange(e.target.value)}
             placeholder="Optional subtitle..."
-            className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-600"
+            className="w-full px-3 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-muted-foreground placeholder:text-muted-foreground"
           />
         </div>
       </div>
       
       {/* Markdown Editor */}
       <div className="flex-1 p-4">
-        <label className="block text-sm font-medium text-gray-600 mb-2">
+        <label className="block text-sm font-medium text-muted-foreground mb-2">
           Content (Markdown supported)
         </label>
         <textarea
@@ -170,7 +170,7 @@ Write your fragments here. You can use:
 - Lists and more!
 
 Add as many sections as you need."
-          className="w-full h-full resize-none border border-gray-200 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 font-mono text-sm leading-relaxed"
+          className="w-full h-full resize-none border border-input rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent bg-background text-foreground font-mono text-sm leading-relaxed placeholder:text-muted-foreground"
         />
       </div>
 
