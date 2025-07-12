@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowLeft, FileQuestion, MessageSquare, Survey } from 'lucide-react';
+import { ArrowLeft, FileQuestion, MessageSquare, ClipboardList } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
@@ -62,7 +62,7 @@ const Questions = () => {
 
           <div className="bg-card border border-border rounded-lg p-6 text-center">
             <div className="w-12 h-12 bg-dusty-rose/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Survey className="w-6 h-6 text-dusty-rose" />
+              <ClipboardList className="w-6 h-6 text-dusty-rose" />
             </div>
             <h3 className="font-semibold text-foreground mb-2">Reader Surveys</h3>
             <p className="text-sm text-muted-foreground">
