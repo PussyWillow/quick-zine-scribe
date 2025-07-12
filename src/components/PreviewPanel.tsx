@@ -44,33 +44,37 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
   bodyFont,
 }) => {
   return (
-    <div className="w-1/2 flex flex-col">
-      <ControlsSection
-        isCollapsed={isControlsCollapsed}
-        onToggleCollapse={onToggleControls}
-        selectedTheme={selectedTheme}
-        onThemeChange={onThemeChange}
-        selectedHeadingFont={selectedHeadingFont}
-        selectedBodyFont={selectedBodyFont}
-        onHeadingFontChange={onHeadingFontChange}
-        onBodyFontChange={onBodyFontChange}
-        onSelectTemplate={onSelectTemplate}
-        title={title}
-        subtitle={subtitle}
-        content={content}
-      />
+    <div className="w-1/2 flex flex-col h-full">
+      <div className={`${isControlsCollapsed ? 'flex-shrink-0' : 'flex-1 min-h-0'}`}>
+        <ControlsSection
+          isCollapsed={isControlsCollapsed}
+          onToggleCollapse={onToggleControls}
+          selectedTheme={selectedTheme}
+          onThemeChange={onThemeChange}
+          selectedHeadingFont={selectedHeadingFont}
+          selectedBodyFont={selectedBodyFont}
+          onHeadingFontChange={onHeadingFontChange}
+          onBodyFontChange={onBodyFontChange}
+          onSelectTemplate={onSelectTemplate}
+          title={title}
+          subtitle={subtitle}
+          content={content}
+        />
+      </div>
       
-      <PreviewSection
-        isCollapsed={isPreviewCollapsed}
-        onToggleCollapse={onTogglePreview}
-        content={content}
-        title={title}
-        subtitle={subtitle}
-        selectedTheme={selectedTheme}
-        selectedPhoto={selectedPhoto}
-        headingFont={headingFont}
-        bodyFont={bodyFont}
-      />
+      <div className={`${isPreviewCollapsed ? 'flex-shrink-0' : 'flex-1'}`}>
+        <PreviewSection
+          isCollapsed={isPreviewCollapsed}
+          onToggleCollapse={onTogglePreview}
+          content={content}
+          title={title}
+          subtitle={subtitle}
+          selectedTheme={selectedTheme}
+          selectedPhoto={selectedPhoto}
+          headingFont={headingFont}
+          bodyFont={bodyFont}
+        />
+      </div>
     </div>
   );
 };

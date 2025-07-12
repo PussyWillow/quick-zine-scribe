@@ -34,8 +34,8 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
   content,
 }) => {
   return (
-    <div className="controls-frame">
-      <div className="flex items-center justify-between p-3 border-b border-border/50">
+    <div className="controls-frame flex flex-col min-h-0">
+      <div className="flex items-center justify-between p-4 border-b border-border/50 flex-shrink-0">
         <div className="flex items-center gap-2">
           <Settings className="w-4 h-4 text-muted-foreground" />
           <span className="text-sm font-medium text-foreground">Controls</span>
@@ -53,7 +53,7 @@ export const ControlsSection: React.FC<ControlsSectionProps> = ({
       </div>
       
       {!isCollapsed && (
-        <div className="p-4 max-h-64 overflow-y-auto">
+        <div className="flex-1 p-6 overflow-y-auto">
           <ControlsAccordion
             selectedTheme={selectedTheme}
             onThemeChange={onThemeChange}

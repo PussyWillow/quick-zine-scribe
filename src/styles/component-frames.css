@@ -61,12 +61,14 @@
   .controls-frame {
     @apply refined-frame;
     background: hsl(var(--card));
+    height: 100%;
   }
 
   .control-group-frame {
-    @apply interactive-frame p-3;
+    @apply interactive-frame p-4;
     background: hsla(var(--muted), 0.3);
     transition: all 0.2s ease;
+    margin-bottom: 0;
   }
 
   .control-group-frame:hover {
