@@ -1,6 +1,6 @@
-
 import React from 'react';
-import { Download, Mail, Globe, FileText } from 'lucide-react';
+import { Download, Mail, Globe, FileText, HelpCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import html2pdf from 'html2pdf.js';
 import { Button } from './ui/button';
 import { Theme } from '../types/theme';
@@ -20,6 +20,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
   selectedTheme 
 }) => {
   const theme = themes.find(t => t.id === selectedTheme) || themes[0];
+  const navigate = useNavigate();
 
   const exportToPDF = async () => {
     const element = document.getElementById('zine-preview');
@@ -58,7 +59,24 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
     const webContent = generateWebPage();
     const blob = new Blob([webContent], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
-    window.open(url, '_blank');
+    const newWindow = window.open('', '_blank');
+    if (newWindow) {
+      newWindow.document.write(webContent);
+      newWindow.document.close();
+    } else {
+      // Fallback: download the file if popup is blocked
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${title || 'zine'}-webpage.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  const handleQuestionsClick = () => {
+    navigate('/questions');
   };
 
   const generateHTMLEmail = () => {
@@ -122,25 +140,34 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: ${theme.styles.bodyFont};
-      background: ${theme.styles.background};
+      background: linear-gradient(135deg, ${theme.styles.background} 0%, #f8f9fa 100%);
       color: ${theme.styles.text};
       line-height: 1.6;
       padding: 2rem;
+      min-height: 100vh;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
       background: white;
       padding: 3rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     }
     h1, h2, h3 {
       font-family: ${theme.styles.headingFont};
       color: ${theme.styles.accent};
       margin-bottom: 1rem;
     }
-    h1 { font-size: 3rem; text-align: center; }
+    h1 { 
+      font-size: 3rem; 
+      text-align: center; 
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, ${theme.styles.accent}, ${theme.styles.text});
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     h2 { font-size: 2rem; }
     h3 { font-size: 1.5rem; }
     p { margin-bottom: 1.5rem; }
@@ -152,14 +179,24 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
       font-size: 1.2rem; 
       opacity: 0.8; 
       margin-bottom: 2rem; 
+      font-style: italic;
+    }
+    .content {
+      text-align: justify;
     }
     .footer {
       margin-top: 3rem;
       padding-top: 2rem;
-      border-top: 1px solid #eee;
+      border-top: 2px solid ${theme.styles.accent}20;
       text-align: center;
       color: #666;
       font-size: 0.9rem;
+    }
+    .signature {
+      margin-top: 2rem;
+      text-align: center;
+      opacity: 0.7;
+      font-style: italic;
     }
   </style>
 </head>
@@ -167,7 +204,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
   <div class="container">
     ${title ? `<h1>${title}</h1>` : ''}
     ${subtitle ? `<p class="subtitle">${subtitle}</p>` : ''}
-    <div>${content.split('\n').map(line => {
+    <div class="content">${content.split('\n').map(line => {
       if (line.startsWith('# ')) return `<h1>${line.slice(2)}</h1>`;
       if (line.startsWith('## ')) return `<h2>${line.slice(3)}</h2>`;
       if (line.startsWith('### ')) return `<h3>${line.slice(4)}</h3>`;
@@ -175,7 +212,8 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
       return `<p>${line}</p>`;
     }).join('')}</div>
     <div class="footer">
-      Created with Flash Zine
+      <div class="signature">The Boom Boom Room</div>
+      <div>Created with Flash Zine</div>
     </div>
   </div>
 </body>
@@ -188,12 +226,12 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
         Export Options
       </h3>
       
-      <div className="flex gap-2">
+      <div className="grid grid-cols-2 gap-2">
         <Button
           onClick={exportToPDF}
           variant="outline"
           size="sm"
-          className="flex-1 bg-sage-green/10 border-sage-green/30 text-sage-green hover:bg-sage-green/20 hover:border-sage-green/50 hover:text-sage-green transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+          className="bg-sage-green/10 border-sage-green/30 text-sage-green hover:bg-sage-green/20 hover:border-sage-green/50 hover:text-sage-green transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
         >
           <FileText className="w-4 h-4 mr-1" />
           PDF
@@ -203,7 +241,7 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
           onClick={exportToHTML}
           variant="outline"
           size="sm"
-          className="flex-1 bg-lavender/10 border-lavender/30 text-lavender hover:bg-lavender/20 hover:border-lavender/50 hover:text-lavender transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+          className="bg-lavender/10 border-lavender/30 text-lavender hover:bg-lavender/20 hover:border-lavender/50 hover:text-lavender transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
         >
           <Mail className="w-4 h-4 mr-1" />
           HTML
@@ -213,10 +251,20 @@ const ExportButtons: React.FC<ExportButtonsProps> = ({
           onClick={exportToWebPage}
           variant="outline"
           size="sm"
-          className="flex-1 bg-dusty-rose/10 border-dusty-rose/30 text-dusty-rose hover:bg-dusty-rose/20 hover:border-dusty-rose/50 hover:text-dusty-rose transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+          className="bg-dusty-rose/10 border-dusty-rose/30 text-dusty-rose hover:bg-dusty-rose/20 hover:border-dusty-rose/50 hover:text-dusty-rose transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
         >
           <Globe className="w-4 h-4 mr-1" />
           Web
+        </Button>
+        
+        <Button
+          onClick={handleQuestionsClick}
+          variant="outline"
+          size="sm"
+          className="bg-blue-500/10 border-blue-500/30 text-blue-500 hover:bg-blue-500/20 hover:border-blue-500/50 hover:text-blue-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
+        >
+          <HelpCircle className="w-4 h-4 mr-1" />
+          Questions
         </Button>
       </div>
     </div>
