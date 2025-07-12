@@ -6,7 +6,12 @@ import VisualThemeSelector from '../components/VisualThemeSelector';
 import FontSelector, { fonts } from '../components/FontSelector';
 import TemplateSelector, { Template } from '../components/TemplateSelector';
 import ExportButtons from '../components/ExportButtons';
-import { Zap, ChevronUp, ChevronDown, Eye, EyeOff, Settings } from 'lucide-react';
+import { ArchetypeGenerator } from '../components/ArchetypeGenerator';
+import { AuthModal } from '../components/AuthModal';
+import { useAuth } from '@/hooks/useAuth';
+import { useProfile } from '@/hooks/useProfile';
+import { Zap, ChevronUp, ChevronDown, Eye, EyeOff, Settings, User, LogOut } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   const [content, setContent] = useState(`# Welcome to Flash Zine
@@ -39,12 +44,24 @@ Start writing and watch your words come to life with beautiful themes.
   const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
   const [isControlsCollapsed, setIsControlsCollapsed] = useState(false);
   const [isPreviewCollapsed, setIsPreviewCollapsed] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const { user, signOut } = useAuth();
+  const { profile } = useProfile();
 
   const handleSelectTemplate = (template: Template) => {
     setTitle(template.title);
     setSubtitle(template.subtitle);
     setContent(template.content);
     setSelectedTheme(template.suggestedTheme);
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   };
 
   // Get actual font families for preview
@@ -66,8 +83,35 @@ Start writing and watch your words come to life with beautiful themes.
             </span>
           </div>
           
-          <div className="text-sm text-gray-500">
-            Start writing → Choose style → Export
+          <div className="flex items-center gap-4">
+            {user ? (
+              <div className="flex items-center gap-3">
+                {profile?.archetype_title && (
+                  <div className="hidden md:block text-sm text-purple-600 italic">
+                    {profile.archetype_title}
+                  </div>
+                )}
+                <ArchetypeGenerator />
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="outline"
+                onClick={() => setShowAuthModal(true)}
+                className="gap-2"
+              >
+                <User className="w-4 h-4" />
+                Sign In
+              </Button>
+            )}
           </div>
         </div>
       </header>
@@ -167,6 +211,8 @@ Start writing and watch your words come to life with beautiful themes.
           </div>
         </div>
       </div>
+
+      <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </div>
   );
 };

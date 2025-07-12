@@ -47,6 +47,30 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          archetype_generated_at: string | null
+          archetype_title: string | null
+          created_at: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          archetype_generated_at?: string | null
+          archetype_title?: string | null
+          created_at?: string
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          archetype_generated_at?: string | null
+          archetype_title?: string | null
+          created_at?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       snippets: {
         Row: {
           content: string
