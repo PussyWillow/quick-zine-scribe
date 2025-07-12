@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Eye } from 'lucide-react';
@@ -9,13 +8,17 @@ interface ZinePreviewProps {
   title: string;
   subtitle: string;
   selectedTheme: string;
+  headingFont?: string;
+  bodyFont?: string;
 }
 
 const ZinePreview: React.FC<ZinePreviewProps> = ({ 
   content, 
   title, 
   subtitle, 
-  selectedTheme 
+  selectedTheme,
+  headingFont,
+  bodyFont
 }) => {
   const theme = themes.find(t => t.id === selectedTheme) || themes[0];
   
@@ -72,10 +75,14 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
     }
   };
 
+  // Use font overrides if provided, otherwise fall back to theme fonts
+  const actualHeadingFont = headingFont || theme.styles.headingFont;
+  const actualBodyFont = bodyFont || theme.styles.bodyFont;
+
   const previewStyles = {
     background: theme.styles.background,
     color: theme.styles.text,
-    fontFamily: theme.styles.bodyFont
+    fontFamily: actualBodyFont
   };
 
   return (
@@ -115,7 +122,7 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
               <h1 
                 className="text-4xl font-bold mb-2"
                 style={{ 
-                  fontFamily: theme.styles.headingFont,
+                  fontFamily: actualHeadingFont,
                   color: theme.styles.accent,
                   textShadow: theme.styles.shadowLevel === 'neon' || theme.styles.shadowLevel === 'glow' 
                     ? `0 0 10px ${theme.styles.accent}` 
@@ -143,7 +150,7 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
                   <h1 
                     className="text-3xl font-bold mb-4"
                     style={{ 
-                      fontFamily: theme.styles.headingFont,
+                      fontFamily: actualHeadingFont,
                       color: theme.styles.accent,
                       textShadow: theme.styles.shadowLevel === 'neon' || theme.styles.shadowLevel === 'glow' 
                         ? `0 0 8px ${theme.styles.accent}` 
@@ -157,7 +164,7 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
                   <h2 
                     className="text-2xl font-semibold mb-3"
                     style={{ 
-                      fontFamily: theme.styles.headingFont,
+                      fontFamily: actualHeadingFont,
                       color: theme.styles.accent,
                       textShadow: theme.styles.shadowLevel === 'neon' || theme.styles.shadowLevel === 'glow' 
                         ? `0 0 6px ${theme.styles.accent}` 
@@ -171,7 +178,7 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
                   <h3 
                     className="text-xl font-medium mb-2"
                     style={{ 
-                      fontFamily: theme.styles.headingFont,
+                      fontFamily: actualHeadingFont,
                       color: theme.styles.accent 
                     }}
                   >
@@ -181,7 +188,10 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
                 p: ({ children }) => (
                   <p 
                     className="mb-4 leading-relaxed"
-                    style={{ color: theme.styles.text }}
+                    style={{ 
+                      color: theme.styles.text,
+                      fontFamily: actualBodyFont
+                    }}
                   >
                     {children}
                   </p>
@@ -197,7 +207,10 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
                   </ol>
                 ),
                 li: ({ children }) => (
-                  <li className="mb-1" style={{ color: theme.styles.text }}>
+                  <li className="mb-1" style={{ 
+                    color: theme.styles.text,
+                    fontFamily: actualBodyFont
+                  }}>
                     {children}
                   </li>
                 ),
@@ -221,7 +234,7 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
                   </strong>
                 ),
                 em: ({ children }) => (
-                  <em className="italic">
+                  <em className="italic" style={{ fontFamily: actualBodyFont }}>
                     {children}
                   </em>
                 ),
@@ -231,6 +244,7 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
                     style={{ 
                       borderColor: theme.styles.accent,
                       color: theme.styles.text,
+                      fontFamily: actualBodyFont,
                       backgroundColor: theme.id === 'cyberpunk' || theme.id === 'neon' 
                         ? 'rgba(255,255,255,0.05)' 
                         : 'rgba(0,0,0,0.05)'

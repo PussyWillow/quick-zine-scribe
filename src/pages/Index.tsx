@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import MarkdownEditor from '../components/MarkdownEditor';
 import ZinePreview from '../components/ZinePreview';
 import ThemeSelector from '../components/ThemeSelector';
+import FontSelector, { fonts } from '../components/FontSelector';
+import TemplateSelector, { Template } from '../components/TemplateSelector';
 import ExportButtons from '../components/ExportButtons';
 import { Zap } from 'lucide-react';
 
@@ -33,6 +35,19 @@ Start writing and watch your words come to life with beautiful themes.
   const [title, setTitle] = useState('My Flash Zine');
   const [subtitle, setSubtitle] = useState('A quick publication');
   const [selectedTheme, setSelectedTheme] = useState('dreamy');
+  const [selectedHeadingFont, setSelectedHeadingFont] = useState('playfair');
+  const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
+
+  const handleSelectTemplate = (template: Template) => {
+    setTitle(template.title);
+    setSubtitle(template.subtitle);
+    setContent(template.content);
+    setSelectedTheme(template.suggestedTheme);
+  };
+
+  // Get actual font families for preview
+  const headingFont = fonts.find(f => f.id === selectedHeadingFont)?.fontFamily || fonts[0].fontFamily;
+  const bodyFont = fonts.find(f => f.id === selectedBodyFont)?.fontFamily || fonts[4].fontFamily;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -72,11 +87,21 @@ Start writing and watch your words come to life with beautiful themes.
         {/* Right Panel - Preview & Controls */}
         <div className="w-1/2 flex flex-col">
           {/* Controls */}
-          <div className="bg-white border-b border-gray-200 p-4 space-y-4">
+          <div className="bg-white border-b border-gray-200 p-4 space-y-4 max-h-80 overflow-y-auto">
+            <TemplateSelector onSelectTemplate={handleSelectTemplate} />
+            
             <ThemeSelector 
               selectedTheme={selectedTheme}
               onThemeChange={setSelectedTheme}
             />
+            
+            <FontSelector
+              selectedHeadingFont={selectedHeadingFont}
+              selectedBodyFont={selectedBodyFont}
+              onHeadingFontChange={setSelectedHeadingFont}
+              onBodyFontChange={setSelectedBodyFont}
+            />
+            
             <ExportButtons
               title={title}
               subtitle={subtitle}
@@ -92,6 +117,8 @@ Start writing and watch your words come to life with beautiful themes.
               title={title}
               subtitle={subtitle}
               selectedTheme={selectedTheme}
+              headingFont={headingFont}
+              bodyFont={bodyFont}
             />
           </div>
         </div>
