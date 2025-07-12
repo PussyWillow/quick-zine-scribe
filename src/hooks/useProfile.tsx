@@ -1,5 +1,4 @@
 
-import { useState, useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
@@ -10,8 +9,8 @@ interface Profile {
   Motto?: string;
   Description?: string;
   archetype_generated_at?: string;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export const useProfile = () => {
@@ -19,7 +18,7 @@ export const useProfile = () => {
 
   const { data: profile, isLoading, error, refetch } = useQuery({
     queryKey: ['profile', user?.id],
-    queryFn: async () => {
+    queryFn: async (): Promise<Profile | null> => {
       if (!user?.id) return null;
       
       const { data, error } = await supabase
@@ -29,7 +28,7 @@ export const useProfile = () => {
         .maybeSingle();
 
       if (error) throw error;
-      return data as Profile | null;
+      return data;
     },
     enabled: !!user?.id,
   });

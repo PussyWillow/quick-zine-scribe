@@ -1,16 +1,10 @@
+
 import React, { useState } from 'react';
-import MarkdownEditor from '../components/MarkdownEditor';
-import ZinePreview from '../components/ZinePreview';
-import VisualThemeSelector from '../components/VisualThemeSelector';
-import FontSelector, { fonts } from '../components/FontSelector';
-import TemplateSelector, { Template } from '../components/TemplateSelector';
-import ExportButtons from '../components/ExportButtons';
-import { ArchetypeGenerator } from '../components/ArchetypeGenerator';
-import { AuthModal } from '../components/AuthModal';
-import { useAuth } from '@/hooks/useAuth';
-import { useProfile } from '@/hooks/useProfile';
-import { Zap, ChevronUp, ChevronDown, Eye, EyeOff, Settings, User, LogOut } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { AppHeader } from '../components/AppHeader';
+import { EditorPanel } from '../components/EditorPanel';
+import { PreviewPanel } from '../components/PreviewPanel';
+import { fonts } from '../components/FontSelector';
+import { Template } from '../components/TemplateSelector';
 
 const Index = () => {
   const [content, setContent] = useState(`# Welcome to Flash Zine
@@ -45,22 +39,11 @@ Start writing and watch your words come to life with beautiful themes.
   const [isPreviewCollapsed, setIsPreviewCollapsed] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const { user, signOut } = useAuth();
-  const { profile } = useProfile();
-
   const handleSelectTemplate = (template: Template) => {
     setTitle(template.title);
     setSubtitle(template.subtitle);
     setContent(template.content);
     setSelectedTheme(template.suggestedTheme);
-  };
-
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
   };
 
   // Get actual font families for preview
@@ -69,156 +52,40 @@ Start writing and watch your words come to life with beautiful themes.
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <Zap className="w-6 h-6 text-purple-600" />
-              <h1 className="text-2xl font-bold text-gray-800">Flash Zine</h1>
-            </div>
-            <span className="text-sm text-gray-500 hidden sm:inline">
-              Quick newsletter & zine creator
-            </span>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            {user ? (
-              <div className="flex items-center gap-3">
-                {profile?.Name && (
-                  <div className="hidden md:block text-right">
-                    <div className="text-sm text-purple-600 font-medium">
-                      {profile.Name}
-                    </div>
-                    {profile.Motto && (
-                      <div className="text-xs text-gray-500 italic">
-                        "{profile.Motto}"
-                      </div>
-                    )}
-                  </div>
-                )}
-                <ArchetypeGenerator />
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleSignOut}
-                  className="gap-2"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Sign Out
-                </Button>
-              </div>
-            ) : (
-              <Button
-                variant="outline"
-                onClick={() => setShowAuthModal(true)}
-                className="gap-2"
-              >
-                <User className="w-4 h-4" />
-                Sign In
-              </Button>
-            )}
-          </div>
-        </div>
-      </header>
+      <AppHeader 
+        showAuthModal={showAuthModal}
+        setShowAuthModal={setShowAuthModal}
+      />
 
-      {/* Main Content */}
       <div className="flex h-[calc(100vh-73px)]">
-        {/* Left Panel - Editor */}
-        <div className="w-1/2 flex flex-col">
-          <MarkdownEditor
-            content={content}
-            onChange={setContent}
-            title={title}
-            subtitle={subtitle}
-            onTitleChange={setTitle}
-            onSubtitleChange={setSubtitle}
-          />
-        </div>
+        <EditorPanel
+          content={content}
+          onChange={setContent}
+          title={title}
+          subtitle={subtitle}
+          onTitleChange={setTitle}
+          onSubtitleChange={setSubtitle}
+        />
 
-        {/* Right Panel - Preview & Controls */}
-        <div className="w-1/2 flex flex-col">
-          {/* Controls */}
-          <div className="bg-white border-b border-gray-200">
-            <div className="flex items-center justify-between p-3 border-b border-gray-100">
-              <div className="flex items-center gap-2">
-                <Settings className="w-4 h-4 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">Controls</span>
-              </div>
-              <button
-                onClick={() => setIsControlsCollapsed(!isControlsCollapsed)}
-                className="p-1 hover:bg-gray-100 rounded transition-colors"
-              >
-                {isControlsCollapsed ? (
-                  <ChevronDown className="w-4 h-4 text-gray-600" />
-                ) : (
-                  <ChevronUp className="w-4 h-4 text-gray-600" />
-                )}
-              </button>
-            </div>
-            
-            {!isControlsCollapsed && (
-              <div className="p-4 space-y-4 max-h-64 overflow-y-auto">
-                <TemplateSelector onSelectTemplate={handleSelectTemplate} />
-                
-                <VisualThemeSelector 
-                  selectedTheme={selectedTheme}
-                  onThemeChange={setSelectedTheme}
-                />
-                
-                <FontSelector
-                  selectedHeadingFont={selectedHeadingFont}
-                  selectedBodyFont={selectedBodyFont}
-                  onHeadingFontChange={setSelectedHeadingFont}
-                  onBodyFontChange={setSelectedBodyFont}
-                />
-                
-                <ExportButtons
-                  title={title}
-                  subtitle={subtitle}
-                  content={content}
-                  selectedTheme={selectedTheme}
-                />
-              </div>
-            )}
-          </div>
-          
-          {/* Preview */}
-          <div className="flex flex-col flex-1">
-            <div className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
-              <div className="flex items-center gap-2">
-                <Eye className="w-4 h-4 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">Preview</span>
-              </div>
-              <button
-                onClick={() => setIsPreviewCollapsed(!isPreviewCollapsed)}
-                className="p-1 hover:bg-gray-100 rounded transition-colors"
-              >
-                {isPreviewCollapsed ? (
-                  <EyeOff className="w-4 h-4 text-gray-600" />
-                ) : (
-                  <Eye className="w-4 h-4 text-gray-600" />
-                )}
-              </button>
-            </div>
-            
-            {!isPreviewCollapsed && (
-              <div className="flex-1">
-                <ZinePreview
-                  content={content}
-                  title={title}
-                  subtitle={subtitle}
-                  selectedTheme={selectedTheme}
-                  headingFont={headingFont}
-                  bodyFont={bodyFont}
-                />
-              </div>
-            )}
-          </div>
-        </div>
+        <PreviewPanel
+          isControlsCollapsed={isControlsCollapsed}
+          isPreviewCollapsed={isPreviewCollapsed}
+          onToggleControls={() => setIsControlsCollapsed(!isControlsCollapsed)}
+          onTogglePreview={() => setIsPreviewCollapsed(!isPreviewCollapsed)}
+          selectedTheme={selectedTheme}
+          onThemeChange={setSelectedTheme}
+          selectedHeadingFont={selectedHeadingFont}
+          selectedBodyFont={selectedBodyFont}
+          onHeadingFontChange={setSelectedHeadingFont}
+          onBodyFontChange={setSelectedBodyFont}
+          onSelectTemplate={handleSelectTemplate}
+          title={title}
+          subtitle={subtitle}
+          content={content}
+          headingFont={headingFont}
+          bodyFont={bodyFont}
+        />
       </div>
-
-      <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </div>
   );
 };
