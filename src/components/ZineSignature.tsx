@@ -12,7 +12,7 @@ const ZineSignature: React.FC<ZineSignatureProps> = ({ theme }) => {
       {/* Botanical illustration */}
       <div className="mb-4 flex justify-center">
         <img 
-          src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=120&h=60&fit=crop&crop=center" 
+          src="/lovable-uploads/ac8dc066-09a1-4d6f-8d1f-65dc0fe0ebf5.png" 
           alt="Botanical illustration"
           className="h-16 w-auto opacity-70 transition-opacity duration-300 hover:opacity-90"
           style={{ filter: theme.id === 'cyberpunk' || theme.id === 'neon' ? 'invert(1)' : 'none' }}
