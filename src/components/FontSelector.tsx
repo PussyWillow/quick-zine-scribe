@@ -5,7 +5,7 @@ import { Type, ChevronDown } from 'lucide-react';
 export interface Font {
   id: string;
   name: string;
-  category: 'serif' | 'sans-serif' | 'display' | 'monospace' | 'script';
+  category: 'serif' | 'sans-serif' | 'display' | 'monospace' | 'script' | 'gothic';
   fontFamily: string;
   description: string;
 }
@@ -27,6 +27,12 @@ export const fonts: Font[] = [
   { id: 'oswald', name: 'Oswald', category: 'display', fontFamily: 'Oswald, sans-serif', description: 'Bold condensed headlines' },
   { id: 'montserrat', name: 'Montserrat', category: 'display', fontFamily: 'Montserrat, sans-serif', description: 'Urban inspired' },
   { id: 'bebas', name: 'Bebas Neue', category: 'display', fontFamily: 'Bebas Neue, sans-serif', description: 'Strong & impactful' },
+  
+  // Gothic fonts
+  { id: 'cinzel', name: 'Cinzel', category: 'gothic', fontFamily: 'Cinzel, serif', description: 'Carved stone gothic' },
+  { id: 'butcherman', name: 'Butcherman', category: 'gothic', fontFamily: 'Butcherman, serif', description: 'Bold intimidating serif' },
+  { id: 'pirata', name: 'Pirata One', category: 'gothic', fontFamily: 'Pirata One, serif', description: 'Sharp angular gothic' },
+  { id: 'creepster', name: 'Creepster', category: 'gothic', fontFamily: 'Creepster, cursive', description: 'Horror display font' },
   
   // Monospace fonts
   { id: 'jetbrains', name: 'JetBrains Mono', category: 'monospace', fontFamily: 'JetBrains Mono, monospace', description: 'Code-friendly monospace' },
@@ -71,7 +77,7 @@ const FontSelector: React.FC<FontSelectorProps> = ({
           <select
             value={selectedHeadingFont}
             onChange={(e) => onHeadingFontChange(e.target.value)}
-            className="w-full appearance-none bg-background border border-input rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent text-foreground text-sm"
+            className="w-full appearance-none bg-card border border-border rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent text-foreground text-sm"
             style={{ fontFamily: currentHeadingFont.fontFamily }}
           >
             {fonts.map(font => (
@@ -94,7 +100,7 @@ const FontSelector: React.FC<FontSelectorProps> = ({
           <select
             value={selectedBodyFont}
             onChange={(e) => onBodyFontChange(e.target.value)}
-            className="w-full appearance-none bg-background border border-input rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent text-foreground text-sm"
+            className="w-full appearance-none bg-card border border-border rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent text-foreground text-sm"
             style={{ fontFamily: currentBodyFont.fontFamily }}
           >
             {fonts.map(font => (

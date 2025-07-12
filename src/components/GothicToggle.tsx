@@ -11,10 +11,10 @@ export const GothicToggle: React.FC = () => {
     <Button
       variant={isGothicMode ? "default" : "outline"}
       onClick={toggleGothicMode}
-      className={`gap-2 transition-all duration-300 ${
+      className={`gap-2 transition-all duration-300 font-gothic-display ${
         isGothicMode 
-          ? 'gothic-glow bg-red-950 hover:bg-red-900 text-red-100 border-red-800' 
-          : 'hover:bg-gray-100'
+          ? 'gothic-glow bg-accent hover:bg-accent/90 text-accent-foreground border-accent/50' 
+          : 'hover:bg-muted'
       }`}
     >
       {isGothicMode ? (

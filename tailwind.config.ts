@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,6 +63,15 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			fontFamily: {
+				'cinzel': ['Cinzel', 'serif'],
+				'creepster': ['Creepster', 'cursive'],
+				'butcherman': ['Butcherman', 'serif'],
+				'pirata': ['Pirata One', 'serif'],
+				'gothic-heading': ['Cinzel', 'Pirata One', 'serif'],
+				'gothic-body': ['Crimson Text', 'Pirata One', 'serif'],
+				'gothic-display': ['Butcherman', 'Cinzel', 'serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
