@@ -1,12 +1,9 @@
 
 import React from 'react';
-import { ArchetypeGenerator } from './ArchetypeGenerator';
+import { HeaderActions } from './HeaderActions';
+import { AuthActions } from './AuthActions';
 import { AuthModal } from './AuthModal';
-import { GothicToggle } from './GothicToggle';
-import { useAuth } from '@/hooks/useAuth';
-import { Zap, User, LogOut, HelpCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { Zap } from 'lucide-react';
 
 interface AppHeaderProps {
   showAuthModal: boolean;
@@ -14,21 +11,6 @@ interface AppHeaderProps {
 }
 
 export const AppHeader: React.FC<AppHeaderProps> = ({ showAuthModal, setShowAuthModal }) => {
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
-  };
-
-  const handleQuestionsClick = () => {
-    navigate('/questions');
-  };
-
   return (
     <>
       <header className="bg-card border-b border-border px-6 py-4">
@@ -44,39 +26,8 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ showAuthModal, setShowAuth
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <Button
-                onClick={handleQuestionsClick}
-                variant="outline"
-                size="sm"
-                className="gap-2 bg-blue-500/10 border-blue-500/30 text-blue-500 hover:bg-blue-500/20 hover:border-blue-500/50 hover:text-blue-500 transition-all duration-200 hover:scale-105 hover:shadow-md font-heading"
-              >
-                <HelpCircle className="w-4 h-4" />
-                Questions?
-              </Button>
-              <ArchetypeGenerator />
-            </div>
-            <GothicToggle />
-            {user ? (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleSignOut}
-                className="gap-2"
-              >
-                <LogOut className="w-4 h-4" />
-                Sign Out
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                onClick={() => setShowAuthModal(true)}
-                className="gap-2"
-              >
-                <User className="w-4 h-4" />
-                Sign In
-              </Button>
-            )}
+            <HeaderActions />
+            <AuthActions onSignInClick={() => setShowAuthModal(true)} />
           </div>
         </div>
       </header>
