@@ -23,7 +23,7 @@ export const useProfile = () => {
       
       const { data, error } = await supabase
         .from('profiles')
-        .select('*')
+        .select('id, Name, Motto, Description, archetype_generated_at, created_at, updated_at')
         .eq('id', user.id)
         .maybeSingle();
 
