@@ -172,5 +172,77 @@ export const themes: Theme[] = [
       shadowLevel: 'minimal',
       listStyle: 'simple'
     }
+  },
+  // Gothic Themes
+  {
+    id: 'victorian-gothic',
+    name: 'Victorian Gothic',
+    description: 'Dark elegance and ornate details',
+    category: 'artistic',
+    styles: {
+      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a0505 100%)',
+      text: '#e8e8e8',
+      accent: '#8b0000',
+      headingFont: 'Cinzel, serif',
+      bodyFont: 'Crimson Text, serif',
+      spacing: 'relaxed',
+      borderRadius: 'ornate',
+      shadowLevel: 'gothic',
+      backgroundTexture: 'damask',
+      listStyle: 'gothic'
+    }
+  },
+  {
+    id: 'modern-gothic',
+    name: 'Modern Gothic',
+    description: 'Contemporary darkness meets tradition',
+    category: 'experimental',
+    styles: {
+      background: 'linear-gradient(135deg, #000000 0%, #1a0a1a 100%)',
+      text: '#f0f0f0',
+      accent: '#dc143c',
+      headingFont: 'Playfair Display, serif',
+      bodyFont: 'Source Sans Pro, sans-serif',
+      spacing: 'normal',
+      borderRadius: 'sharp',
+      shadowLevel: 'dramatic',
+      listStyle: 'modern-gothic'
+    }
+  },
+  {
+    id: 'occult',
+    name: 'Occult',
+    description: 'Mystical symbols and arcane knowledge',
+    category: 'experimental',
+    styles: {
+      background: 'linear-gradient(135deg, #000000 0%, #4b0082 100%)',
+      text: '#e0e0e0',
+      accent: '#9370db',
+      headingFont: 'Uncial Antiqua, serif',
+      bodyFont: 'Crimson Text, serif',
+      spacing: 'loose',
+      borderRadius: 'mystical',
+      shadowLevel: 'occult',
+      backgroundTexture: 'pentagram',
+      listStyle: 'occult'
+    }
+  },
+  {
+    id: 'grunge-gothic',
+    name: 'Grunge Gothic',
+    description: 'Raw darkness with rebellious edge',
+    category: 'creative',
+    styles: {
+      background: 'linear-gradient(135deg, #0a0a0a 0%, #2d1b1b 100%)',
+      text: '#d3d3d3',
+      accent: '#b22222',
+      headingFont: 'Bebas Neue, sans-serif',
+      bodyFont: 'Roboto Condensed, sans-serif',
+      spacing: 'tight',
+      borderRadius: 'rough',
+      shadowLevel: 'grunge',
+      backgroundTexture: 'distressed',
+      listStyle: 'grunge'
+    }
   }
 ];

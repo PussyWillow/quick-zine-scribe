@@ -49,19 +49,40 @@ export type Database = {
       }
       profiles: {
         Row: {
+          Backstory_Hook: string | null
+          Catchphrase: string | null
+          Core_Fear: string | null
           Description: string | null
+          Fatal_Flaw: string | null
           Motto: string | null
           Name: string
+          Redemption_Arc: string | null
+          Secret_Desire: string | null
+          Writing_Prompt: string | null
         }
         Insert: {
+          Backstory_Hook?: string | null
+          Catchphrase?: string | null
+          Core_Fear?: string | null
           Description?: string | null
+          Fatal_Flaw?: string | null
           Motto?: string | null
           Name: string
+          Redemption_Arc?: string | null
+          Secret_Desire?: string | null
+          Writing_Prompt?: string | null
         }
         Update: {
+          Backstory_Hook?: string | null
+          Catchphrase?: string | null
+          Core_Fear?: string | null
           Description?: string | null
+          Fatal_Flaw?: string | null
           Motto?: string | null
           Name?: string
+          Redemption_Arc?: string | null
+          Secret_Desire?: string | null
+          Writing_Prompt?: string | null
         }
         Relationships: []
       }

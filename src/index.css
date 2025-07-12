@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,19 +40,12 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -92,6 +86,73 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Gothic Mode - Deep, eerie styling */
+  .gothic {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 90%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 88%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 95%;
+
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 0 0% 6%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 340 100% 25%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 100% 30%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 12%;
+    --input: 0 0% 8%;
+    --ring: 340 100% 40%;
+
+    --sidebar-background: 0 0% 1%;
+    --sidebar-foreground: 0 0% 75%;
+    --sidebar-primary: 340 100% 20%;
+    --sidebar-primary-foreground: 0 0% 95%;
+    --sidebar-accent: 0 0% 5%;
+    --sidebar-accent-foreground: 0 0% 80%;
+    --sidebar-border: 0 0% 8%;
+    --sidebar-ring: 340 100% 50%;
+  }
+
+  .gothic {
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(120, 0, 120, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(75, 0, 130, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(139, 0, 0, 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  .gothic::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.01) 2px,
+        rgba(255, 255, 255, 0.01) 4px
+      );
+    pointer-events: none;
+    z-index: -1;
+  }
 }
 
 @layer base {
@@ -101,5 +162,23 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .gothic {
+    font-family: 'Crimson Text', 'Georgia', serif;
+  }
+
+  .gothic h1, .gothic h2, .gothic h3, .gothic h4, .gothic h5, .gothic h6 {
+    font-family: 'Cinzel', 'Times New Roman', serif;
+    text-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+  }
+
+  .gothic .gothic-glow {
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.2), inset 0 0 20px rgba(139, 0, 0, 0.1);
+  }
+
+  .gothic .gothic-text-glow {
+    text-shadow: 0 0 8px rgba(220, 20, 60, 0.6), 0 0 16px rgba(139, 0, 0, 0.4);
   }
 }

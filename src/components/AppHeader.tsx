@@ -2,6 +2,7 @@
 import React from 'react';
 import { ArchetypeGenerator } from './ArchetypeGenerator';
 import { AuthModal } from './AuthModal';
+import { GothicToggle } from './GothicToggle';
 import { useAuth } from '@/hooks/useAuth';
 import { Zap, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -38,6 +39,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ showAuthModal, setShowAuth
           
           <div className="flex items-center gap-4">
             <ArchetypeGenerator />
+            <GothicToggle />
             {user ? (
               <Button
                 variant="ghost"

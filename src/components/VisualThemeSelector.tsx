@@ -1,7 +1,10 @@
+
 import React, { useState } from 'react';
 import { Palette, Shuffle, Grid3X3 } from 'lucide-react';
 import { Theme } from '../types/theme';
 import { themes } from '../data/themes';
+import { useGothicMode } from '@/contexts/GothicModeContext';
+import { getGothicThemes } from '../utils/themeUtils';
 
 interface VisualThemeSelectorProps {
   selectedTheme: string;
@@ -13,22 +16,28 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
   onThemeChange 
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const { isGothicMode } = useGothicMode();
   
+  // Filter themes based on gothic mode
+  const availableThemes = isGothicMode 
+    ? themes.filter(theme => getGothicThemes().includes(theme.id))
+    : themes;
+
   const categories = [
-    { id: 'all', name: 'All', count: themes.length },
-    { id: 'professional', name: 'Professional', count: themes.filter(t => t.category === 'professional').length },
-    { id: 'creative', name: 'Creative', count: themes.filter(t => t.category === 'creative').length },
-    { id: 'artistic', name: 'Artistic', count: themes.filter(t => t.category === 'artistic').length },
-    { id: 'experimental', name: 'Experimental', count: themes.filter(t => t.category === 'experimental').length }
-  ];
+    { id: 'all', name: 'All', count: availableThemes.length },
+    { id: 'professional', name: 'Professional', count: availableThemes.filter(t => t.category === 'professional').length },
+    { id: 'creative', name: 'Creative', count: availableThemes.filter(t => t.category === 'creative').length },
+    { id: 'artistic', name: 'Artistic', count: availableThemes.filter(t => t.category === 'artistic').length },
+    { id: 'experimental', name: 'Experimental', count: availableThemes.filter(t => t.category === 'experimental').length }
+  ].filter(cat => cat.count > 0); // Only show categories with themes
 
   const filteredThemes = selectedCategory === 'all' 
-    ? themes 
-    : themes.filter(theme => theme.category === selectedCategory);
+    ? availableThemes 
+    : availableThemes.filter(theme => theme.category === selectedCategory);
 
   const handleRandomTheme = () => {
-    const availableThemes = selectedCategory === 'all' ? themes : filteredThemes;
-    const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
+    const availableForRandom = selectedCategory === 'all' ? availableThemes : filteredThemes;
+    const randomTheme = availableForRandom[Math.floor(Math.random() * availableForRandom.length)];
     onThemeChange(randomTheme.id);
   };
 
@@ -44,11 +53,15 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
       <div className="flex items-center justify-between">
         <label className="flex items-center gap-2 text-sm font-medium text-gray-600">
           <Palette className="w-4 h-4" />
-          Theme/Vibe
+          {isGothicMode ? 'Gothic Themes' : 'Theme/Vibe'}
         </label>
         <button
           onClick={handleRandomTheme}
-          className="flex items-center gap-1 px-2 py-1 text-xs bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-md transition-colors"
+          className={`flex items-center gap-1 px-2 py-1 text-xs rounded-md transition-colors ${
+            isGothicMode
+              ? 'bg-red-900 hover:bg-red-800 text-red-100'
+              : 'bg-purple-100 hover:bg-purple-200 text-purple-700'
+          }`}
           title="Pick a random theme"
         >
           <Shuffle className="w-3 h-3" />
@@ -64,8 +77,12 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
             onClick={() => setSelectedCategory(category.id)}
             className={`px-2 py-1 text-xs rounded-md transition-colors ${
               selectedCategory === category.id
-                ? 'bg-purple-600 text-white'
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
+                ? isGothicMode
+                  ? 'bg-red-800 text-red-100'
+                  : 'bg-purple-600 text-white'
+                : isGothicMode
+                  ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                  : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
             }`}
           >
             {category.name} ({category.count})
@@ -81,7 +98,9 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
             onClick={() => onThemeChange(theme.id)}
             className={`relative p-3 rounded-lg border-2 transition-all hover:scale-105 ${
               selectedTheme === theme.id
-                ? 'border-purple-500 ring-2 ring-purple-200'
+                ? isGothicMode
+                  ? 'border-red-500 ring-2 ring-red-200'
+                  : 'border-purple-500 ring-2 ring-purple-200'
                 : 'border-gray-200 hover:border-gray-300'
             }`}
             style={getThemePreviewStyle(theme)}
@@ -93,6 +112,8 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
                 style={{
                   backgroundImage: theme.styles.backgroundTexture === 'paper' 
                     ? 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)'
+                    : theme.styles.backgroundTexture === 'damask'
+                    ? 'repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139,0,0,0.1) 10px, rgba(139,0,0,0.1) 20px)'
                     : 'none',
                   backgroundSize: '10px 10px'
                 }}
@@ -105,7 +126,7 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
                 className="text-sm font-bold mb-1 truncate"
                 style={{ 
                   color: theme.styles.accent,
-                  textShadow: theme.styles.shadowLevel === 'neon' || theme.styles.shadowLevel === 'glow' 
+                  textShadow: ['neon', 'glow', 'gothic', 'dramatic', 'occult'].includes(theme.styles.shadowLevel)
                     ? `0 0 4px ${theme.styles.accent}` 
                     : 'none'
                 }}
@@ -142,7 +163,9 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
 
             {/* Selected Indicator */}
             {selectedTheme === theme.id && (
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-purple-500 text-white rounded-full flex items-center justify-center">
+              <div className={`absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center ${
+                isGothicMode ? 'bg-red-600' : 'bg-purple-500'
+              } text-white`}>
                 <Grid3X3 className="w-2 h-2" />
               </div>
             )}
@@ -154,6 +177,11 @@ const VisualThemeSelector: React.FC<VisualThemeSelectorProps> = ({
       <div className="text-xs text-gray-500 text-center">
         {filteredThemes.length} theme{filteredThemes.length !== 1 ? 's' : ''} available
         {selectedCategory !== 'all' && ` in ${categories.find(c => c.id === selectedCategory)?.name}`}
+        {isGothicMode && (
+          <div className="mt-1 text-red-400 gothic-text-glow">
+            Gothic Mode Active
+          </div>
+        )}
       </div>
     </div>
   );
