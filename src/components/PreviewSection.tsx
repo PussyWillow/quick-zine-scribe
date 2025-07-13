@@ -27,8 +27,8 @@ export const PreviewSection: React.FC<PreviewSectionProps> = ({
   bodyFont,
 }) => {
   return (
-    <div className="flex flex-col flex-1">
-      <div className="flex items-center justify-between p-3 bg-card border-b border-border">
+    <div className="h-full flex flex-col">
+      <div className="flex items-center justify-between p-3 bg-card border-b border-border flex-shrink-0">
         <div className="flex items-center gap-2">
           <Eye className="w-4 h-4 text-muted-foreground" />
           <span className="text-sm font-medium text-foreground">Preview</span>
@@ -46,7 +46,7 @@ export const PreviewSection: React.FC<PreviewSectionProps> = ({
       </div>
       
       {!isCollapsed && (
-        <div className="flex-1">
+        <div className="flex-1 min-h-0 overflow-hidden">
           <ZinePreview
             content={content}
             title={title}

@@ -60,7 +60,7 @@ Start writing and watch your words come to life with beautiful themes.
 
       <div className="flex flex-col h-[calc(100vh-73px)]">
         {/* Controls Section - Top 1/3 */}
-        <div className="h-1/3 min-h-[200px]">
+        <div className="h-1/3 min-h-[200px] flex-shrink-0">
           <ControlsBar
             selectedTheme={selectedTheme}
             onThemeChange={setSelectedTheme}
@@ -76,7 +76,7 @@ Start writing and watch your words come to life with beautiful themes.
         </div>
 
         {/* Editor and Preview Section - Bottom 2/3 Side by Side */}
-        <div className="flex h-2/3 min-h-[400px]">
+        <div className="flex h-2/3 min-h-[400px] flex-1">
           {/* Editor - Left Half */}
           <div className="w-1/2 border-r border-border">
             <EditorPanel

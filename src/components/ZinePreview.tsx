@@ -58,7 +58,7 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
       <ZinePreviewHeader themeName={theme.name} />
       
       {/* Preview Content */}
-      <div className="flex-1 overflow-auto p-6">
+      <div className="flex-1 min-h-0 overflow-auto p-6">
         <div 
           className={`max-w-2xl mx-auto min-h-full p-8 zine-preview-frame ornate-frame relative overflow-hidden`}
           style={previewStyles}

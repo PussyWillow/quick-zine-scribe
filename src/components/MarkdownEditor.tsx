@@ -87,7 +87,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
   return (
     <div className="h-full flex flex-col editor-panel-frame">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border/50">
+      <div className="flex items-center justify-between p-4 border-b border-border/50 flex-shrink-0">
         <div className="flex items-center gap-2">
           <FileText className="w-5 h-5 text-muted-foreground" />
           <h2 className="text-lg font-semibold text-foreground">Editor</h2>
@@ -123,7 +123,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       </div>
       
       {/* Metadata Section */}
-      <div className="p-4 border-b border-border/50 space-y-3">
+      <div className="p-4 border-b border-border/50 space-y-3 flex-shrink-0">
         <div>
           <label className="block text-sm font-medium text-muted-foreground mb-1">
             Title
@@ -151,8 +151,8 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
       </div>
       
       {/* Markdown Editor */}
-      <div className="flex-1 p-4">
-        <label className="block text-sm font-medium text-muted-foreground mb-2">
+      <div className="flex-1 min-h-0 p-4 flex flex-col">
+        <label className="block text-sm font-medium text-muted-foreground mb-2 flex-shrink-0">
           Content (Markdown supported)
         </label>
         <textarea
@@ -170,7 +170,7 @@ Write your fragments here. You can use:
 - Lists and more!
 
 Add as many sections as you need."
-          className="w-full h-full resize-none editor-input-frame border-0 focus:outline-none text-foreground font-mono text-sm leading-relaxed placeholder:text-muted-foreground"
+          className="flex-1 resize-none editor-input-frame border-0 focus:outline-none text-foreground font-mono text-sm leading-relaxed placeholder:text-muted-foreground"
         />
       </div>
 
