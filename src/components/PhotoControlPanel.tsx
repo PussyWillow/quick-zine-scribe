@@ -87,9 +87,9 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
     id: 'color-burn',
     label: 'Color Burn'
   }];
-  return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 order-2 ">
+  return <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-3">
       {/* Photo Selection */}
-      <div className="grid justify-items-stretch">
+      <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-3">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
       </div>
 
@@ -105,12 +105,12 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Position Grid Selector */}
-      <div className="grid row-span-full gap-y-0 grid grid-cols gap-y grid gap-y-0 ">
-        <div className="flex flex-wrap mx-[232px] py-[1px] my-[4px]">
+      <div className="space-y-3">
+        <div className="flex items-center gap-1 mb-1">
           <Grid3x3 className="w-4 h-4 text-muted-foreground" />
           <Label className="text-sm font-medium text-foreground font-heading">Position</Label>
         </div>
-        <div className="grid grid-flow-col grid-rows-3 gap-8 my-[14px] py-[9px] px-[2px] mx-[186px]">
+        <div className="grid grid-cols-3 gap-1 p-2 bg-muted/30 rounded-lg">
           {positions.map(pos => <button key={pos.id} onClick={() => onPositionChange(pos.id)} className={`w-8 h-8 rounded border-2 transition-all ${photoPosition === pos.id ? 'border-ring bg-accent' : 'border-border hover:border-muted-foreground bg-card'}`} title={pos.label}>
               <div className={`w-full h-full rounded-sm ${pos.id.includes('top') ? 'bg-gradient-to-b from-primary/60 to-transparent' : pos.id.includes('bottom') ? 'bg-gradient-to-t from-primary/60 to-transparent' : pos.id.includes('left') ? 'bg-gradient-to-r from-primary/60 to-transparent' : pos.id.includes('right') ? 'bg-gradient-to-l from-primary/60 to-transparent' : 'bg-primary/40'}`} />
             </button>)}
@@ -128,7 +128,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
         </div>
 
         {/* Blend Mode */}
-        <div className="space-y-2">
+        <div className="space-y-2 px-[40px] mx-[53px] my-[21px] py-[5px]">
           <div className="flex items-center gap-2">
             <Palette className="w-4 h-4 text-muted-foreground" />
             <Label className="text-sm font-medium text-foreground font-heading">Blend Mode</Label>
@@ -147,9 +147,9 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Quick Presets - Span full width on mobile, partial on larger screens */}
-      <div className="lg:col-span-2 xl:col-span-4 space-y-3">
-        <Label className="text-sm font-medium text-foreground font-heading">Quick Styles</Label>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+      <div className="grid grid-flow-row-dense grid-cols-1 grid-rows-2">
+        <Label className="text-sm font-medium text-foreground font-heading mx-[136px] px-0 py-0 my-[58px]">Quick Styles</Label>
+        <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
           <button onClick={() => {
           onOpacityChange(15);
           onPositionChange('center');
