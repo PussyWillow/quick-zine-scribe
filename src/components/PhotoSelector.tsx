@@ -34,7 +34,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
         <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
       </div>
       
-      
+      <div className="text-xs text-muted-foreground">{currentPhoto.description}</div>
       
       {/* Photo preview thumbnails */}
       {galleryImages.length > 0 && <div className="flex gap-2 mt-2 flex-wrap px-[24px] py-[12px] my-0">

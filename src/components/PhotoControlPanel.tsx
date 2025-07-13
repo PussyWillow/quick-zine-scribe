@@ -87,7 +87,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
     id: 'color-burn',
     label: 'Color Burn'
   }];
-  return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 py-0 mx-0 px-[37px] my-[17px]">
+  return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 py-0 my-0 mx-[21px] px-0">
       {/* Photo Selection */}
       <div className="space-y-3 py-0 my-[28px] mx-0 px-[4px] ">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
@@ -105,12 +105,12 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Position Grid Selector */}
-      <div className="rounded-bl-none space-y-3.5 px- whitespace-pre-line my-[131px] mx-[67px] px-[5px] py-[85px]">
+      <div className="rounded-bl-none space-y-3.5 mx-0 px- whitespace-pre-line ">
         <div className="flex items-center gap-2 mb-3 flex my-0 py-0 px-[156px] mx-[80px]">
           <Grid3x3 className="w-4 h-4 text-muted-foreground" />
           <Label className="text-sm font-medium text-foreground font-heading">Position</Label>
         </div>
-        <div className="grid grid-cols-3 rounded-br-sm mx-[185px] py-[12px] my-[16px] px-[37px]">
+        <div className="grid grid-cols-3 py-[9px] rounded-br-sm my-[10px] mx-[183px] px-0">
           {positions.map(pos => <button key={pos.id} onClick={() => onPositionChange(pos.id)} className={`w-8 h-8 rounded border-2 transition-all ${photoPosition === pos.id ? 'border-ring bg-accent' : 'border-border hover:border-muted-foreground bg-card'}`} title={pos.label}>
               <div className={`w-full h-full rounded-sm ${pos.id.includes('top') ? 'bg-gradient-to-b from-primary/60 to-transparent' : pos.id.includes('bottom') ? 'bg-gradient-to-t from-primary/60 to-transparent' : pos.id.includes('left') ? 'bg-gradient-to-r from-primary/60 to-transparent' : pos.id.includes('right') ? 'bg-gradient-to-l from-primary/60 to-transparent' : 'bg-primary/40'}`} />
             </button>)}
@@ -148,14 +148,14 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
 
       {/* Quick Presets - Span full width on mobile, partial on larger screens */}
       <div className="lg:col-span-2 xl:col-span-4 space-y-3 px-[174px] py-[25px] my-0 mx-0">
-        <Label className="font-medium font-medium text-foreground font-heading max-w-full font-semibold text-card-foreground ">Quick Styles</Label>
+        <Label className="text-sm font-medium text-foreground font-heading my-0 px-[55px] mx-[149px] rounded-md">Quick Styles</Label>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
           <button onClick={() => {
           onOpacityChange(15);
           onPositionChange('center');
           onScaleChange(1.2);
           onBlendModeChange('multiply');
-        }} className="px-3 py-2 bg-card border border-border rounded-md hover:bg-muted transition-colors text-base">
+        }} className="px-3 py-2 text-xs bg-card border border-border rounded-md hover:bg-muted transition-colors">
             Subtle Atmosphere
           </button>
           <button onClick={() => {
