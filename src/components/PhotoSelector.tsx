@@ -30,11 +30,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
       
       
       <div className="relative">
-        <select value={selectedPhoto} onChange={e => onPhotoChange(e.target.value)} className="w-full appearance-none bg-card border border-border rounded-md px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent text-foreground text-sm">
-          {allPhotos.map(photo => <option key={photo.id} value={photo.id}>
-              {photo.name}
-            </option>)}
-        </select>
+        
         <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
       </div>
       
