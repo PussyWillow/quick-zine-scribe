@@ -128,7 +128,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
         </div>
 
         {/* Blend Mode */}
-        <div className="space-y-2">
+        <div className="space-y-2 px-[40px] mx-[53px] my-[21px] py-[5px]">
           <div className="flex items-center gap-2">
             <Palette className="w-4 h-4 text-muted-foreground" />
             <Label className="text-sm font-medium text-foreground font-heading">Blend Mode</Label>
