@@ -1,8 +1,10 @@
-
 import React, { useState } from 'react';
-import { Palette, Image, Type, Shapes, Star, Search, Filter, ChevronUp, ChevronDown } from 'lucide-react';
+import { Palette, Search, ChevronUp, ChevronDown, Image, Shapes, Type, Star } from 'lucide-react';
 import { useGalleryImages } from '@/hooks/useGalleryImages';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { AssetCategory, Asset, PhotoAsset } from '@/types/assets';
+import { AssetGrid } from './assets/AssetGrid';
+import { mockAssets } from '@/data/mockAssets';
 
 interface ResponsiveDesignAssetGalleryProps {
   onAssetSelect: (asset: any) => void;
@@ -11,43 +13,6 @@ interface ResponsiveDesignAssetGalleryProps {
   isCollapsed: boolean;
   onToggleCollapse: () => void;
 }
-
-type AssetCategory = 'photos' | 'textures' | 'typography' | 'decorative' | 'colors';
-
-interface BaseAsset {
-  id: string;
-  name: string;
-  type: string;
-}
-
-interface PhotoAsset extends BaseAsset {
-  type: 'photo';
-  preview: string;
-  description?: string;
-}
-
-interface TextureAsset extends BaseAsset {
-  type: 'texture';
-  preview: string;
-}
-
-interface FontAsset extends BaseAsset {
-  type: 'font';
-  preview: string;
-  fontFamily: string;
-}
-
-interface DecorationAsset extends BaseAsset {
-  type: 'decoration';
-  preview: string;
-}
-
-interface PaletteAsset extends BaseAsset {
-  type: 'palette';
-  colors: string[];
-}
-
-type Asset = PhotoAsset | TextureAsset | FontAsset | DecorationAsset | PaletteAsset;
 
 const ResponsiveDesignAssetGallery: React.FC<ResponsiveDesignAssetGalleryProps> = ({
   onAssetSelect,
@@ -63,35 +28,12 @@ const ResponsiveDesignAssetGallery: React.FC<ResponsiveDesignAssetGalleryProps> 
   const isMobile = useIsMobile();
 
   const categories = [
-    { id: 'photos' as AssetCategory, name: 'Photos', icon: Image, description: 'Background photos' },
-    { id: 'textures' as AssetCategory, name: 'Textures', icon: Shapes, description: 'Patterns & textures' },
-    { id: 'typography' as AssetCategory, name: 'Fonts', icon: Type, description: 'Typography' },
-    { id: 'decorative' as AssetCategory, name: 'Elements', icon: Star, description: 'Decorative' },
-    { id: 'colors' as AssetCategory, name: 'Colors', icon: Palette, description: 'Palettes' },
+    { id: 'photos' as AssetCategory, name: 'Photos', icon: 'Image', description: 'Background photos' },
+    { id: 'textures' as AssetCategory, name: 'Textures', icon: 'Shapes', description: 'Patterns & textures' },
+    { id: 'typography' as AssetCategory, name: 'Fonts', icon: 'Type', description: 'Typography' },
+    { id: 'decorative' as AssetCategory, name: 'Elements', icon: 'Star', description: 'Decorative' },
+    { id: 'colors' as AssetCategory, name: 'Colors', icon: 'Palette', description: 'Palettes' },
   ];
-
-  const mockAssets = {
-    textures: [
-      { id: 'paper-1', name: 'Vintage Paper', preview: '/api/placeholder/100/100', type: 'texture' },
-      { id: 'fabric-1', name: 'Linen Texture', preview: '/api/placeholder/100/100', type: 'texture' },
-      { id: 'grunge-1', name: 'Grunge Effect', preview: '/api/placeholder/100/100', type: 'texture' },
-    ] as TextureAsset[],
-    typography: [
-      { id: 'serif-1', name: 'Elegant Serif', preview: 'Aa', type: 'font', fontFamily: 'Playfair Display' },
-      { id: 'script-1', name: 'Script Font', preview: 'Aa', type: 'font', fontFamily: 'Dancing Script' },
-      { id: 'mono-1', name: 'Monospace', preview: 'Aa', type: 'font', fontFamily: 'JetBrains Mono' },
-    ] as FontAsset[],
-    decorative: [
-      { id: 'border-1', name: 'Ornate Border', preview: '═══', type: 'decoration' },
-      { id: 'divider-1', name: 'Line Divider', preview: '───', type: 'decoration' },
-      { id: 'flourish-1', name: 'Flourish', preview: '❋', type: 'decoration' },
-    ] as DecorationAsset[],
-    colors: [
-      { id: 'pastel-1', name: 'Pastel Dreams', colors: ['#FFE4E1', '#E6E6FA', '#F0F8FF'], type: 'palette' },
-      { id: 'warm-1', name: 'Warm Sunset', colors: ['#FF6B6B', '#FFE66D', '#FF8E53'], type: 'palette' },
-      { id: 'cool-1', name: 'Cool Ocean', colors: ['#4ECDC4', '#45B7D1', '#96CEB4'], type: 'palette' },
-    ] as PaletteAsset[]
-  };
 
   const getCurrentAssets = (): Asset[] => {
     switch (activeCategory) {
@@ -124,14 +66,6 @@ const ResponsiveDesignAssetGallery: React.FC<ResponsiveDesignAssetGalleryProps> 
   const filteredAssets = currentAssets.filter(asset =>
     asset.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // Responsive grid classes
-  const getGridClasses = () => {
-    if (isMobile) {
-      return "grid grid-cols-2 gap-3"; // Mobile: 2 columns
-    }
-    return "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"; // Desktop: up to 8 columns
-  };
 
   return (
     <div className="h-full bg-card flex flex-col">
@@ -221,97 +155,14 @@ const ResponsiveDesignAssetGallery: React.FC<ResponsiveDesignAssetGalleryProps> 
       {/* Asset Grid */}
       {!isCollapsed && (
         <div className="flex-1 min-h-0 p-4 overflow-y-auto">
-          {isLoading && activeCategory === 'photos' ? (
-            <div className="flex items-center justify-center h-full">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-green"></div>
-            </div>
-          ) : (
-            <div className={getGridClasses()}>
-              {filteredAssets.map((asset) => (
-                <div
-                  key={asset.id}
-                  onClick={() => handleAssetClick(asset)}
-                  className={`group cursor-pointer transition-all duration-200 touch-manipulation ${
-                    selectedPhoto === asset.id && asset.type === 'photo'
-                      ? 'ring-2 ring-sage-green scale-105'
-                      : 'hover:scale-105 hover:shadow-md active:scale-95'
-                  }`}
-                >
-                  <div className={`relative overflow-hidden rounded-lg bg-muted border border-border group-hover:border-sage-green/50 transition-colors ${
-                    asset.type === 'palette' ? 'aspect-[2/1]' : 
-                    asset.type === 'font' ? 'aspect-[3/2]' : 
-                    'aspect-square'
-                  } ${isMobile ? 'min-h-[80px]' : 'min-h-[100px]'}`}>
-                    {asset.type === 'photo' ? (
-                      <img
-                        src={(asset as PhotoAsset).preview}
-                        alt={asset.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = '/api/placeholder/120/120';
-                        }}
-                      />
-                    ) : asset.type === 'font' ? (
-                      <div 
-                        className="w-full h-full flex flex-col items-center justify-center text-foreground p-2"
-                        style={{ fontFamily: (asset as FontAsset).fontFamily }}
-                      >
-                        <div className={`font-bold ${isMobile ? 'text-lg' : 'text-2xl'}`}>
-                          {(asset as FontAsset).preview}
-                        </div>
-                        <div className="text-xs opacity-70 mt-1">Sample</div>
-                      </div>
-                    ) : asset.type === 'decoration' ? (
-                      <div className={`w-full h-full flex items-center justify-center text-foreground ${isMobile ? 'text-lg' : 'text-2xl'}`}>
-                        {(asset as DecorationAsset).preview}
-                      </div>
-                    ) : asset.type === 'palette' ? (
-                      <div className="w-full h-full flex">
-                        {(asset as PaletteAsset).colors?.slice(0, 4).map((color: string, idx: number) => (
-                          <div
-                            key={idx}
-                            className="flex-1 h-full"
-                            style={{ backgroundColor: color }}
-                          />
-                        ))}
-                      </div>
-                    ) : asset.type === 'texture' ? (
-                      <img
-                        src={(asset as TextureAsset).preview}
-                        alt={asset.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = '/api/placeholder/120/120';
-                        }}
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20" />
-                    )}
-                    
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 group-active:bg-black/10 transition-colors" />
-                  </div>
-                  
-                  {/* Asset name */}
-                  <div className={`text-center mt-2 text-muted-foreground truncate px-1 leading-tight ${isMobile ? 'text-xs' : 'text-xs'}`}>
-                    {asset.name}
-                  </div>
-                </div>
-              ))}
-              
-              {filteredAssets.length === 0 && (
-                <div className="col-span-full flex flex-col items-center justify-center py-12 text-muted-foreground">
-                  <Filter className="w-12 h-12 mb-4 opacity-50" />
-                  <p className="text-lg font-medium mb-2">No assets found</p>
-                  <p className="text-sm text-center">Try adjusting your search or selecting a different category</p>
-                </div>
-              )}
-            </div>
-          )}
+          <div className={isMobile ? "grid grid-cols-2 gap-3" : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4"}>
+            <AssetGrid
+              assets={filteredAssets}
+              selectedPhoto={selectedPhoto}
+              onAssetClick={handleAssetClick}
+              isLoading={isLoading && activeCategory === 'photos'}
+            />
+          </div>
         </div>
       )}
     </div>
