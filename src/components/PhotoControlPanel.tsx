@@ -148,14 +148,14 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
 
       {/* Quick Presets - Span full width on mobile, partial on larger screens */}
       <div className="lg:col-span-2 xl:col-span-4 space-y-3 px-[174px] py-[25px] my-0 mx-0">
-        <Label className="text-sm font-medium text-foreground font-heading max-w-full ">Quick Styles</Label>
+        <Label className="font-medium font-medium text-foreground font-heading max-w-full font-semibold text-card-foreground ">Quick Styles</Label>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
           <button onClick={() => {
           onOpacityChange(15);
           onPositionChange('center');
           onScaleChange(1.2);
           onBlendModeChange('multiply');
-        }} className="px-3 py-2 text-xs bg-card border border-border rounded-md hover:bg-muted transition-colors">
+        }} className="px-3 py-2 bg-card border border-border rounded-md hover:bg-muted transition-colors text-base">
             Subtle Atmosphere
           </button>
           <button onClick={() => {
