@@ -105,7 +105,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Position Grid Selector */}
-      <div className="space-y-3">
+      <div className="grid h-48 grid-cols-2 place-content-stretch gap-4">
         <div className="flex items-center gap-1 mb-1">
           <Grid3x3 className="w-4 h-4 text-muted-foreground" />
           <Label className="text-sm font-medium text-foreground font-heading">Position</Label>
@@ -147,8 +147,8 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Quick Presets - Span full width on mobile, partial on larger screens */}
-      <div className="grid grid-flow-row-dense grid-cols-1 grid-rows-2">
-        <Label className="h-48 w-96 object-cover text-6xl font-stretch-expanded">Quick Styles</Label>
+      <div className="grid grid-flow-row-dense grid-cols-1 grid-rows-2 ">
+        <Label className="h-48 w-96 object-cover text-6xl font-stretch-expanded px-[78px] my-[64px] py-[32px] mx-[43px] ">Quick Styles</Label>
         <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
           <button onClick={() => {
           onOpacityChange(15);
