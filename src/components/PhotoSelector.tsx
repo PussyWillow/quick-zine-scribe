@@ -26,7 +26,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
     description: img.description || 'Gallery image'
   }))];
   const currentPhoto = allPhotos.find(p => p.id === selectedPhoto) || allPhotos[0];
-  return <div className="table table-row table-cell items-stretch ">
+  return <div className="grid h-48 grid-cols-2 place-content-center gap-4">
       <label className="block text-sm font-medium text-muted-foreground mb-2">
         <Image className="inline w-4 h-4 mr-1" />
         Photo Selection
