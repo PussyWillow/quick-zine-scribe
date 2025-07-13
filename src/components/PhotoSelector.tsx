@@ -26,7 +26,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
     description: img.description || 'Gallery image'
   }))];
   const currentPhoto = allPhotos.find(p => p.id === selectedPhoto) || allPhotos[0];
-  return <div className="grid row-span-full gap-y-0 grid grid-cols gap-y grid gap-y-0 ">
+  return <div className="">
       <label className="block text-sm font-medium text-muted-foreground mb-2">
         <Image className="inline w-4 h-4 mr-1" />
         Photo Selection
@@ -44,8 +44,8 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
       <div className="text-xs text-muted-foreground">{currentPhoto.description}</div>
       
       {/* Photo preview thumbnails */}
-      {galleryImages.length > 0 && <div className="inline-grid grid-cols-3 gap-2 grid-rows-3 mx-[195px] px-[7px] py-[2px] my-[25px]">
-          {allPhotos.slice(0, 6).map(photo => <button key={photo.id} onClick={() => onPhotoChange(photo.id)} className={`w-10 h-10 rounded border-2 transition-all overflow-hidden ${selectedPhoto === photo.id ? 'border-ring shadow-md' : 'border-border hover:border-muted-foreground'}`} title={photo.description}>
+      {galleryImages.length > 0 && <div className="inline-grid grid-cols-3 gap-2 grid-rows-3 mx-[195px] px-[7px] scale-300">
+          {allPhotos.slice(0, 6).map(photo => <button key={photo.id} onClick={() => onPhotoChange(photo.id)} className={`w-20 h-20 rounded border-2 transition-all overflow-hidden ${selectedPhoto === photo.id ? 'border-ring shadow-md' : 'border-border hover:border-muted-foreground'}`} title={photo.description}>
               {photo.id === 'none' ? <div className="size-294 object-top-left">
                   <span className="text-xs text-muted-foreground">×</span>
                 </div> : <img src={photo.url} alt={photo.name} loading="lazy" className="" />}
