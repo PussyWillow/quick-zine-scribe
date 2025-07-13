@@ -11,6 +11,41 @@ interface DesignAssetGalleryProps {
 
 type AssetCategory = 'photos' | 'textures' | 'typography' | 'decorative' | 'colors';
 
+interface BaseAsset {
+  id: string;
+  name: string;
+  type: string;
+}
+
+interface PhotoAsset extends BaseAsset {
+  type: 'photo';
+  preview: string;
+  description?: string;
+}
+
+interface TextureAsset extends BaseAsset {
+  type: 'texture';
+  preview: string;
+}
+
+interface FontAsset extends BaseAsset {
+  type: 'font';
+  preview: string;
+  fontFamily: string;
+}
+
+interface DecorationAsset extends BaseAsset {
+  type: 'decoration';
+  preview: string;
+}
+
+interface PaletteAsset extends BaseAsset {
+  type: 'palette';
+  colors: string[];
+}
+
+type Asset = PhotoAsset | TextureAsset | FontAsset | DecorationAsset | PaletteAsset;
+
 const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
   onAssetSelect,
   selectedPhoto,
@@ -33,25 +68,25 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
       { id: 'paper-1', name: 'Vintage Paper', preview: '/api/placeholder/100/100', type: 'texture' },
       { id: 'fabric-1', name: 'Linen Texture', preview: '/api/placeholder/100/100', type: 'texture' },
       { id: 'grunge-1', name: 'Grunge Effect', preview: '/api/placeholder/100/100', type: 'texture' },
-    ],
+    ] as TextureAsset[],
     typography: [
       { id: 'serif-1', name: 'Elegant Serif', preview: 'Aa', type: 'font', fontFamily: 'Playfair Display' },
       { id: 'script-1', name: 'Script Font', preview: 'Aa', type: 'font', fontFamily: 'Dancing Script' },
       { id: 'mono-1', name: 'Monospace', preview: 'Aa', type: 'font', fontFamily: 'JetBrains Mono' },
-    ],
+    ] as FontAsset[],
     decorative: [
       { id: 'border-1', name: 'Ornate Border', preview: '═══', type: 'decoration' },
       { id: 'divider-1', name: 'Line Divider', preview: '───', type: 'decoration' },
       { id: 'flourish-1', name: 'Flourish', preview: '❋', type: 'decoration' },
-    ],
+    ] as DecorationAsset[],
     colors: [
       { id: 'pastel-1', name: 'Pastel Dreams', colors: ['#FFE4E1', '#E6E6FA', '#F0F8FF'], type: 'palette' },
       { id: 'warm-1', name: 'Warm Sunset', colors: ['#FF6B6B', '#FFE66D', '#FF8E53'], type: 'palette' },
       { id: 'cool-1', name: 'Cool Ocean', colors: ['#4ECDC4', '#45B7D1', '#96CEB4'], type: 'palette' },
-    ]
+    ] as PaletteAsset[]
   };
 
-  const getCurrentAssets = () => {
+  const getCurrentAssets = (): Asset[] => {
     switch (activeCategory) {
       case 'photos':
         return galleryImages.map(img => ({
@@ -60,7 +95,7 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
           preview: img.preview_url || img.url,
           type: 'photo',
           description: img.description
-        }));
+        } as PhotoAsset));
       case 'textures':
       case 'typography':
       case 'decorative':
@@ -71,7 +106,7 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
     }
   };
 
-  const handleAssetClick = (asset: any) => {
+  const handleAssetClick = (asset: Asset) => {
     if (asset.type === 'photo') {
       onPhotoChange(asset.id);
     }
@@ -153,7 +188,7 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
                   <div className="w-full h-full rounded-lg overflow-hidden bg-muted border border-border group-hover:border-sage-green/50 transition-colors">
                     {asset.type === 'photo' ? (
                       <img
-                        src={asset.preview}
+                        src={(asset as PhotoAsset).preview}
                         alt={asset.name}
                         className="w-full h-full object-cover"
                         onError={(e) => {
@@ -164,17 +199,17 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
                     ) : asset.type === 'font' ? (
                       <div 
                         className="w-full h-full flex items-center justify-center text-2xl font-bold text-foreground"
-                        style={{ fontFamily: asset.fontFamily }}
+                        style={{ fontFamily: (asset as FontAsset).fontFamily }}
                       >
-                        {asset.preview}
+                        {(asset as FontAsset).preview}
                       </div>
                     ) : asset.type === 'decoration' ? (
                       <div className="w-full h-full flex items-center justify-center text-lg text-foreground">
-                        {asset.preview}
+                        {(asset as DecorationAsset).preview}
                       </div>
                     ) : asset.type === 'palette' ? (
                       <div className="w-full h-full flex">
-                        {asset.colors?.slice(0, 3).map((color: string, idx: number) => (
+                        {(asset as PaletteAsset).colors?.slice(0, 3).map((color: string, idx: number) => (
                           <div
                             key={idx}
                             className="flex-1 h-full"
@@ -182,6 +217,16 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
                           />
                         ))}
                       </div>
+                    ) : asset.type === 'texture' ? (
+                      <img
+                        src={(asset as TextureAsset).preview}
+                        alt={asset.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/api/placeholder/100/100';
+                        }}
+                      />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20" />
                     )}
