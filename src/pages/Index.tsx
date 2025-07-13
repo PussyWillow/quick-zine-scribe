@@ -67,8 +67,8 @@ Start writing and watch your words come to life with beautiful themes.
       />
 
       <div className="flex flex-col h-[calc(100vh-73px)]">
-        {/* Controls Section - Top ~25% */}
-        <div className="h-1/4 min-h-[180px] flex-shrink-0">
+        {/* Controls Section - Top ~20% */}
+        <div className="h-[20vh] min-h-[160px] flex-shrink-0 border-b border-border">
           <ControlsBar
             selectedTheme={selectedTheme}
             onThemeChange={setSelectedTheme}
@@ -83,8 +83,8 @@ Start writing and watch your words come to life with beautiful themes.
           />
         </div>
 
-        {/* Design Asset Gallery - Middle ~20% */}
-        <div className="h-1/5 min-h-[120px] flex-shrink-0">
+        {/* Design Asset Gallery - Middle ~15% */}
+        <div className="h-[15vh] min-h-[120px] flex-shrink-0 border-b border-border">
           <DesignAssetGallery
             onAssetSelect={handleAssetSelect}
             selectedPhoto={selectedPhoto}
@@ -92,7 +92,7 @@ Start writing and watch your words come to life with beautiful themes.
           />
         </div>
 
-        {/* Editor and Preview Section - Bottom ~55% Side by Side */}
+        {/* Editor and Preview Section - Bottom ~65% Side by Side */}
         <div className="flex flex-1 min-h-0">
           {/* Editor - Left Half */}
           <div className="w-1/2 border-r border-border">
