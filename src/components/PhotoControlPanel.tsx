@@ -89,7 +89,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
   }];
   return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 order-2 ">
       {/* Photo Selection */}
-      <div className="size-max w-screen ">
+      <div className="size-max w-screen grid grid-flow-col grid-rows-4 gap-4">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
       </div>
 
@@ -101,7 +101,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
             Opacity: {photoOpacity}%
           </Label>
         </div>
-        <Slider value={[photoOpacity]} onValueChange={value => onOpacityChange(value[0])} max={50} min={0} step={1} className="w-full" />
+        <Slider value={[photoOpacity]} onValueChange={value => onOpacityChange(value[0])} max={50} min={0} step={1} className="h-48 w-96 object-cover " />
       </div>
 
       {/* Position Grid Selector */}
