@@ -94,10 +94,10 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Opacity Control */}
-      <div className="space-y-3 px-[19px] py-0 bg-transparent mx-[144px] my-[117px]">
+      <div className="">
         <div className="flex items-center gap-2 mb-3">
           <Sliders className="w-4 h-4 text-muted-foreground" />
-          <Label className="text-sm font-medium text-foreground font-heading">
+          <Label className="grid font-medium text-foreground font-heading">
             Opacity: {photoOpacity}%
           </Label>
         </div>
