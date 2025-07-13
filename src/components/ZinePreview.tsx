@@ -17,6 +17,10 @@ interface ZinePreviewProps {
   selectedPhoto: string;
   headingFont?: string;
   bodyFont?: string;
+  photoOpacity?: number;
+  photoPosition?: string;
+  photoScale?: number;
+  blendMode?: string;
 }
 
 const ZinePreview: React.FC<ZinePreviewProps> = ({ 
@@ -26,7 +30,11 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
   selectedTheme,
   selectedPhoto,
   headingFont,
-  bodyFont
+  bodyFont,
+  photoOpacity = 10,
+  photoPosition = 'center',
+  photoScale = 1,
+  blendMode = 'multiply'
 }) => {
   const theme = themes.find(t => t.id === selectedTheme) || themes[0];
   const { data: galleryImages = [] } = useGalleryImages();
@@ -46,11 +54,43 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
     fontFamily: actualBodyFont
   };
 
+  // Map position to CSS object-position values
+  const getObjectPosition = (position: string) => {
+    const positionMap: { [key: string]: string } = {
+      'center': 'center center',
+      'top': 'center top',
+      'bottom': 'center bottom',
+      'left': 'left center',
+      'right': 'right center',
+      'top-left': 'left top',
+      'top-right': 'right top',
+      'bottom-left': 'left bottom',
+      'bottom-right': 'right bottom'
+    };
+    return positionMap[position] || 'center center';
+  };
+
+  // Map blend mode to CSS mix-blend-mode values
+  const getCSSBlendMode = (mode: string) => {
+    const blendMap: { [key: string]: string } = {
+      'normal': 'normal',
+      'multiply': 'multiply',
+      'overlay': 'overlay',
+      'soft-light': 'soft-light',
+      'hard-light': 'hard-light',
+      'color-dodge': 'color-dodge',
+      'color-burn': 'color-burn'
+    };
+    return blendMap[mode] || 'multiply';
+  };
+
   const backgroundImageStyle = selectedPhotoData?.url ? {
     backgroundImage: `url(${selectedPhotoData.url})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
+    backgroundSize: `${photoScale * 100}%`,
+    backgroundPosition: getObjectPosition(photoPosition),
+    backgroundRepeat: 'no-repeat',
+    opacity: photoOpacity / 100,
+    mixBlendMode: getCSSBlendMode(blendMode) as any
   } : {};
 
   return (
@@ -64,33 +104,36 @@ const ZinePreview: React.FC<ZinePreviewProps> = ({
           style={previewStyles}
           id="zine-preview"
         >
-          {/* Background Photo Overlay */}
+          {/* Enhanced Background Photo Layer */}
           {selectedPhotoData?.url && (
             <div 
-              className="absolute inset-0 opacity-10 pointer-events-none"
+              className="absolute inset-0 pointer-events-none transition-all duration-300"
               style={backgroundImageStyle}
             />
           )}
           
           <BackgroundTexture texture={theme.styles.backgroundTexture} />
           
-          <ZineTitleSection
-            title={title}
-            subtitle={subtitle}
-            headingFont={actualHeadingFont}
-            accentColor={theme.styles.accent}
-            textColor={theme.styles.text}
-            shadowLevel={theme.styles.shadowLevel}
-          />
-          
-          <ZineMarkdownContent
-            content={content}
-            theme={theme}
-            headingFont={actualHeadingFont}
-            bodyFont={actualBodyFont}
-          />
-          
-          <ZineSignature theme={theme} />
+          {/* Content layers with proper z-index */}
+          <div className="relative z-10">
+            <ZineTitleSection
+              title={title}
+              subtitle={subtitle}
+              headingFont={actualHeadingFont}
+              accentColor={theme.styles.accent}
+              textColor={theme.styles.text}
+              shadowLevel={theme.styles.shadowLevel}
+            />
+            
+            <ZineMarkdownContent
+              content={content}
+              theme={theme}
+              headingFont={actualHeadingFont}
+              bodyFont={actualBodyFont}
+            />
+            
+            <ZineSignature theme={theme} />
+          </div>
         </div>
       </div>
     </div>

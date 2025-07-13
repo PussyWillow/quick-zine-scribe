@@ -1,7 +1,7 @@
 
 import React from 'react';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 import ZinePreview from './ZinePreview';
-import { Eye, EyeOff } from 'lucide-react';
 
 interface PreviewSectionProps {
   isCollapsed: boolean;
@@ -13,6 +13,10 @@ interface PreviewSectionProps {
   selectedPhoto: string;
   headingFont: string;
   bodyFont: string;
+  photoOpacity?: number;
+  photoPosition?: string;
+  photoScale?: number;
+  blendMode?: string;
 }
 
 export const PreviewSection: React.FC<PreviewSectionProps> = ({
@@ -25,28 +29,32 @@ export const PreviewSection: React.FC<PreviewSectionProps> = ({
   selectedPhoto,
   headingFont,
   bodyFont,
+  photoOpacity,
+  photoPosition,
+  photoScale,
+  blendMode,
 }) => {
   return (
     <div className="h-full flex flex-col">
-      <div className="flex items-center justify-between p-3 bg-card border-b border-border flex-shrink-0">
-        <div className="flex items-center gap-2">
-          <Eye className="w-4 h-4 text-muted-foreground" />
-          <span className="text-sm font-medium text-foreground">Preview</span>
-        </div>
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-border/30 bg-card">
+        <h3 className="text-lg font-semibold text-foreground font-heading">Preview</h3>
         <button
           onClick={onToggleCollapse}
-          className="p-1 hover:bg-muted rounded transition-colors"
+          className="p-2 hover:bg-muted rounded-md transition-colors"
+          aria-label={isCollapsed ? 'Expand preview' : 'Collapse preview'}
         >
           {isCollapsed ? (
-            <EyeOff className="w-4 h-4 text-muted-foreground" />
+            <ChevronDown className="w-4 h-4 text-muted-foreground" />
           ) : (
-            <Eye className="w-4 h-4 text-muted-foreground" />
+            <ChevronUp className="w-4 h-4 text-muted-foreground" />
           )}
         </button>
       </div>
-      
+
+      {/* Preview Content */}
       {!isCollapsed && (
-        <div className="flex-1 min-h-0 overflow-hidden">
+        <div className="flex-1 min-h-0">
           <ZinePreview
             content={content}
             title={title}
@@ -55,6 +63,10 @@ export const PreviewSection: React.FC<PreviewSectionProps> = ({
             selectedPhoto={selectedPhoto}
             headingFont={headingFont}
             bodyFont={bodyFont}
+            photoOpacity={photoOpacity}
+            photoPosition={photoPosition}
+            photoScale={photoScale}
+            blendMode={blendMode}
           />
         </div>
       )}

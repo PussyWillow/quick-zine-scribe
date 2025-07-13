@@ -39,6 +39,13 @@ Start writing and watch your words come to life with beautiful themes.
   const [selectedHeadingFont, setSelectedHeadingFont] = useState('playfair');
   const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
   const [selectedPhoto, setSelectedPhoto] = useState('none');
+  
+  // New photo control states
+  const [photoOpacity, setPhotoOpacity] = useState(10);
+  const [photoPosition, setPhotoPosition] = useState('center');
+  const [photoScale, setPhotoScale] = useState(1);
+  const [blendMode, setBlendMode] = useState('multiply');
+  
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [controlsCollapsed, setControlsCollapsed] = useState(false);
   const [assetsCollapsed, setAssetsCollapsed] = useState(false);
@@ -94,6 +101,14 @@ Start writing and watch your words come to life with beautiful themes.
               onAssetSelect={handleAssetSelect}
               selectedPhoto={selectedPhoto}
               onPhotoChange={setSelectedPhoto}
+              photoOpacity={photoOpacity}
+              onOpacityChange={setPhotoOpacity}
+              photoPosition={photoPosition}
+              onPositionChange={setPhotoPosition}
+              photoScale={photoScale}
+              onScaleChange={setPhotoScale}
+              blendMode={blendMode}
+              onBlendModeChange={setBlendMode}
               isCollapsed={assetsCollapsed}
               onToggleCollapse={() => setAssetsCollapsed(!assetsCollapsed)}
             />
@@ -126,6 +141,10 @@ Start writing and watch your words come to life with beautiful themes.
               selectedPhoto={selectedPhoto}
               headingFont={headingFont}
               bodyFont={bodyFont}
+              photoOpacity={photoOpacity}
+              photoPosition={photoPosition}
+              photoScale={photoScale}
+              blendMode={blendMode}
             />
           </div>
         </div>
