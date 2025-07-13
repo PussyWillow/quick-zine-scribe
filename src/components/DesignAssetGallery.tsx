@@ -176,7 +176,7 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-green"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 auto-rows-max">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 auto-rows-max">
             {filteredAssets.map((asset) => (
               <div
                 key={asset.id}
@@ -189,7 +189,7 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
               >
                 <div className={`relative overflow-hidden rounded-lg bg-muted border border-border group-hover:border-sage-green/50 transition-colors ${
                   asset.type === 'palette' ? 'aspect-[2/1]' : 
-                  asset.type === 'typography' ? 'aspect-[3/2]' : 
+                  asset.type === 'font' ? 'aspect-[3/2]' : 
                   'aspect-square'
                 }`}>
                   {asset.type === 'photo' ? (
@@ -204,11 +204,11 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
                     />
                   ) : asset.type === 'font' ? (
                     <div 
-                      className="w-full h-full flex flex-col items-center justify-center text-foreground p-2"
+                      className="w-full h-full flex flex-col items-center justify-center text-foreground p-3"
                       style={{ fontFamily: (asset as FontAsset).fontFamily }}
                     >
-                      <div className="text-2xl font-bold">{(asset as FontAsset).preview}</div>
-                      <div className="text-xs opacity-70 mt-1">Sample</div>
+                      <div className="text-3xl font-bold">{(asset as FontAsset).preview}</div>
+                      <div className="text-xs opacity-70 mt-2">Sample</div>
                     </div>
                   ) : asset.type === 'decoration' ? (
                     <div className="w-full h-full flex items-center justify-center text-2xl text-foreground">
