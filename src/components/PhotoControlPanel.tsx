@@ -163,7 +163,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
           onPositionChange('bottom-right');
           onScaleChange(0.8);
           onBlendModeChange('overlay');
-        }} className="px-3 py-2 bg-card border border-border rounded-md hover:bg-muted transition-colors text-base">
+        }} className="px-3 py-2 text-xs bg-card border border-border rounded-md hover:bg-muted transition-colors">
             Corner Vignette
           </button>
           <button onClick={() => {
