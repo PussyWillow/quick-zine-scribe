@@ -87,14 +87,14 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
     id: 'color-burn',
     label: 'Color Burn'
   }];
-  return <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-3">
+  return <div className="grid grid grid-cols-45grid-rows-2">
       {/* Photo Selection */}
       <div className="grid h-48 grid-cols-2 place-content-stretch gap-4">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
       </div>
 
       {/* Opacity Control */}
-      <div className="space-y-3">
+      <div className=" space-x-3.5 space-y-60 ">
         <div className="flex items-center gap-2 mb-3">
           <Sliders className="w-4 h-4 text-muted-foreground" />
           <Label className="text-sm font-medium text-foreground font-heading">
