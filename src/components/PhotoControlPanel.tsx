@@ -118,7 +118,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Scale and Blend Mode */}
-      <div className="space-y-4 mx-0 my-[240px] px-[2px] py-[240px]">
+      <div className="-space-y-60 mx-18 my[40px] mx-4 ">
         {/* Scale Control */}
         <div className="space-y-2">
           <Label className="text-sm font-medium text-foreground font-heading">
