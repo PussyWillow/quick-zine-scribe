@@ -1,25 +1,196 @@
+import { Asset } from '../types/assets';
 
-import { TextureAsset, FontAsset, DecorationAsset, PaletteAsset } from '@/types/assets';
-
-export const mockAssets = {
-  textures: [
-    { id: 'paper-1', name: 'Vintage Paper', preview: '/api/placeholder/100/100', type: 'texture' },
-    { id: 'fabric-1', name: 'Linen Texture', preview: '/api/placeholder/100/100', type: 'texture' },
-    { id: 'grunge-1', name: 'Grunge Effect', preview: '/api/placeholder/100/100', type: 'texture' },
-  ] as TextureAsset[],
-  typography: [
-    { id: 'serif-1', name: 'Elegant Serif', preview: 'Aa', type: 'font', fontFamily: 'Playfair Display' },
-    { id: 'script-1', name: 'Script Font', preview: 'Aa', type: 'font', fontFamily: 'Dancing Script' },
-    { id: 'mono-1', name: 'Monospace', preview: 'Aa', type: 'font', fontFamily: 'JetBrains Mono' },
-  ] as FontAsset[],
-  decorative: [
-    { id: 'border-1', name: 'Ornate Border', preview: '═══', type: 'decoration' },
-    { id: 'divider-1', name: 'Line Divider', preview: '───', type: 'decoration' },
-    { id: 'flourish-1', name: 'Flourish', preview: '❋', type: 'decoration' },
-  ] as DecorationAsset[],
-  colors: [
-    { id: 'pastel-1', name: 'Pastel Dreams', colors: ['#FFE4E1', '#E6E6FA', '#F0F8FF'], type: 'palette' },
-    { id: 'warm-1', name: 'Warm Sunset', colors: ['#FF6B6B', '#FFE66D', '#FF8E53'], type: 'palette' },
-    { id: 'cool-1', name: 'Cool Ocean', colors: ['#4ECDC4', '#45B7D1', '#96CEB4'], type: 'palette' },
-  ] as PaletteAsset[]
-};
+export const mockAssets: Asset[] = [
+  {
+    id: 'botanical-portrait',
+    name: 'Vintage Botanical Portrait',
+    description: 'Warm golden botanical illustration with decorative foliage',
+    category: 'botanical',
+    tags: ['vintage', 'botanical', 'portrait', 'golden', 'decorative', 'warm'],
+    url: '/lovable-uploads/e28ee624-e751-4d0a-a103-e7d8e4245df5.png',
+    preview_url: '/lovable-uploads/e28ee624-e751-4d0a-a103-e7d8e4245df5.png',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-1',
+    name: 'Abstract Landscape',
+    description: 'A vibrant abstract landscape with flowing colors.',
+    category: 'abstract',
+    tags: ['abstract', 'landscape', 'vibrant', 'colorful'],
+    url: '/placeholder-images/abstract-landscape.jpg',
+    preview_url: '/placeholder-images/abstract-landscape-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-2',
+    name: 'City at Night',
+    description: 'A stunning cityscape illuminated at night.',
+    category: 'city',
+    tags: ['city', 'night', 'cityscape', 'lights'],
+    url: '/placeholder-images/city-night.jpg',
+    preview_url: '/placeholder-images/city-night-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-3',
+    name: 'Mountain Range',
+    description: 'A majestic mountain range under a clear sky.',
+    category: 'nature',
+    tags: ['mountain', 'nature', 'landscape', 'sky'],
+    url: '/placeholder-images/mountain-range.jpg',
+    preview_url: '/placeholder-images/mountain-range-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-4',
+    name: 'Forest Path',
+    description: 'A serene path winding through a dense forest.',
+    category: 'nature',
+    tags: ['forest', 'path', 'nature', 'trees'],
+    url: '/placeholder-images/forest-path.jpg',
+    preview_url: '/placeholder-images/forest-path-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-5',
+    name: 'Ocean Sunset',
+    description: 'A breathtaking sunset over the ocean waves.',
+    category: 'nature',
+    tags: ['ocean', 'sunset', 'nature', 'waves'],
+    url: '/placeholder-images/ocean-sunset.jpg',
+    preview_url: '/placeholder-images/ocean-sunset-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-6',
+    name: 'Coffee Cup',
+    description: 'A steaming cup of coffee on a wooden table.',
+    category: 'food',
+    tags: ['coffee', 'cup', 'food', 'drink'],
+    url: '/placeholder-images/coffee-cup.jpg',
+    preview_url: '/placeholder-images/coffee-cup-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-7',
+    name: 'Fruit Bowl',
+    description: 'A colorful assortment of fresh fruits in a bowl.',
+    category: 'food',
+    tags: ['fruit', 'bowl', 'food', 'healthy'],
+    url: '/placeholder-images/fruit-bowl.jpg',
+    preview_url: '/placeholder-images/fruit-bowl-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-8',
+    name: 'Laptop on Desk',
+    description: 'A laptop on a clean, modern desk setup.',
+    category: 'technology',
+    tags: ['laptop', 'desk', 'technology', 'modern'],
+    url: '/placeholder-images/laptop-desk.jpg',
+    preview_url: '/placeholder-images/laptop-desk-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-9',
+    name: 'Smartwatch',
+    description: 'A sleek smartwatch displaying fitness data.',
+    category: 'technology',
+    tags: ['smartwatch', 'watch', 'technology', 'fitness'],
+    url: '/placeholder-images/smartwatch.jpg',
+    preview_url: '/placeholder-images/smartwatch-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-10',
+    name: 'Urban Graffiti',
+    description: 'Colorful graffiti art on a city wall.',
+    category: 'urban',
+    tags: ['urban', 'graffiti', 'art', 'city'],
+    url: '/placeholder-images/urban-graffiti.jpg',
+    preview_url: '/placeholder-images/urban-graffiti-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-11',
+    name: 'Vintage Car',
+    description: 'A classic vintage car in pristine condition.',
+    category: 'vintage',
+    tags: ['vintage', 'car', 'classic', 'automobile'],
+    url: '/placeholder-images/vintage-car.jpg',
+    preview_url: '/placeholder-images/vintage-car-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-12',
+    name: 'Hot Air Balloons',
+    description: 'Colorful hot air balloons floating in the sky.',
+    category: 'travel',
+    tags: ['travel', 'balloons', 'sky', 'adventure'],
+    url: '/placeholder-images/hot-air-balloons.jpg',
+    preview_url: '/placeholder-images/hot-air-balloons-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-13',
+    name: 'Aurora Borealis',
+    description: 'The mesmerizing Aurora Borealis lighting up the night sky.',
+    category: 'nature',
+    tags: ['aurora', 'borealis', 'nature', 'night'],
+    url: '/placeholder-images/aurora-borealis.jpg',
+    preview_url: '/placeholder-images/aurora-borealis-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-14',
+    name: 'Desert Landscape',
+    description: 'A vast desert landscape with sand dunes.',
+    category: 'nature',
+    tags: ['desert', 'landscape', 'nature', 'sand'],
+    url: '/placeholder-images/desert-landscape.jpg',
+    preview_url: '/placeholder-images/desert-landscape-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+  {
+    id: 'placeholder-image-15',
+    name: 'Tropical Beach',
+    description: 'A pristine tropical beach with clear turquoise water.',
+    category: 'travel',
+    tags: ['tropical', 'beach', 'travel', 'ocean'],
+    url: '/placeholder-images/tropical-beach.jpg',
+    preview_url: '/placeholder-images/tropical-beach-preview.jpg',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    is_active: true
+  },
+];

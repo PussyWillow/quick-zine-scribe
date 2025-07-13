@@ -1,52 +1,120 @@
-
-/* Enhanced Frame System with Pastel Colors */
+/* Enhanced Frame System with Botanical Decorative Elements */
 @layer components {
-  /* Base frame styles */
+  /* Base frame styles with warm botanical aesthetic */
   .elegant-frame {
     @apply border border-border rounded-lg shadow-sm transition-all duration-300;
-    background: hsl(var(--card));
+    background: linear-gradient(135deg, 
+      hsl(var(--card)) 0%, 
+      hsla(var(--accent), 0.08) 100%
+    );
     border-color: hsl(var(--border));
+    position: relative;
+  }
+
+  .elegant-frame::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, 
+      hsla(var(--accent), 0.3) 0%, 
+      hsla(var(--primary), 0.2) 50%, 
+      hsla(var(--accent), 0.3) 100%
+    );
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .elegant-frame:hover::before {
+    opacity: 1;
   }
 
   .elegant-frame:hover {
-    @apply shadow-md;
-    box-shadow: 0 4px 12px hsla(var(--foreground), 0.08);
+    @apply shadow-lg;
+    box-shadow: 
+      0 8px 25px hsla(var(--accent), 0.15),
+      0 0 0 1px hsla(var(--accent), 0.2);
+    transform: translateY(-1px);
   }
 
-  /* Enhanced frames for normal mode with soft pastel hover effects */
+  /* Enhanced decorative frames */
   .refined-frame {
     @apply elegant-frame;
     box-shadow: 
-      0 1px 3px hsla(var(--foreground), 0.06),
-      0 0 0 1px hsla(var(--border), 0.4);
+      0 2px 8px hsla(var(--foreground), 0.08),
+      0 0 0 1px hsla(var(--accent), 0.15),
+      inset 0 1px 0 hsla(var(--background), 0.8);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .refined-frame:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.01);
     box-shadow: 
-      0 6px 20px hsla(var(--foreground), 0.08),
-      0 0 0 1px hsl(var(--sage-green)),
-      0 0 15px hsla(var(--sage-green), 0.15);
+      0 12px 35px hsla(var(--accent), 0.2),
+      0 0 0 2px hsla(var(--accent), 0.3),
+      inset 0 1px 0 hsla(var(--background), 0.9);
   }
 
+  /* Botanical decorative frame with fern motifs */
+  .botanical-frame {
+    @apply refined-frame;
+    position: relative;
+    overflow: visible;
+  }
+
+  .botanical-frame::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background-image: 
+      repeating-conic-gradient(
+        from 45deg at 12px 12px,
+        hsla(var(--sage-green), 0.1) 0deg,
+        transparent 5deg,
+        transparent 355deg,
+        hsla(var(--sage-green), 0.1) 360deg
+      ),
+      repeating-linear-gradient(
+        45deg,
+        transparent 0px,
+        hsla(var(--accent), 0.03) 1px,
+        transparent 3px
+      );
+    border-radius: calc(var(--radius) + 8px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Interactive frame with botanical hover effects */
   .interactive-frame {
-    @apply refined-frame cursor-pointer;
+    @apply botanical-frame cursor-pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .interactive-frame:hover {
-    transform: translateY(-2px) scale(1.01);
+    transform: translateY(-3px) scale(1.02);
     box-shadow: 
-      0 8px 25px hsla(var(--foreground), 0.1),
-      0 0 0 2px hsl(var(--sage-green)),
-      0 0 20px hsla(var(--sage-green), 0.2);
+      0 15px 40px hsla(var(--accent), 0.25),
+      0 0 0 3px hsla(var(--accent), 0.4),
+      0 0 30px hsla(var(--sage-green), 0.15);
   }
 
+  /* Section frame with decorative top border */
   .section-frame {
-    @apply refined-frame p-4;
+    @apply botanical-frame p-6;
     position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg, 
+      hsl(var(--card)) 0%, 
+      hsla(var(--soft-peach), 0.1) 50%,
+      hsla(var(--sage-green), 0.05) 100%
+    );
   }
 
   .section-frame::before {
@@ -55,71 +123,110 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 3px;
     background: linear-gradient(
       90deg,
       transparent 0%,
-      hsl(var(--sage-green)) 50%,
+      hsla(var(--sage-green), 0.4) 20%,
+      hsl(var(--accent)) 50%,
+      hsla(var(--sage-green), 0.4) 80%,
       transparent 100%
     );
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
+    border-radius: var(--radius) var(--radius) 0 0;
   }
 
-  .section-frame:hover::before {
-    opacity: 0.7;
-  }
-
-  /* Pastel gradient frames */
-  .pastel-frame {
-    @apply refined-frame;
+  /* Vintage botanical gradient frames */
+  .vintage-botanical-frame {
+    @apply section-frame;
     background: linear-gradient(
       135deg,
       hsl(var(--card)) 0%,
-      hsla(var(--sage-green), 0.1) 50%,
-      hsla(var(--lavender), 0.1) 100%
+      hsla(var(--dusty-rose), 0.08) 25%,
+      hsla(var(--accent), 0.12) 50%,
+      hsla(var(--sage-green), 0.08) 75%,
+      hsl(var(--card)) 100%
     );
+    border: 2px solid hsla(var(--accent), 0.3);
   }
 
-  .pastel-frame:hover {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--card)) 0%,
-      hsla(var(--sage-green), 0.15) 50%,
-      hsla(var(--lavender), 0.15) 100%
-    );
-  }
-
-  /* Photo gallery specific frames */
+  /* Photo gallery frames with botanical styling */
   .photo-gallery-frame {
-    @apply refined-frame;
-    background: linear-gradient(
-      145deg,
-      hsl(var(--card)) 0%,
-      hsla(var(--warm-blue), 0.1) 100%
-    );
-    backdrop-filter: blur(10px);
+    @apply vintage-botanical-frame;
+    backdrop-filter: blur(5px);
+    box-shadow: 
+      0 8px 32px hsla(var(--accent), 0.15),
+      inset 0 1px 0 hsla(var(--background), 0.6);
   }
 
   .photo-thumbnail-frame {
-    @apply border-2 rounded-md overflow-hidden transition-all duration-200;
-    border-color: hsl(var(--border));
+    @apply border-2 rounded-md overflow-hidden transition-all duration-300;
+    border-color: hsla(var(--accent), 0.4);
     background: hsl(var(--card));
+    box-shadow: 0 2px 8px hsla(var(--accent), 0.1);
   }
 
   .photo-thumbnail-frame:hover {
-    border-color: hsl(var(--sage-green));
-    box-shadow: 0 4px 12px hsla(var(--sage-green), 0.2);
+    border-color: hsl(var(--accent));
+    box-shadow: 
+      0 6px 20px hsla(var(--accent), 0.25),
+      0 0 0 2px hsla(var(--sage-green), 0.2);
+    transform: translateY(-2px) scale(1.02);
   }
 
   .photo-thumbnail-frame.selected {
-    border-color: hsl(var(--sage-green));
+    border-color: hsl(var(--accent));
     box-shadow: 
-      0 0 0 3px hsla(var(--sage-green), 0.3),
-      0 4px 12px hsla(var(--sage-green), 0.25);
+      0 0 0 4px hsla(var(--accent), 0.3),
+      0 8px 25px hsla(var(--accent), 0.3),
+      inset 0 0 20px hsla(var(--sage-green), 0.1);
+    transform: scale(1.03);
   }
 
-  /* Gothic ornate frames (preserved for gothic mode) */
+  /* Decorative corner elements for enhanced frames */
+  .ornate-botanical-frame {
+    @apply vintage-botanical-frame;
+    position: relative;
+  }
+
+  .ornate-botanical-frame::before,
+  .ornate-botanical-frame::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(
+      circle,
+      hsla(var(--accent), 0.6) 0%,
+      hsla(var(--sage-green), 0.4) 50%,
+      transparent 70%
+    );
+    border: 1px solid hsla(var(--accent), 0.5);
+    z-index: 1;
+  }
+
+  .ornate-botanical-frame::before {
+    top: -12px;
+    left: -12px;
+    border-radius: 0 0 100% 0;
+    background: linear-gradient(
+      135deg,
+      hsla(var(--accent), 0.8) 0%,
+      hsla(var(--sage-green), 0.4) 100%
+    );
+  }
+
+  .ornate-botanical-frame::after {
+    bottom: -12px;
+    right: -12px;
+    border-radius: 100% 0 0 0;
+    background: linear-gradient(
+      -45deg,
+      hsla(var(--accent), 0.8) 0%,
+      hsla(var(--sage-green), 0.4) 100%
+    );
+  }
+
+  /* Gothic mode overrides (preserved for gothic themes) */
   .gothic .elegant-frame {
     border: 2px solid hsl(var(--border));
     background: hsl(var(--card));

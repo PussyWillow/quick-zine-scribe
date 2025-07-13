@@ -12,53 +12,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Creamy white and soft pastel palette */
-    --background: 48 47% 97%; /* Creamy white #FAF8F5 */
-    --foreground: 30 15% 25%; /* Warm dark gray */
+    /* Warm golden botanical palette inspired by vintage illustrations */
+    --background: 45 65% 92%; /* Warm cream #F5F0E8 */
+    --foreground: 25 35% 15%; /* Deep warm brown */
 
-    --card: 42 30% 95%; /* Warm cream #F7F4F0 */
-    --card-foreground: 30 15% 25%;
+    --card: 42 45% 88%; /* Golden cream #EDE5D8 */
+    --card-foreground: 25 35% 15%;
 
-    --popover: 48 47% 97%;
-    --popover-foreground: 30 15% 25%;
+    --popover: 45 65% 92%;
+    --popover-foreground: 25 35% 15%;
 
-    --primary: 90 20% 72%; /* Soft sage green #B8C5A6 */
-    --primary-foreground: 30 15% 25%;
+    --primary: 35 45% 45%; /* Rich amber brown #A67C52 */
+    --primary-foreground: 45 65% 95%;
 
-    --secondary: 42 25% 92%; /* Light cream */
-    --secondary-foreground: 30 15% 25%;
+    --secondary: 40 35% 82%; /* Soft golden beige #D4C4B0 */
+    --secondary-foreground: 25 35% 15%;
 
-    --muted: 42 20% 90%; /* Muted cream */
-    --muted-foreground: 30 10% 45%; /* Soft gray */
+    --muted: 38 25% 85%; /* Muted warm cream */
+    --muted-foreground: 25 25% 35%; /* Warm gray */
 
-    --accent: 270 30% 78%; /* Muted lavender #C8B8D8 */
-    --accent-foreground: 30 15% 25%;
+    --accent: 30 55% 55%; /* Golden amber #C4956C */
+    --accent-foreground: 45 65% 95%;
 
-    --destructive: 0 50% 65%; /* Soft red */
-    --destructive-foreground: 48 47% 97%;
+    --destructive: 15 60% 50%; /* Warm red-brown */
+    --destructive-foreground: 45 65% 95%;
 
-    --border: 42 25% 85%; /* Soft cream border */
-    --input: 42 25% 85%;
-    --ring: 90 20% 72%; /* Sage green focus ring */
+    --border: 38 35% 75%; /* Warm golden border */
+    --input: 40 35% 82%;
+    --ring: 30 55% 55%; /* Golden amber focus ring */
 
     --radius: 0.5rem;
 
     /* Sidebar colors */
-    --sidebar-background: 48 47% 97%;
-    --sidebar-foreground: 30 15% 25%;
-    --sidebar-primary: 90 20% 72%;
-    --sidebar-primary-foreground: 30 15% 25%;
-    --sidebar-accent: 42 25% 92%;
-    --sidebar-accent-foreground: 30 15% 25%;
-    --sidebar-border: 42 25% 85%;
-    --sidebar-ring: 90 20% 72%;
+    --sidebar-background: 45 65% 92%;
+    --sidebar-foreground: 25 35% 15%;
+    --sidebar-primary: 35 45% 45%;
+    --sidebar-primary-foreground: 45 65% 95%;
+    --sidebar-accent: 40 35% 82%;
+    --sidebar-accent-foreground: 25 35% 15%;
+    --sidebar-border: 38 35% 75%;
+    --sidebar-ring: 30 55% 55%;
 
-    /* Custom pastel colors */
-    --dusty-rose: 330 30% 78%; /* #D8B8C8 */
-    --warm-blue: 210 30% 78%; /* #B8C8D8 */
-    --soft-peach: 20 35% 80%; /* #E6C8B8 */
-    --sage-green: 90 20% 72%; /* #B8C5A6 */
-    --lavender: 270 30% 78%; /* #C8B8D8 */
+    /* Updated botanical palette */
+    --dusty-rose: 25 35% 65%; /* Warm brownish rose */
+    --warm-blue: 200 25% 65%; /* Muted blue-gray */
+    --soft-peach: 35 45% 75%; /* Golden peach */
+    --sage-green: 85 25% 55%; /* Botanical green */
+    --lavender: 280 20% 70%; /* Muted purple-gray */
   }
 
   .dark {
@@ -109,6 +109,10 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'Source Code Pro', monospace;
     transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsla(var(--accent), 0.1) 100%
+    );
   }
 
   /* Typography classes */
@@ -123,6 +127,7 @@ All colors MUST be HSL.
   /* Headings use Lora */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Lora', serif;
+    color: hsl(var(--foreground));
   }
 
   /* Buttons use Lora */
@@ -131,7 +136,7 @@ All colors MUST be HSL.
   }
 }
 
-/* Pastel utility classes */
+/* Botanical utility classes */
 @layer utilities {
   .bg-dusty-rose {
     background-color: hsl(var(--dusty-rose));
@@ -191,5 +196,23 @@ All colors MUST be HSL.
   
   .border-lavender {
     border-color: hsl(var(--lavender));
+  }
+
+  /* Botanical texture patterns */
+  .botanical-texture {
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsla(var(--sage-green), 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsla(var(--accent), 0.03) 0%, transparent 50%);
+  }
+
+  .vintage-paper {
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        hsla(var(--accent), 0.02) 2px,
+        hsla(var(--accent), 0.02) 4px
+      );
   }
 }
