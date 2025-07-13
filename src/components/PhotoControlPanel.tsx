@@ -147,8 +147,8 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Quick Presets - Span full width on mobile, partial on larger screens */}
-      <div className="lg:col-span-2 xl:col-span-4 space-y-3">
-        <Label className="text-sm font-medium text-foreground font-heading">Quick Styles</Label>
+      <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
+        <Label className="text-sm font-medium text-foreground font-heading mx-[136px] px-0 py-0 my-[58px]">Quick Styles</Label>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
           <button onClick={() => {
           onOpacityChange(15);
