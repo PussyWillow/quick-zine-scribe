@@ -87,7 +87,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
     id: 'color-burn',
     label: 'Color Burn'
   }];
-  return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 px-[4px] py-0 my-0 mx-[21px]">
+  return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 py-0 my-0 mx-[21px] px-0">
       {/* Photo Selection */}
       <div className="space-y-3 py-0 my-[28px] mx-0 px-[4px] ">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
@@ -128,7 +128,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
         </div>
 
         {/* Blend Mode */}
-        <div className="space-y-2">
+        <div className="space-y-2 px-[152px] my-[12px] py-0 mx-[9px]">
           <div className="flex items-center gap-2">
             <Palette className="w-4 h-4 text-muted-foreground" />
             <Label className="text-sm font-medium text-foreground font-heading">Blend Mode</Label>
