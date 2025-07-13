@@ -89,19 +89,19 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
   }];
   return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 order-2 ">
       {/* Photo Selection */}
-      <div className="size-max w-screen grid grid-flow-col grid-rows-1">
+      <div className="size-max w-screen ">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
       </div>
 
       {/* Opacity Control */}
       <div className="space-y-3 mx-[2px] flex items-stretch ">
-        <div className="h-48 w-96 object-cover ">
+        <div className="flex items-center gap-2 mb-3">
           <Sliders className="w-4 h-4 text-muted-foreground" />
           <Label className="text-sm font-medium text-foreground font-heading">
             Opacity: {photoOpacity}%
           </Label>
         </div>
-        <Slider value={[photoOpacity]} onValueChange={value => onOpacityChange(value[0])} max={50} min={0} step={1} className="h-8 w-96 object-cover " />
+        <Slider value={[photoOpacity]} onValueChange={value => onOpacityChange(value[0])} max={50} min={0} step={1} className="w-full" />
       </div>
 
       {/* Position Grid Selector */}
@@ -118,7 +118,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Scale and Blend Mode */}
-      <div className="space-y-4 mx-0">
+      <div className="space-y-4">
         {/* Scale Control */}
         <div className="space-y-2">
           <Label className="text-sm font-medium text-foreground font-heading">
