@@ -1,4 +1,3 @@
-
 import { Theme } from '../types/theme';
 
 export const themes: Theme[] = [
@@ -173,34 +172,34 @@ export const themes: Theme[] = [
       listStyle: 'simple'
     }
   },
-  // Gothic Themes
+  // Updated Gothic Themes with Blue and Orange palette
   {
     id: 'victorian-gothic',
     name: 'Victorian Gothic',
-    description: 'Dark elegance and ornate details',
+    description: 'Vintage blue depths with warm orange accents',
     category: 'artistic',
     styles: {
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a0505 100%)',
-      text: '#e8e8e8',
-      accent: '#8b0000',
+      background: 'linear-gradient(135deg, hsl(212, 85%, 8%) 0%, hsl(212, 70%, 12%) 100%)',
+      text: 'hsl(35, 85%, 82%)',
+      accent: 'hsl(25, 100%, 65%)',
       headingFont: 'Cinzel, serif',
       bodyFont: 'Crimson Text, serif',
       spacing: 'relaxed',
       borderRadius: 'ornate',
       shadowLevel: 'gothic',
-      backgroundTexture: 'damask',
+      backgroundTexture: 'vintage-print',
       listStyle: 'gothic'
     }
   },
   {
     id: 'modern-gothic',
     name: 'Modern Gothic',
-    description: 'Contemporary darkness meets tradition',
+    description: 'Contemporary midnight blue with copper highlights',
     category: 'experimental',
     styles: {
-      background: 'linear-gradient(135deg, #000000 0%, #1a0a1a 100%)',
-      text: '#f0f0f0',
-      accent: '#dc143c',
+      background: 'linear-gradient(135deg, hsl(212, 90%, 6%) 0%, hsl(212, 80%, 10%) 100%)',
+      text: 'hsl(35, 80%, 85%)',
+      accent: 'hsl(25, 95%, 60%)',
       headingFont: 'Playfair Display, serif',
       bodyFont: 'Source Sans Pro, sans-serif',
       spacing: 'normal',
@@ -212,30 +211,30 @@ export const themes: Theme[] = [
   {
     id: 'occult',
     name: 'Occult',
-    description: 'Mystical symbols and arcane knowledge',
+    description: 'Deep azure mysticism with bronze symbols',
     category: 'experimental',
     styles: {
-      background: 'linear-gradient(135deg, #000000 0%, #4b0082 100%)',
-      text: '#e0e0e0',
-      accent: '#9370db',
+      background: 'linear-gradient(135deg, hsl(212, 95%, 5%) 0%, hsl(240, 80%, 8%) 100%)',
+      text: 'hsl(35, 75%, 80%)',
+      accent: 'hsl(30, 90%, 58%)',
       headingFont: 'Uncial Antiqua, serif',
       bodyFont: 'Crimson Text, serif',
       spacing: 'loose',
       borderRadius: 'mystical',
       shadowLevel: 'occult',
-      backgroundTexture: 'pentagram',
+      backgroundTexture: 'arcane-symbols',
       listStyle: 'occult'
     }
   },
   {
     id: 'grunge-gothic',
     name: 'Grunge Gothic',
-    description: 'Raw darkness with rebellious edge',
+    description: 'Raw midnight tones with fiery orange rebellion',
     category: 'creative',
     styles: {
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #2d1b1b 100%)',
-      text: '#d3d3d3',
-      accent: '#b22222',
+      background: 'linear-gradient(135deg, hsl(212, 80%, 10%) 0%, hsl(25, 60%, 15%) 100%)',
+      text: 'hsl(35, 70%, 75%)',
+      accent: 'hsl(20, 100%, 62%)',
       headingFont: 'Bebas Neue, sans-serif',
       bodyFont: 'Roboto Condensed, sans-serif',
       spacing: 'tight',

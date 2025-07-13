@@ -1,50 +1,50 @@
 
-/* Enhanced Gothic Mode - Dark reds, blacks, browns with white text */
+/* Enhanced Gothic Mode - Inspired by vintage blue and orange art print */
 @layer base {
   .gothic {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    --background: 212 85% 12%;
+    --foreground: 35 100% 85%;
 
-    --card: 20 30% 8%;
-    --card-foreground: 0 0% 95%;
+    --card: 212 70% 15%;
+    --card-foreground: 35 95% 88%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 212 80% 10%;
+    --popover-foreground: 35 95% 90%;
 
-    --primary: 0 100% 27%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 25 100% 65%;
+    --primary-foreground: 212 100% 8%;
 
-    --secondary: 15 40% 12%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 212 60% 18%;
+    --secondary-foreground: 35 85% 85%;
 
-    --muted: 10 25% 10%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 212 45% 16%;
+    --muted-foreground: 35 60% 70%;
 
-    --accent: 0 100% 35%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 25 100% 68%;
+    --accent-foreground: 212 100% 8%;
 
-    --destructive: 0 100% 40%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 15 100% 55%;
+    --destructive-foreground: 35 95% 95%;
 
-    --border: 0 50% 15%;
-    --input: 15 30% 8%;
-    --ring: 0 100% 50%;
+    --border: 212 40% 25%;
+    --input: 212 65% 12%;
+    --ring: 25 100% 65%;
 
-    --sidebar-background: 0 0% 2%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 0 100% 30%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 10 40% 8%;
-    --sidebar-accent-foreground: 0 0% 85%;
-    --sidebar-border: 0 50% 12%;
-    --sidebar-ring: 0 100% 60%;
+    --sidebar-background: 212 90% 8%;
+    --sidebar-foreground: 35 80% 80%;
+    --sidebar-primary: 25 100% 62%;
+    --sidebar-primary-foreground: 212 100% 8%;
+    --sidebar-accent: 212 50% 15%;
+    --sidebar-accent-foreground: 35 80% 80%;
+    --sidebar-border: 212 35% 22%;
+    --sidebar-ring: 25 100% 70%;
   }
 
   .gothic {
     background-image: 
-      radial-gradient(circle at 20% 80%, hsla(0, 100%, 15%, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsla(15, 80%, 10%, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, hsla(0, 100%, 8%, 0.08) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, hsla(25, 100%, 45%, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsla(212, 80%, 20%, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, hsla(25, 80%, 35%, 0.08) 0%, transparent 50%);
     background-attachment: fixed;
   }
 
@@ -57,11 +57,18 @@
     bottom: 0;
     background-image: 
       repeating-linear-gradient(
-        0deg,
+        45deg,
         transparent,
         transparent 2px,
-        hsla(0, 100%, 20%, 0.02) 2px,
-        hsla(0, 100%, 20%, 0.02) 4px
+        hsla(212, 60%, 25%, 0.03) 2px,
+        hsla(212, 60%, 25%, 0.03) 4px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 3px,
+        hsla(25, 80%, 50%, 0.02) 3px,
+        hsla(25, 80%, 50%, 0.02) 6px
       );
     pointer-events: none;
     z-index: -1;
@@ -76,22 +83,24 @@
 
   .gothic h1, .gothic h2, .gothic h3, .gothic h4, .gothic h5, .gothic h6 {
     font-family: 'Cinzel', serif;
-    text-shadow: 0 0 12px hsla(0, 100%, 30%, 0.8), 0 0 24px hsla(0, 100%, 20%, 0.4);
+    text-shadow: 0 0 12px hsla(25, 100%, 65%, 0.6), 0 0 24px hsla(25, 80%, 45%, 0.3);
     font-weight: 600;
+    color: hsl(var(--accent));
   }
 
   .gothic .gothic-glow {
     box-shadow: 
-      0 0 20px hsla(0, 100%, 25%, 0.4), 
-      inset 0 0 20px hsla(15, 50%, 15%, 0.3),
-      0 4px 12px hsla(0, 0%, 0%, 0.6);
+      0 0 20px hsla(25, 100%, 55%, 0.3), 
+      inset 0 0 20px hsla(212, 50%, 20%, 0.4),
+      0 4px 12px hsla(212, 100%, 8%, 0.6);
+    border: 1px solid hsla(25, 80%, 60%, 0.2);
   }
 
   .gothic .gothic-text-glow {
     text-shadow: 
-      0 0 8px hsla(0, 100%, 50%, 0.8), 
-      0 0 16px hsla(0, 100%, 30%, 0.6),
-      0 0 24px hsla(0, 100%, 20%, 0.4);
+      0 0 8px hsla(25, 100%, 70%, 0.8), 
+      0 0 16px hsla(25, 80%, 50%, 0.5),
+      0 0 24px hsla(25, 60%, 40%, 0.3);
   }
 
   .gothic input, .gothic textarea, .gothic select {
@@ -104,14 +113,14 @@
   }
 
   .gothic input:focus, .gothic textarea:focus, .gothic select:focus {
-    box-shadow: 0 0 0 2px hsla(0, 100%, 40%, 0.6), 0 0 12px hsla(0, 100%, 30%, 0.4);
+    box-shadow: 0 0 0 2px hsla(25, 100%, 65%, 0.4), 0 0 12px hsla(25, 80%, 50%, 0.3);
     border-color: hsl(var(--accent));
   }
 
   .gothic button {
     font-family: 'Cinzel', serif;
     font-weight: 500;
-    text-shadow: 0 0 6px hsla(0, 100%, 50%, 0.5);
+    text-shadow: 0 0 6px hsla(25, 100%, 70%, 0.4);
   }
 
   .gothic .font-gothic-heading {
@@ -128,7 +137,20 @@
 
   .gothic code, .gothic pre {
     font-family: 'JetBrains Mono', monospace;
-    background: hsla(0, 50%, 5%, 0.8);
+    background: hsla(212, 70%, 8%, 0.8);
     border: 1px solid hsl(var(--border));
+    color: hsla(25, 80%, 75%, 0.9);
+  }
+
+  /* Enhanced vintage print aesthetic */
+  .gothic .zine-preview-frame {
+    background: linear-gradient(135deg, 
+      hsla(212, 80%, 12%, 0.95) 0%, 
+      hsla(212, 70%, 15%, 0.98) 25%, 
+      hsla(25, 40%, 20%, 0.85) 75%, 
+      hsla(25, 60%, 18%, 0.9) 100%);
+    box-shadow: 
+      inset 0 0 60px hsla(25, 60%, 40%, 0.1),
+      0 0 40px hsla(212, 80%, 8%, 0.4);
   }
 }
