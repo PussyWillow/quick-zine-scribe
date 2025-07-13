@@ -89,7 +89,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
   }];
   return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 px-[4px] mx-0">
       {/* Photo Selection */}
-      <div className="space-y-3">
+      <div className="space-y-3 px-0 py-0 my-[28px] mx-0">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
       </div>
 
