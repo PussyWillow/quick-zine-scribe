@@ -105,12 +105,12 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Position Grid Selector */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2 mb-3">
+      <div className="rounded-bl-none space-y-3.5 ">
+        <div className="flex items-center gap-2 mb-3 flex ">
           <Grid3x3 className="w-4 h-4 text-muted-foreground" />
           <Label className="text-sm font-medium text-foreground font-heading">Position</Label>
         </div>
-        <div className="grid grid-cols-3 py-[9px] px-[186px] my-[10px] mx-[13px]">
+        <div className="grid grid-cols-3 py-[9px] rounded-br-sm my-[10px] mx-[13px]">
           {positions.map(pos => <button key={pos.id} onClick={() => onPositionChange(pos.id)} className={`w-8 h-8 rounded border-2 transition-all ${photoPosition === pos.id ? 'border-ring bg-accent' : 'border-border hover:border-muted-foreground bg-card'}`} title={pos.label}>
               <div className={`w-full h-full rounded-sm ${pos.id.includes('top') ? 'bg-gradient-to-b from-primary/60 to-transparent' : pos.id.includes('bottom') ? 'bg-gradient-to-t from-primary/60 to-transparent' : pos.id.includes('left') ? 'bg-gradient-to-r from-primary/60 to-transparent' : pos.id.includes('right') ? 'bg-gradient-to-l from-primary/60 to-transparent' : 'bg-primary/40'}`} />
             </button>)}
