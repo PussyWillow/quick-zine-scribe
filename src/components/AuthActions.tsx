@@ -22,10 +22,10 @@ export const AuthActions: React.FC<AuthActionsProps> = ({ onSignInClick }) => {
   if (user) {
     return (
       <Button
-        variant="ghost"
+        variant="rococo"
         size="sm"
         onClick={handleSignOut}
-        className="gap-2"
+        className="gap-2 text-white shadow-md border-yellow-400/30"
       >
         <LogOut className="w-4 h-4" />
         Sign Out
@@ -35,9 +35,9 @@ export const AuthActions: React.FC<AuthActionsProps> = ({ onSignInClick }) => {
 
   return (
     <Button
-      variant="outline"
+      variant="rococo"
       onClick={onSignInClick}
-      className="gap-2"
+      className="gap-2 text-white shadow-md border-yellow-400/30"
     >
       <User className="w-4 h-4" />
       Sign In

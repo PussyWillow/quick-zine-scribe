@@ -1,0 +1,54 @@
+
+/* Rococo Button Enhancements */
+@layer components {
+  .rococo-button-extra {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .rococo-button-extra::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+      #FFD700, #FFA500, #DAA520, #B8860B, 
+      #C0C0C0, #E5E5E5, #FFD700);
+    background-size: 400% 400%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: golden-shimmer 3s ease-in-out infinite;
+    opacity: 0.3;
+  }
+  
+  .rococo-button-extra::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: inherit;
+    border-radius: inherit;
+    z-index: -1;
+  }
+  
+  @keyframes golden-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* Enhanced golden glow for hover states */
+  .rococo-glow:hover {
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.4),
+      0 0 40px rgba(255, 215, 0, 0.2),
+      0 0 60px rgba(255, 165, 0, 0.1);
+  }
+  
+  /* Elegant text shadow for rococo buttons */
+  .rococo-text {
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.3),
+      0 0 8px rgba(255, 215, 0, 0.2);
+  }
+}
