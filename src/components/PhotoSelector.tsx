@@ -26,7 +26,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
     description: img.description || 'Gallery image'
   }))];
   const currentPhoto = allPhotos.find(p => p.id === selectedPhoto) || allPhotos[0];
-  return <div className="size-1/5 ">
+  return <div className="space-y-3 px-[160px]">
       
       
       <div className="relative">
@@ -37,7 +37,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
       <div className="text-xs text-muted-foreground">{currentPhoto.description}</div>
       
       {/* Photo preview thumbnails */}
-      {galleryImages.length > 0 && <div className="flex gap-2 mt-2 flex-wrap px-[24px] py-[12px] my-0 size-1/4 border-lavender ">
+      {galleryImages.length > 0 && <div className="flex gap-2 mt-2 flex-wrap px-[24px] py-[12px] my-0">
           {allPhotos.slice(0, 6).map(photo => <button key={photo.id} onClick={() => onPhotoChange(photo.id)} className={`w-10 h-10 rounded border-2 transition-all overflow-hidden ${selectedPhoto === photo.id ? 'border-ring shadow-md' : 'border-border hover:border-muted-foreground'}`} title={photo.description}>
               {photo.id === 'none' ? <div className="w-full h-full bg-muted/50 flex items-center justify-center">
                   <span className="text-xs text-muted-foreground">×</span>
