@@ -58,8 +58,9 @@ export const ArchetypeGenerator = () => {
     <>
       <Button
         onClick={handleOpen}
-        variant="outline"
-        className="gap-2 bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200 hover:from-purple-100 hover:to-pink-100"
+        variant="rococo"
+        size="sm"
+        className="gap-2 text-white shadow-md border-yellow-400/30 font-heading"
       >
         <Sparkles className="w-4 h-4" />
         🎭 Generate My Archetype
@@ -82,7 +83,8 @@ export const ArchetypeGenerator = () => {
                 <Button 
                   onClick={generateArchetype}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                  variant="rococo"
+                  className="w-full"
                 >
                   {isLoading ? (
                     <>
