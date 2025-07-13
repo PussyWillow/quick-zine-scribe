@@ -1,8 +1,8 @@
 
-/* Main CSS file - imports all style modules */
-@import './styles/design-tokens.css';
-@import './styles/gothic-theme.css';
-@import './styles/gothic-notebook.css';
-@import './styles/frame-system.css';
-@import './styles/component-frames.css';
-@import './styles/export-buttons.css';
+@import url("./styles/design-tokens.css");
+@import url("./styles/component-frames.css");
+@import url("./styles/frame-system.css");
+@import url("./styles/export-buttons.css");
+@import url("./styles/gothic-theme.css");
+@import url("./styles/gothic-notebook.css");
+@import url("./styles/responsive-enhancements.css");

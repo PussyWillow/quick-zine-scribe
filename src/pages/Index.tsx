@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import { AppHeader } from '../components/AppHeader';
 import { EditorPanel } from '../components/EditorPanel';
 import { PreviewSection } from '../components/PreviewSection';
-import { ControlsBar } from '../components/ControlsBar';
-import DesignAssetGallery from '../components/DesignAssetGallery';
+import { ResponsiveControlsBar } from '../components/ResponsiveControlsBar';
+import ResponsiveDesignAssetGallery from '../components/ResponsiveDesignAssetGallery';
 import { fonts } from '../components/FontSelector';
 import { Template } from '../data/templates';
+import { useIsMobile } from '../hooks/use-mobile';
 
 const Index = () => {
   const [content, setContent] = useState(`# Welcome to Flash Zine
@@ -39,6 +40,10 @@ Start writing and watch your words come to life with beautiful themes.
   const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
   const [selectedPhoto, setSelectedPhoto] = useState('none');
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [controlsCollapsed, setControlsCollapsed] = useState(false);
+  const [assetsCollapsed, setAssetsCollapsed] = useState(false);
+  
+  const isMobile = useIsMobile();
 
   const handleSelectTemplate = (template: Template) => {
     setTitle(template.title);
@@ -48,11 +53,7 @@ Start writing and watch your words come to life with beautiful themes.
   };
 
   const handleAssetSelect = (asset: any) => {
-    // Handle different asset types
     console.log('Asset selected:', asset);
-    
-    // For now, just log the asset selection
-    // Future enhancement: integrate assets into the content
   };
 
   // Get actual font families for preview
@@ -66,11 +67,12 @@ Start writing and watch your words come to life with beautiful themes.
         setShowAuthModal={setShowAuthModal}
       />
 
-      <div className="flex flex-col min-h-[calc(100vh-73px)] gap-3 p-3">
-        {/* Controls Section - Compact but comfortable */}
-        <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
-          <div className="min-h-[180px] max-h-[220px] h-[25vh]">
-            <ControlsBar
+      <div className="flex flex-col lg:grid lg:grid-rows-[auto_1fr] min-h-[calc(100vh-73px)] gap-3 p-3">
+        {/* Top Section - Controls and Assets */}
+        <div className="flex flex-col xl:grid xl:grid-cols-2 gap-3">
+          {/* Controls - Mobile: Full width, Desktop: Half width */}
+          <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+            <ResponsiveControlsBar
               selectedTheme={selectedTheme}
               onThemeChange={setSelectedTheme}
               selectedHeadingFont={selectedHeadingFont}
@@ -81,25 +83,27 @@ Start writing and watch your words come to life with beautiful themes.
               title={title}
               subtitle={subtitle}
               content={content}
+              isCollapsed={controlsCollapsed}
+              onToggleCollapse={() => setControlsCollapsed(!controlsCollapsed)}
             />
           </div>
-        </div>
 
-        {/* Design Asset Gallery - Significantly expanded with grid system */}
-        <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
-          <div className="min-h-[300px] max-h-[400px] h-[35vh]">
-            <DesignAssetGallery
+          {/* Design Assets - Mobile: Full width, Desktop: Half width */}
+          <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+            <ResponsiveDesignAssetGallery
               onAssetSelect={handleAssetSelect}
               selectedPhoto={selectedPhoto}
               onPhotoChange={setSelectedPhoto}
+              isCollapsed={assetsCollapsed}
+              onToggleCollapse={() => setAssetsCollapsed(!assetsCollapsed)}
             />
           </div>
         </div>
 
-        {/* Editor and Preview Section - Remaining space */}
-        <div className="flex-1 flex gap-3 min-h-[400px] max-h-[calc(100vh-650px)]">
-          {/* Editor - Left Half */}
-          <div className="w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+        {/* Bottom Section - Editor and Preview */}
+        <div className="flex-1 flex flex-col lg:flex-row gap-3 min-h-[400px]">
+          {/* Editor - Mobile: Full width, Desktop: Half width */}
+          <div className="flex-1 lg:w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
             <EditorPanel
               content={content}
               onChange={setContent}
@@ -110,8 +114,8 @@ Start writing and watch your words come to life with beautiful themes.
             />
           </div>
 
-          {/* Preview - Right Half */}
-          <div className="w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+          {/* Preview - Mobile: Full width, Desktop: Half width */}
+          <div className="flex-1 lg:w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
             <PreviewSection
               isCollapsed={false}
               onToggleCollapse={() => {}}

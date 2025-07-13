@@ -1,0 +1,82 @@
+
+/* Enhanced responsive design utilities */
+
+/* Hide scrollbars while maintaining functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Touch-friendly interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Smooth scrolling for category tabs */
+.category-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Enhanced mobile tap targets */
+@media (max-width: 640px) {
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .asset-card {
+    min-height: 80px;
+  }
+}
+
+/* Responsive grid improvements */
+@media (min-width: 640px) and (max-width: 1024px) {
+  .asset-grid-tablet {
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .asset-grid-desktop {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+/* Improved focus states for accessibility */
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Loading animation improvements */
+.loading-shimmer {
+  background: linear-gradient(90deg, 
+    hsl(var(--muted)) 25%, 
+    hsl(var(--muted-foreground) / 0.1) 50%, 
+    hsl(var(--muted)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Better spacing for mobile */
+@media (max-width: 640px) {
+  .mobile-spacing {
+    padding: 0.75rem;
+  }
+  
+  .mobile-gap {
+    gap: 0.75rem;
+  }
+}
