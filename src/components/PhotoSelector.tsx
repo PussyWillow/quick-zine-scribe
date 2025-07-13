@@ -44,7 +44,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
       <div className="text-xs text-muted-foreground">{currentPhoto.description}</div>
       
       {/* Photo preview thumbnails */}
-      {galleryImages.length > 0 && <div className="grid grid-flow-row auto-rows-max flex-grow justify-center gap-x10 rounded-none px-0 my-0 mx-[240px]">
+      {galleryImages.length > 0 && <div className="inline-grid grid-cols-3 gap-2 grid-rows-3">
           {allPhotos.slice(0, 6).map(photo => <button key={photo.id} onClick={() => onPhotoChange(photo.id)} className={`w-10 h-10 rounded border-2 transition-all overflow-hidden ${selectedPhoto === photo.id ? 'border-ring shadow-md' : 'border-border hover:border-muted-foreground'}`} title={photo.description}>
               {photo.id === 'none' ? <div className="size-294 object-top-left">
                   <span className="text-xs text-muted-foreground">×</span>
