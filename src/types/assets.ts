@@ -5,12 +5,19 @@ export interface BaseAsset {
   id: string;
   name: string;
   type: string;
+  category?: string;
+  tags?: string[];
+  created_at?: string;
+  updated_at?: string;
+  is_active?: boolean;
 }
 
 export interface PhotoAsset extends BaseAsset {
   type: 'photo';
   preview: string;
   description?: string;
+  url?: string;
+  preview_url?: string;
 }
 
 export interface TextureAsset extends BaseAsset {

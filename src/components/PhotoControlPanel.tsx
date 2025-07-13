@@ -4,6 +4,7 @@ import { Image, Sliders, Grid3x3, Palette } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import PhotoSelector from './PhotoSelector';
 
 interface PhotoControlPanelProps {
   selectedPhoto: string;
@@ -53,19 +54,23 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
   ];
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2 mb-3">
-        <Image className="w-4 h-4 text-muted-foreground" />
-        <Label className="text-sm font-medium text-foreground font-heading">
-          Photo Controls
-        </Label>
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+      {/* Photo Selection */}
+      <div className="space-y-3">
+        <PhotoSelector
+          selectedPhoto={selectedPhoto}
+          onPhotoChange={onPhotoChange}
+        />
       </div>
 
       {/* Opacity Control */}
-      <div className="space-y-2">
-        <Label className="text-xs text-muted-foreground">
-          Opacity: {photoOpacity}%
-        </Label>
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 mb-3">
+          <Sliders className="w-4 h-4 text-muted-foreground" />
+          <Label className="text-sm font-medium text-foreground font-heading">
+            Opacity: {photoOpacity}%
+          </Label>
+        </div>
         <Slider
           value={[photoOpacity]}
           onValueChange={(value) => onOpacityChange(value[0])}
@@ -77,8 +82,11 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Position Grid Selector */}
-      <div className="space-y-2">
-        <Label className="text-xs text-muted-foreground">Position</Label>
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 mb-3">
+          <Grid3x3 className="w-4 h-4 text-muted-foreground" />
+          <Label className="text-sm font-medium text-foreground font-heading">Position</Label>
+        </div>
         <div className="grid grid-cols-3 gap-1 p-2 bg-muted/30 rounded-lg">
           {positions.map((pos) => (
             <button
@@ -103,42 +111,48 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
         </div>
       </div>
 
-      {/* Scale Control */}
-      <div className="space-y-2">
-        <Label className="text-xs text-muted-foreground">
-          Scale: {photoScale}x
-        </Label>
-        <Slider
-          value={[photoScale]}
-          onValueChange={(value) => onScaleChange(value[0])}
-          max={2}
-          min={0.5}
-          step={0.1}
-          className="w-full"
-        />
+      {/* Scale and Blend Mode */}
+      <div className="space-y-4">
+        {/* Scale Control */}
+        <div className="space-y-2">
+          <Label className="text-sm font-medium text-foreground font-heading">
+            Scale: {photoScale}x
+          </Label>
+          <Slider
+            value={[photoScale]}
+            onValueChange={(value) => onScaleChange(value[0])}
+            max={2}
+            min={0.5}
+            step={0.1}
+            className="w-full"
+          />
+        </div>
+
+        {/* Blend Mode */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <Palette className="w-4 h-4 text-muted-foreground" />
+            <Label className="text-sm font-medium text-foreground font-heading">Blend Mode</Label>
+          </div>
+          <Select value={blendMode} onValueChange={onBlendModeChange}>
+            <SelectTrigger className="w-full">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {blendModes.map((mode) => (
+                <SelectItem key={mode.id} value={mode.id}>
+                  {mode.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
-      {/* Blend Mode */}
-      <div className="space-y-2">
-        <Label className="text-xs text-muted-foreground">Blend Mode</Label>
-        <Select value={blendMode} onValueChange={onBlendModeChange}>
-          <SelectTrigger className="w-full">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {blendModes.map((mode) => (
-              <SelectItem key={mode.id} value={mode.id}>
-                {mode.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      {/* Quick Presets */}
-      <div className="space-y-2">
-        <Label className="text-xs text-muted-foreground">Quick Styles</Label>
-        <div className="grid grid-cols-2 gap-2">
+      {/* Quick Presets - Span full width on mobile, partial on larger screens */}
+      <div className="lg:col-span-2 xl:col-span-4 space-y-3">
+        <Label className="text-sm font-medium text-foreground font-heading">Quick Styles</Label>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
           <button
             onClick={() => {
               onOpacityChange(15);

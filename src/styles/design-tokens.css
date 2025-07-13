@@ -12,53 +12,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Warm golden botanical palette inspired by vintage illustrations */
-    --background: 45 65% 92%; /* Warm cream #F5F0E8 */
-    --foreground: 25 35% 15%; /* Deep warm brown */
+    /* Creamy white botanical palette inspired by vintage botanical illustrations */
+    --background: 48 100% 98%; /* Pure cream white #FFFEF7 */
+    --foreground: 25 35% 20%; /* Soft charcoal */
 
-    --card: 42 45% 88%; /* Golden cream #EDE5D8 */
-    --card-foreground: 25 35% 15%;
+    --card: 45 50% 96%; /* Soft off-white #FBFAF5 */
+    --card-foreground: 25 35% 20%;
 
-    --popover: 45 65% 92%;
-    --popover-foreground: 25 35% 15%;
+    --popover: 48 100% 98%;
+    --popover-foreground: 25 35% 20%;
 
-    --primary: 35 45% 45%; /* Rich amber brown #A67C52 */
-    --primary-foreground: 45 65% 95%;
+    --primary: 85 25% 45%; /* Warm sage green */
+    --primary-foreground: 48 100% 98%;
 
-    --secondary: 40 35% 82%; /* Soft golden beige #D4C4B0 */
-    --secondary-foreground: 25 35% 15%;
+    --secondary: 40 20% 90%; /* Very light cream */
+    --secondary-foreground: 25 35% 20%;
 
-    --muted: 38 25% 85%; /* Muted warm cream */
-    --muted-foreground: 25 25% 35%; /* Warm gray */
+    --muted: 45 30% 92%; /* Soft cream */
+    --muted-foreground: 25 20% 45%; /* Warm gray */
 
-    --accent: 30 55% 55%; /* Golden amber #C4956C */
-    --accent-foreground: 45 65% 95%;
+    --accent: 25 35% 65%; /* Dusty rose */
+    --accent-foreground: 48 100% 98%;
 
     --destructive: 15 60% 50%; /* Warm red-brown */
-    --destructive-foreground: 45 65% 95%;
+    --destructive-foreground: 48 100% 98%;
 
-    --border: 38 35% 75%; /* Warm golden border */
-    --input: 40 35% 82%;
-    --ring: 30 55% 55%; /* Golden amber focus ring */
+    --border: 40 25% 85%; /* Light cream border */
+    --input: 40 20% 90%;
+    --ring: 85 25% 45%; /* Sage green focus ring */
 
     --radius: 0.5rem;
 
     /* Sidebar colors */
-    --sidebar-background: 45 65% 92%;
-    --sidebar-foreground: 25 35% 15%;
-    --sidebar-primary: 35 45% 45%;
-    --sidebar-primary-foreground: 45 65% 95%;
-    --sidebar-accent: 40 35% 82%;
-    --sidebar-accent-foreground: 25 35% 15%;
-    --sidebar-border: 38 35% 75%;
-    --sidebar-ring: 30 55% 55%;
+    --sidebar-background: 48 100% 98%;
+    --sidebar-foreground: 25 35% 20%;
+    --sidebar-primary: 85 25% 45%;
+    --sidebar-primary-foreground: 48 100% 98%;
+    --sidebar-accent: 40 20% 90%;
+    --sidebar-accent-foreground: 25 35% 20%;
+    --sidebar-border: 40 25% 85%;
+    --sidebar-ring: 85 25% 45%;
 
-    /* Updated botanical palette */
-    --dusty-rose: 25 35% 65%; /* Warm brownish rose */
-    --warm-blue: 200 25% 65%; /* Muted blue-gray */
-    --soft-peach: 35 45% 75%; /* Golden peach */
-    --sage-green: 85 25% 55%; /* Botanical green */
-    --lavender: 280 20% 70%; /* Muted purple-gray */
+    /* Updated botanical palette with creamy tones */
+    --dusty-rose: 25 35% 65%; /* Warm dusty rose */
+    --warm-sage: 85 25% 45%; /* Sage green */
+    --soft-cream: 45 40% 88%; /* Cream accent */
+    --botanical-green: 75 30% 50%; /* Natural green */
+    --lavender-gray: 280 15% 75%; /* Soft lavender gray */
   }
 
   .dark {
@@ -111,7 +111,7 @@ All colors MUST be HSL.
     transition: all 0.3s ease-in-out;
     background: linear-gradient(135deg, 
       hsl(var(--background)) 0%, 
-      hsla(var(--accent), 0.1) 100%
+      hsla(var(--accent), 0.05) 100%
     );
   }
 
@@ -142,66 +142,66 @@ All colors MUST be HSL.
     background-color: hsl(var(--dusty-rose));
   }
   
-  .bg-warm-blue {
-    background-color: hsl(var(--warm-blue));
+  .bg-warm-sage {
+    background-color: hsl(var(--warm-sage));
   }
   
-  .bg-soft-peach {
-    background-color: hsl(var(--soft-peach));
+  .bg-soft-cream {
+    background-color: hsl(var(--soft-cream));
   }
   
-  .bg-sage-green {
-    background-color: hsl(var(--sage-green));
+  .bg-botanical-green {
+    background-color: hsl(var(--botanical-green));
   }
   
-  .bg-lavender {
-    background-color: hsl(var(--lavender));
+  .bg-lavender-gray {
+    background-color: hsl(var(--lavender-gray));
   }
   
   .text-dusty-rose {
     color: hsl(var(--dusty-rose));
   }
   
-  .text-warm-blue {
-    color: hsl(var(--warm-blue));
+  .text-warm-sage {
+    color: hsl(var(--warm-sage));
   }
   
-  .text-soft-peach {
-    color: hsl(var(--soft-peach));
+  .text-soft-cream {
+    color: hsl(var(--soft-cream));
   }
   
-  .text-sage-green {
-    color: hsl(var(--sage-green));
+  .text-botanical-green {
+    color: hsl(var(--botanical-green));
   }
   
-  .text-lavender {
-    color: hsl(var(--lavender));
+  .text-lavender-gray {
+    color: hsl(var(--lavender-gray));
   }
   
   .border-dusty-rose {
     border-color: hsl(var(--dusty-rose));
   }
   
-  .border-warm-blue {
-    border-color: hsl(var(--warm-blue));
+  .border-warm-sage {
+    border-color: hsl(var(--warm-sage));
   }
   
-  .border-soft-peach {
-    border-color: hsl(var(--soft-peach));
+  .border-soft-cream {
+    border-color: hsl(var(--soft-cream));
   }
   
-  .border-sage-green {
-    border-color: hsl(var(--sage-green));
+  .border-botanical-green {
+    border-color: hsl(var(--botanical-green));
   }
   
-  .border-lavender {
-    border-color: hsl(var(--lavender));
+  .border-lavender-gray {
+    border-color: hsl(var(--lavender-gray));
   }
 
   /* Botanical texture patterns */
   .botanical-texture {
     background-image: 
-      radial-gradient(circle at 25% 25%, hsla(var(--sage-green), 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 25% 25%, hsla(var(--botanical-green), 0.05) 0%, transparent 50%),
       radial-gradient(circle at 75% 75%, hsla(var(--accent), 0.03) 0%, transparent 50%);
   }
 

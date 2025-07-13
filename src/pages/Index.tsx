@@ -4,7 +4,7 @@ import { AppHeader } from '../components/AppHeader';
 import { EditorPanel } from '../components/EditorPanel';
 import { PreviewSection } from '../components/PreviewSection';
 import { ResponsiveControlsBar } from '../components/ResponsiveControlsBar';
-import ResponsiveDesignAssetGallery from '../components/ResponsiveDesignAssetGallery';
+import PhotoControlsSection from '../components/PhotoControlsSection';
 import { fonts } from '../components/FontSelector';
 import { Template } from '../data/templates';
 import { useIsMobile } from '../hooks/use-mobile';
@@ -40,7 +40,7 @@ Start writing and watch your words come to life with beautiful themes.
   const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
   const [selectedPhoto, setSelectedPhoto] = useState('none');
   
-  // New photo control states
+  // Photo control states
   const [photoOpacity, setPhotoOpacity] = useState(10);
   const [photoPosition, setPhotoPosition] = useState('center');
   const [photoScale, setPhotoScale] = useState(1);
@@ -48,7 +48,7 @@ Start writing and watch your words come to life with beautiful themes.
   
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [controlsCollapsed, setControlsCollapsed] = useState(false);
-  const [assetsCollapsed, setAssetsCollapsed] = useState(false);
+  const [photoControlsCollapsed, setPhotoControlsCollapsed] = useState(false);
   
   const isMobile = useIsMobile();
 
@@ -57,10 +57,6 @@ Start writing and watch your words come to life with beautiful themes.
     setSubtitle(template.subtitle);
     setContent(template.content);
     setSelectedTheme(template.suggestedTheme);
-  };
-
-  const handleAssetSelect = (asset: any) => {
-    console.log('Asset selected:', asset);
   };
 
   // Get actual font families for preview
@@ -74,46 +70,40 @@ Start writing and watch your words come to life with beautiful themes.
         setShowAuthModal={setShowAuthModal}
       />
 
-      <div className="flex flex-col lg:grid lg:grid-rows-[auto_1fr] min-h-[calc(100vh-73px)] gap-3 p-3">
-        {/* Top Section - Controls and Assets */}
-        <div className="flex flex-col xl:grid xl:grid-cols-2 gap-3">
-          {/* Controls - Mobile: Full width, Desktop: Half width */}
-          <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
-            <ResponsiveControlsBar
-              selectedTheme={selectedTheme}
-              onThemeChange={setSelectedTheme}
-              selectedHeadingFont={selectedHeadingFont}
-              selectedBodyFont={selectedBodyFont}
-              onHeadingFontChange={setSelectedHeadingFont}
-              onBodyFontChange={setSelectedBodyFont}
-              onSelectTemplate={handleSelectTemplate}
-              title={title}
-              subtitle={subtitle}
-              content={content}
-              isCollapsed={controlsCollapsed}
-              onToggleCollapse={() => setControlsCollapsed(!controlsCollapsed)}
-            />
-          </div>
-
-          {/* Design Assets - Mobile: Full width, Desktop: Half width */}
-          <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
-            <ResponsiveDesignAssetGallery
-              onAssetSelect={handleAssetSelect}
-              selectedPhoto={selectedPhoto}
-              onPhotoChange={setSelectedPhoto}
-              photoOpacity={photoOpacity}
-              onOpacityChange={setPhotoOpacity}
-              photoPosition={photoPosition}
-              onPositionChange={setPhotoPosition}
-              photoScale={photoScale}
-              onScaleChange={setPhotoScale}
-              blendMode={blendMode}
-              onBlendModeChange={setBlendMode}
-              isCollapsed={assetsCollapsed}
-              onToggleCollapse={() => setAssetsCollapsed(!assetsCollapsed)}
-            />
-          </div>
+      <div className="flex flex-col min-h-[calc(100vh-73px)] gap-3 p-3">
+        {/* Top Section - Theme & Font Controls */}
+        <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+          <ResponsiveControlsBar
+            selectedTheme={selectedTheme}
+            onThemeChange={setSelectedTheme}
+            selectedHeadingFont={selectedHeadingFont}
+            selectedBodyFont={selectedBodyFont}
+            onHeadingFontChange={setSelectedHeadingFont}
+            onBodyFontChange={setSelectedBodyFont}
+            onSelectTemplate={handleSelectTemplate}
+            title={title}
+            subtitle={subtitle}
+            content={content}
+            isCollapsed={controlsCollapsed}
+            onToggleCollapse={() => setControlsCollapsed(!controlsCollapsed)}
+          />
         </div>
+
+        {/* Middle Section - Photo Controls (Prominent) */}
+        <PhotoControlsSection
+          selectedPhoto={selectedPhoto}
+          onPhotoChange={setSelectedPhoto}
+          photoOpacity={photoOpacity}
+          onOpacityChange={setPhotoOpacity}
+          photoPosition={photoPosition}
+          onPositionChange={setPhotoPosition}
+          photoScale={photoScale}
+          onScaleChange={setPhotoScale}
+          blendMode={blendMode}
+          onBlendModeChange={setBlendMode}
+          isCollapsed={photoControlsCollapsed}
+          onToggleCollapse={() => setPhotoControlsCollapsed(!photoControlsCollapsed)}
+        />
 
         {/* Bottom Section - Editor and Preview */}
         <div className="flex-1 flex flex-col lg:flex-row gap-3 min-h-[400px]">
