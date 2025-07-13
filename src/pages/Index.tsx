@@ -66,10 +66,10 @@ Start writing and watch your words come to life with beautiful themes.
         setShowAuthModal={setShowAuthModal}
       />
 
-      <div className="flex flex-col min-h-[calc(100vh-73px)] gap-2 p-2">
-        {/* Controls Section - Expanded and comfortable */}
+      <div className="flex flex-col min-h-[calc(100vh-73px)] gap-3 p-3">
+        {/* Controls Section - Compact but comfortable */}
         <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
-          <div className="min-h-[200px] max-h-[280px] h-[28vh]">
+          <div className="min-h-[180px] max-h-[220px] h-[25vh]">
             <ControlsBar
               selectedTheme={selectedTheme}
               onThemeChange={setSelectedTheme}
@@ -85,9 +85,9 @@ Start writing and watch your words come to life with beautiful themes.
           </div>
         </div>
 
-        {/* Design Asset Gallery - Comfortable height with spacing */}
+        {/* Design Asset Gallery - Significantly expanded with grid system */}
         <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
-          <div className="min-h-[140px] max-h-[200px] h-[18vh]">
+          <div className="min-h-[300px] max-h-[400px] h-[35vh]">
             <DesignAssetGallery
               onAssetSelect={handleAssetSelect}
               selectedPhoto={selectedPhoto}
@@ -96,9 +96,9 @@ Start writing and watch your words come to life with beautiful themes.
           </div>
         </div>
 
-        {/* Editor and Preview Section - Flexible and spacious */}
-        <div className="flex-1 flex gap-2 min-h-[500px] max-h-[calc(100vh-580px)]">
-          {/* Editor - Left Half with rounded corners */}
+        {/* Editor and Preview Section - Remaining space */}
+        <div className="flex-1 flex gap-3 min-h-[400px] max-h-[calc(100vh-650px)]">
+          {/* Editor - Left Half */}
           <div className="w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
             <EditorPanel
               content={content}
@@ -110,7 +110,7 @@ Start writing and watch your words come to life with beautiful themes.
             />
           </div>
 
-          {/* Preview - Right Half with rounded corners */}
+          {/* Preview - Right Half */}
           <div className="w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
             <PreviewSection
               isCollapsed={false}
