@@ -31,12 +31,12 @@ export const ControlsBar: React.FC<ControlsBarProps> = ({
 }) => {
   return (
     <div className="h-full bg-card border-b border-border">
-      <div className="flex items-center gap-2 p-4 border-b border-border/50">
+      <div className="flex items-center gap-2 p-3 border-b border-border/50 flex-shrink-0">
         <Settings className="w-4 h-4 text-muted-foreground" />
         <span className="text-sm font-medium text-foreground">Controls</span>
       </div>
       
-      <div className="p-6 h-full overflow-y-auto">
+      <div className="p-4 h-full overflow-y-auto">
         <ControlsAccordion
           selectedTheme={selectedTheme}
           onThemeChange={onThemeChange}

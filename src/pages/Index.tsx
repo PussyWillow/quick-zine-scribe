@@ -4,7 +4,7 @@ import { AppHeader } from '../components/AppHeader';
 import { EditorPanel } from '../components/EditorPanel';
 import { PreviewSection } from '../components/PreviewSection';
 import { ControlsBar } from '../components/ControlsBar';
-import FloatingPhotoGallery from '../components/FloatingPhotoGallery';
+import DesignAssetGallery from '../components/DesignAssetGallery';
 import { fonts } from '../components/FontSelector';
 import { Template } from '../data/templates';
 
@@ -47,6 +47,14 @@ Start writing and watch your words come to life with beautiful themes.
     setSelectedTheme(template.suggestedTheme);
   };
 
+  const handleAssetSelect = (asset: any) => {
+    // Handle different asset types
+    console.log('Asset selected:', asset);
+    
+    // For now, just log the asset selection
+    // Future enhancement: integrate assets into the content
+  };
+
   // Get actual font families for preview
   const headingFont = fonts.find(f => f.id === selectedHeadingFont)?.fontFamily || fonts[0].fontFamily;
   const bodyFont = fonts.find(f => f.id === selectedBodyFont)?.fontFamily || fonts[4].fontFamily;
@@ -59,8 +67,8 @@ Start writing and watch your words come to life with beautiful themes.
       />
 
       <div className="flex flex-col h-[calc(100vh-73px)]">
-        {/* Controls Section - Top 1/3 */}
-        <div className="h-1/3 min-h-[200px] flex-shrink-0">
+        {/* Controls Section - Top ~25% */}
+        <div className="h-1/4 min-h-[180px] flex-shrink-0">
           <ControlsBar
             selectedTheme={selectedTheme}
             onThemeChange={setSelectedTheme}
@@ -75,8 +83,17 @@ Start writing and watch your words come to life with beautiful themes.
           />
         </div>
 
-        {/* Editor and Preview Section - Bottom 2/3 Side by Side */}
-        <div className="flex h-2/3 min-h-[400px] flex-1">
+        {/* Design Asset Gallery - Middle ~20% */}
+        <div className="h-1/5 min-h-[120px] flex-shrink-0">
+          <DesignAssetGallery
+            onAssetSelect={handleAssetSelect}
+            selectedPhoto={selectedPhoto}
+            onPhotoChange={setSelectedPhoto}
+          />
+        </div>
+
+        {/* Editor and Preview Section - Bottom ~55% Side by Side */}
+        <div className="flex flex-1 min-h-0">
           {/* Editor - Left Half */}
           <div className="w-1/2 border-r border-border">
             <EditorPanel
@@ -105,12 +122,6 @@ Start writing and watch your words come to life with beautiful themes.
           </div>
         </div>
       </div>
-
-      {/* Floating Photo Gallery */}
-      <FloatingPhotoGallery
-        selectedPhoto={selectedPhoto}
-        onPhotoChange={setSelectedPhoto}
-      />
     </div>
   );
 };
