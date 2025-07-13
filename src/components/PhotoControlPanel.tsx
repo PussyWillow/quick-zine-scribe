@@ -105,7 +105,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Position Grid Selector */}
-      <div className="space-y-3">
+      <div className="grid grid-flow-col grid-rows-2 ">
         <div className="flex items-center gap-1 mb-1">
           <Grid3x3 className="w-4 h-4 text-muted-foreground" />
           <Label className="text-sm font-medium text-foreground font-heading">Position</Label>
