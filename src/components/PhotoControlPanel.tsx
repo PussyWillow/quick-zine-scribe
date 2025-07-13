@@ -87,9 +87,9 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
     id: 'color-burn',
     label: 'Color Burn'
   }];
-  return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 px-[4px] mx-0">
+  return <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 px-[4px] py-0 my-0 mx-[21px]">
       {/* Photo Selection */}
-      <div className="space-y-3 px-0 py-0 my-[28px] mx-0">
+      <div className="space-y-3 py-0 my-[28px] mx-0 px-[4px] ">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
       </div>
 
