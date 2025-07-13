@@ -66,36 +66,40 @@ Start writing and watch your words come to life with beautiful themes.
         setShowAuthModal={setShowAuthModal}
       />
 
-      <div className="flex flex-col h-[calc(100vh-73px)]">
-        {/* Controls Section - Top ~20% */}
-        <div className="h-[20vh] min-h-[160px] flex-shrink-0 border-b border-border">
-          <ControlsBar
-            selectedTheme={selectedTheme}
-            onThemeChange={setSelectedTheme}
-            selectedHeadingFont={selectedHeadingFont}
-            selectedBodyFont={selectedBodyFont}
-            onHeadingFontChange={setSelectedHeadingFont}
-            onBodyFontChange={setSelectedBodyFont}
-            onSelectTemplate={handleSelectTemplate}
-            title={title}
-            subtitle={subtitle}
-            content={content}
-          />
+      <div className="flex flex-col min-h-[calc(100vh-73px)] gap-2 p-2">
+        {/* Controls Section - Expanded and comfortable */}
+        <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+          <div className="min-h-[200px] max-h-[280px] h-[28vh]">
+            <ControlsBar
+              selectedTheme={selectedTheme}
+              onThemeChange={setSelectedTheme}
+              selectedHeadingFont={selectedHeadingFont}
+              selectedBodyFont={selectedBodyFont}
+              onHeadingFontChange={setSelectedHeadingFont}
+              onBodyFontChange={setSelectedBodyFont}
+              onSelectTemplate={handleSelectTemplate}
+              title={title}
+              subtitle={subtitle}
+              content={content}
+            />
+          </div>
         </div>
 
-        {/* Design Asset Gallery - Middle ~15% */}
-        <div className="h-[15vh] min-h-[120px] flex-shrink-0 border-b border-border">
-          <DesignAssetGallery
-            onAssetSelect={handleAssetSelect}
-            selectedPhoto={selectedPhoto}
-            onPhotoChange={setSelectedPhoto}
-          />
+        {/* Design Asset Gallery - Comfortable height with spacing */}
+        <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+          <div className="min-h-[140px] max-h-[200px] h-[18vh]">
+            <DesignAssetGallery
+              onAssetSelect={handleAssetSelect}
+              selectedPhoto={selectedPhoto}
+              onPhotoChange={setSelectedPhoto}
+            />
+          </div>
         </div>
 
-        {/* Editor and Preview Section - Bottom ~65% Side by Side */}
-        <div className="flex flex-1 min-h-0">
-          {/* Editor - Left Half */}
-          <div className="w-1/2 border-r border-border">
+        {/* Editor and Preview Section - Flexible and spacious */}
+        <div className="flex-1 flex gap-2 min-h-[500px] max-h-[calc(100vh-580px)]">
+          {/* Editor - Left Half with rounded corners */}
+          <div className="w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
             <EditorPanel
               content={content}
               onChange={setContent}
@@ -106,8 +110,8 @@ Start writing and watch your words come to life with beautiful themes.
             />
           </div>
 
-          {/* Preview - Right Half */}
-          <div className="w-1/2">
+          {/* Preview - Right Half with rounded corners */}
+          <div className="w-1/2 bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
             <PreviewSection
               isCollapsed={false}
               onToggleCollapse={() => {}}

@@ -119,9 +119,9 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
   );
 
   return (
-    <div className="h-full bg-card border-b border-border flex flex-col">
+    <div className="h-full bg-card flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border/50 flex-shrink-0">
+      <div className="flex items-center justify-between p-4 border-b border-border/30 flex-shrink-0">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <Palette className="w-5 h-5 text-muted-foreground" />
@@ -129,7 +129,7 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
           </div>
 
           {/* Category Tabs */}
-          <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
+          <div className="flex items-center gap-1 bg-muted/50 rounded-lg p-1">
             {categories.map((category) => {
               const Icon = category.icon;
               return (
@@ -174,7 +174,7 @@ const DesignAssetGallery: React.FC<DesignAssetGalleryProps> = ({
           </div>
         ) : (
           <div className="h-full overflow-x-auto">
-            <div className="flex gap-3 h-full pb-2">
+            <div className="flex gap-4 h-full pb-2">
               {filteredAssets.map((asset) => (
                 <div
                   key={asset.id}
