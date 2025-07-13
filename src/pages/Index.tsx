@@ -75,9 +75,10 @@ Start writing and watch your words come to life with beautiful themes.
           />
         </div>
 
-        {/* Editor and Preview Section - Bottom 2/3 */}
+        {/* Editor and Preview Section - Bottom 2/3 Side by Side */}
         <div className="flex h-2/3 min-h-[400px]">
-          <div className="w-1/2">
+          {/* Editor - Left Half */}
+          <div className="w-1/2 border-r border-border">
             <EditorPanel
               content={content}
               onChange={setContent}
@@ -88,6 +89,7 @@ Start writing and watch your words come to life with beautiful themes.
             />
           </div>
 
+          {/* Preview - Right Half */}
           <div className="w-1/2">
             <PreviewSection
               isCollapsed={false}

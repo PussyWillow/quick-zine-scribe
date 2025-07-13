@@ -20,7 +20,7 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
   onSubtitleChange,
 }) => {
   return (
-    <div className="w-1/2 flex flex-col">
+    <div className="flex flex-col h-full">
       <MarkdownEditor
         content={content}
         onChange={onChange}
