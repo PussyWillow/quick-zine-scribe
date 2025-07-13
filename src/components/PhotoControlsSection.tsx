@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Image, ChevronUp, ChevronDown } from 'lucide-react';
 import PhotoControlPanel from './PhotoControlPanel';
-
 interface PhotoControlsSectionProps {
   selectedPhoto: string;
   onPhotoChange: (photoId: string) => void;
@@ -17,7 +15,6 @@ interface PhotoControlsSectionProps {
   isCollapsed: boolean;
   onToggleCollapse: () => void;
 }
-
 const PhotoControlsSection: React.FC<PhotoControlsSectionProps> = ({
   selectedPhoto,
   onPhotoChange,
@@ -30,10 +27,9 @@ const PhotoControlsSection: React.FC<PhotoControlsSectionProps> = ({
   blendMode,
   onBlendModeChange,
   isCollapsed,
-  onToggleCollapse,
+  onToggleCollapse
 }) => {
-  return (
-    <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
+  return <div className="bg-card rounded-lg shadow-sm border border-border/50 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border/30 bg-card">
         <div className="flex items-center gap-2">
@@ -42,38 +38,15 @@ const PhotoControlsSection: React.FC<PhotoControlsSectionProps> = ({
             Photo Background Controls
           </h3>
         </div>
-        <button
-          onClick={onToggleCollapse}
-          className="p-2 hover:bg-muted rounded-md transition-colors"
-          aria-label={isCollapsed ? 'Expand' : 'Collapse'}
-        >
-          {isCollapsed ? (
-            <ChevronDown className="w-4 h-4 text-muted-foreground" />
-          ) : (
-            <ChevronUp className="w-4 h-4 text-muted-foreground" />
-          )}
+        <button onClick={onToggleCollapse} className="p-2 hover:bg-muted rounded-md transition-colors" aria-label={isCollapsed ? 'Expand' : 'Collapse'}>
+          {isCollapsed ? <ChevronDown className="w-4 h-4 text-muted-foreground" /> : <ChevronUp className="w-4 h-4 text-muted-foreground" />}
         </button>
       </div>
 
       {/* Content */}
-      {!isCollapsed && (
-        <div className="p-6">
-          <PhotoControlPanel
-            selectedPhoto={selectedPhoto}
-            onPhotoChange={onPhotoChange}
-            photoOpacity={photoOpacity}
-            onOpacityChange={onOpacityChange}
-            photoPosition={photoPosition}
-            onPositionChange={onPositionChange}
-            photoScale={photoScale}
-            onScaleChange={onScaleChange}
-            blendMode={blendMode}
-            onBlendModeChange={onBlendModeChange}
-          />
-        </div>
-      )}
-    </div>
-  );
+      {!isCollapsed && <div className="p-6 px-[42px]">
+          <PhotoControlPanel selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} photoOpacity={photoOpacity} onOpacityChange={onOpacityChange} photoPosition={photoPosition} onPositionChange={onPositionChange} photoScale={photoScale} onScaleChange={onScaleChange} blendMode={blendMode} onBlendModeChange={onBlendModeChange} />
+        </div>}
+    </div>;
 };
-
 export default PhotoControlsSection;
