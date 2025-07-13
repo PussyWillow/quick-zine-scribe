@@ -147,7 +147,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Quick Presets - Span full width on mobile, partial on larger screens */}
-      <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
+      <div className="grid grid-flow-row-dense grid-cols-1 grid-rows-2">
         <Label className="text-sm font-medium text-foreground font-heading mx-[136px] px-0 py-0 my-[58px]">Quick Styles</Label>
         <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
           <button onClick={() => {
