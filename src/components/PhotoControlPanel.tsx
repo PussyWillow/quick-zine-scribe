@@ -94,7 +94,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Opacity Control */}
-      <div className="">
+      <div className="px-[31px] mx-0 py-0 my-[207px]">
         <div className="flex items-center gap-2 mb-3">
           <Sliders className="w-4 h-4 text-muted-foreground" />
           <Label className="grid font-medium text-foreground font-heading">

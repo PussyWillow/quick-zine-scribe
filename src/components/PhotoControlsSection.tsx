@@ -44,7 +44,7 @@ const PhotoControlsSection: React.FC<PhotoControlsSectionProps> = ({
       </div>
 
       {/* Content */}
-      {!isCollapsed && <div className="p-6 px-[42px] mx-0">
+      {!isCollapsed && <div className="p-6 mx-0 px-[20px]">
           <PhotoControlPanel selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} photoOpacity={photoOpacity} onOpacityChange={onOpacityChange} photoPosition={photoPosition} onPositionChange={onPositionChange} photoScale={photoScale} onScaleChange={onScaleChange} blendMode={blendMode} onBlendModeChange={onBlendModeChange} />
         </div>}
     </div>;
