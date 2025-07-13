@@ -26,7 +26,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
     description: img.description || 'Gallery image'
   }))];
   const currentPhoto = allPhotos.find(p => p.id === selectedPhoto) || allPhotos[0];
-  return <div className="space-y-3 px-[143px] mx-[14px]">
+  return <div className="space-y-3 mx-[14px] px-[132px] py-0 my-[18px]">
       
       
       <div className="relative">
