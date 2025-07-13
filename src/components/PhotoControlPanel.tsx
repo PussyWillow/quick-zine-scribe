@@ -89,7 +89,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
   }];
   return <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-3">
       {/* Photo Selection */}
-      <div className="grid grid-flow-row-dense grid-cols-3 grid-rows-3">
+      <div className="size-max w-screen ">
         <PhotoSelector selectedPhoto={selectedPhoto} onPhotoChange={onPhotoChange} />
       </div>
 
@@ -128,7 +128,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
         </div>
 
         {/* Blend Mode */}
-        <div className="space-y-2 px-[40px] mx-[53px] my-[21px] py-[5px]">
+        <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Palette className="w-4 h-4 text-muted-foreground" />
             <Label className="text-sm font-medium text-foreground font-heading">Blend Mode</Label>
@@ -147,9 +147,9 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
       </div>
 
       {/* Quick Presets - Span full width on mobile, partial on larger screens */}
-      <div className="grid grid-flow-row-dense grid-cols-1 grid-rows-2">
+      <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
         <Label className="text-sm font-medium text-foreground font-heading mx-[136px] px-0 py-0 my-[58px]">Quick Styles</Label>
-        <div className="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
           <button onClick={() => {
           onOpacityChange(15);
           onPositionChange('center');
