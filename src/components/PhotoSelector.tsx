@@ -26,7 +26,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
     description: img.description || 'Gallery image'
   }))];
   const currentPhoto = allPhotos.find(p => p.id === selectedPhoto) || allPhotos[0];
-  return <div className="grid h-48 grid-cols-2 place-content-center gap-4">
+  return <div className="table table-row table-cell items-stretch ">
       <label className="block text-sm font-medium text-muted-foreground mb-2">
         <Image className="inline w-4 h-4 mr-1" />
         Photo Selection
@@ -41,7 +41,7 @@ const PhotoSelector: React.FC<PhotoSelectorProps> = ({
         <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
       </div>
       
-      
+      <div className="text-xs text-muted-foreground">{currentPhoto.description}</div>
       
       {/* Photo preview thumbnails */}
       {galleryImages.length > 0 && <div className="flex gap-2 mt-2 flex-wrap px- my-[22px] py-0 mx-[152px]">
