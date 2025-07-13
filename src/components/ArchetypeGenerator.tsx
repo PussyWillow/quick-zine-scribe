@@ -63,14 +63,14 @@ export const ArchetypeGenerator = () => {
         className="gap-2 text-white shadow-md border-yellow-400/30 font-heading"
       >
         <Sparkles className="w-4 h-4" />
-        🎭 Generate My Archetype
+        ⚜️ Generate My Archetype
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center text-xl">
-              🎭 Archetype Generator
+              ⚜️ Archetype Generator
             </DialogTitle>
           </DialogHeader>
           
