@@ -101,7 +101,7 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
             Opacity: {photoOpacity}%
           </Label>
         </div>
-        <Slider value={[photoOpacity]} onValueChange={value => onOpacityChange(value[0])} max={50} min={0} step={1} className="h-48 w-96 object-cover " />
+        <Slider value={[photoOpacity]} onValueChange={value => onOpacityChange(value[0])} max={50} min={0} step={1} className="h-8 w-96 object-cover " />
       </div>
 
       {/* Position Grid Selector */}
