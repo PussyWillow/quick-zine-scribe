@@ -33,59 +33,75 @@ export const ControlsAccordion: React.FC<ControlsAccordionProps> = ({
   content,
 }) => {
   return (
-    <Accordion type="multiple" defaultValue={["templates", "themes"]} className="space-y-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
       {/* Templates Section */}
-      <AccordionItem value="templates" className="control-group-frame">
-        <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-4">
-          Templates
-        </AccordionTrigger>
-        <AccordionContent className="pt-3 pb-2">
-          <TemplateSelector onSelectTemplate={onSelectTemplate} />
-        </AccordionContent>
-      </AccordionItem>
+      <div className="control-group-frame">
+        <Accordion type="single" defaultValue="templates" collapsible>
+          <AccordionItem value="templates" className="border-none">
+            <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-3">
+              Templates
+            </AccordionTrigger>
+            <AccordionContent className="pt-2 pb-0">
+              <TemplateSelector onSelectTemplate={onSelectTemplate} />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
 
       {/* Themes Section */}
-      <AccordionItem value="themes" className="control-group-frame">
-        <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-4">
-          Themes
-        </AccordionTrigger>
-        <AccordionContent className="pt-3 pb-2">
-          <VisualThemeSelector 
-            selectedTheme={selectedTheme}
-            onThemeChange={onThemeChange}
-          />
-        </AccordionContent>
-      </AccordionItem>
+      <div className="control-group-frame">
+        <Accordion type="single" defaultValue="themes" collapsible>
+          <AccordionItem value="themes" className="border-none">
+            <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-3">
+              Themes
+            </AccordionTrigger>
+            <AccordionContent className="pt-2 pb-0">
+              <VisualThemeSelector 
+                selectedTheme={selectedTheme}
+                onThemeChange={onThemeChange}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
       
       {/* Typography Section */}
-      <AccordionItem value="typography" className="control-group-frame">
-        <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-4">
-          Typography
-        </AccordionTrigger>
-        <AccordionContent className="pt-3 pb-2">
-          <FontSelector
-            selectedHeadingFont={selectedHeadingFont}
-            selectedBodyFont={selectedBodyFont}
-            onHeadingFontChange={onHeadingFontChange}
-            onBodyFontChange={onBodyFontChange}
-          />
-        </AccordionContent>
-      </AccordionItem>
+      <div className="control-group-frame">
+        <Accordion type="single" defaultValue="typography" collapsible>
+          <AccordionItem value="typography" className="border-none">
+            <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-3">
+              Typography
+            </AccordionTrigger>
+            <AccordionContent className="pt-2 pb-0">
+              <FontSelector
+                selectedHeadingFont={selectedHeadingFont}
+                selectedBodyFont={selectedBodyFont}
+                onHeadingFontChange={onHeadingFontChange}
+                onBodyFontChange={onBodyFontChange}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
       
       {/* Export Options Section */}
-      <AccordionItem value="export" className="control-group-frame">
-        <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-4">
-          Export Options
-        </AccordionTrigger>
-        <AccordionContent className="pt-3 pb-2">
-          <ExportButtons
-            title={title}
-            subtitle={subtitle}
-            content={content}
-            selectedTheme={selectedTheme}
-          />
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+      <div className="control-group-frame">
+        <Accordion type="single" defaultValue="export" collapsible>
+          <AccordionItem value="export" className="border-none">
+            <AccordionTrigger className="text-sm font-semibold text-muted-foreground hover:no-underline px-0 py-3">
+              Export Options
+            </AccordionTrigger>
+            <AccordionContent className="pt-2 pb-0">
+              <ExportButtons
+                title={title}
+                subtitle={subtitle}
+                content={content}
+                selectedTheme={selectedTheme}
+              />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </div>
   );
 };

@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { AppHeader } from '../components/AppHeader';
 import { EditorPanel } from '../components/EditorPanel';
-import { PreviewPanel } from '../components/PreviewPanel';
+import { PreviewSection } from '../components/PreviewSection';
+import { ControlsBar } from '../components/ControlsBar';
 import FloatingPhotoGallery from '../components/FloatingPhotoGallery';
 import { fonts } from '../components/FontSelector';
 import { Template } from '../data/templates';
@@ -36,8 +38,6 @@ Start writing and watch your words come to life with beautiful themes.
   const [selectedHeadingFont, setSelectedHeadingFont] = useState('playfair');
   const [selectedBodyFont, setSelectedBodyFont] = useState('inter');
   const [selectedPhoto, setSelectedPhoto] = useState('none');
-  const [isControlsCollapsed, setIsControlsCollapsed] = useState(false);
-  const [isPreviewCollapsed, setIsPreviewCollapsed] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleSelectTemplate = (template: Template) => {
@@ -58,35 +58,50 @@ Start writing and watch your words come to life with beautiful themes.
         setShowAuthModal={setShowAuthModal}
       />
 
-      <div className="flex h-[calc(100vh-73px)]">
-        <EditorPanel
-          content={content}
-          onChange={setContent}
-          title={title}
-          subtitle={subtitle}
-          onTitleChange={setTitle}
-          onSubtitleChange={setSubtitle}
-        />
+      <div className="flex flex-col h-[calc(100vh-73px)]">
+        {/* Controls Section - Top 1/3 */}
+        <div className="h-1/3 min-h-[200px]">
+          <ControlsBar
+            selectedTheme={selectedTheme}
+            onThemeChange={setSelectedTheme}
+            selectedHeadingFont={selectedHeadingFont}
+            selectedBodyFont={selectedBodyFont}
+            onHeadingFontChange={setSelectedHeadingFont}
+            onBodyFontChange={setSelectedBodyFont}
+            onSelectTemplate={handleSelectTemplate}
+            title={title}
+            subtitle={subtitle}
+            content={content}
+          />
+        </div>
 
-        <PreviewPanel
-          isControlsCollapsed={isControlsCollapsed}
-          isPreviewCollapsed={isPreviewCollapsed}
-          onToggleControls={() => setIsControlsCollapsed(!isControlsCollapsed)}
-          onTogglePreview={() => setIsPreviewCollapsed(!isPreviewCollapsed)}
-          selectedTheme={selectedTheme}
-          onThemeChange={setSelectedTheme}
-          selectedHeadingFont={selectedHeadingFont}
-          selectedBodyFont={selectedBodyFont}
-          onHeadingFontChange={setSelectedHeadingFont}
-          onBodyFontChange={setSelectedBodyFont}
-          onSelectTemplate={handleSelectTemplate}
-          selectedPhoto={selectedPhoto}
-          title={title}
-          subtitle={subtitle}
-          content={content}
-          headingFont={headingFont}
-          bodyFont={bodyFont}
-        />
+        {/* Editor and Preview Section - Bottom 2/3 */}
+        <div className="flex h-2/3 min-h-[400px]">
+          <div className="w-1/2">
+            <EditorPanel
+              content={content}
+              onChange={setContent}
+              title={title}
+              subtitle={subtitle}
+              onTitleChange={setTitle}
+              onSubtitleChange={setSubtitle}
+            />
+          </div>
+
+          <div className="w-1/2">
+            <PreviewSection
+              isCollapsed={false}
+              onToggleCollapse={() => {}}
+              content={content}
+              title={title}
+              subtitle={subtitle}
+              selectedTheme={selectedTheme}
+              selectedPhoto={selectedPhoto}
+              headingFont={headingFont}
+              bodyFont={bodyFont}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Floating Photo Gallery */}
