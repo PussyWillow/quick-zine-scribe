@@ -54,105 +54,106 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
   ];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
-      {/* Photo Selection */}
-      <div className="space-y-3">
+    <div className="grid grid-cols-3 gap-6 p-4">
+      {/* Photo Gallery Grid */}
+      <div className="col-span-3 space-y-3">
         <PhotoSelector
           selectedPhoto={selectedPhoto}
           onPhotoChange={onPhotoChange}
         />
       </div>
 
-      {/* Opacity Control */}
+      {/* Position Grid - Compact & Elegant */}
       <div className="space-y-3">
-        <div className="flex items-center gap-2 mb-3">
-          <Sliders className="w-4 h-4 text-muted-foreground" />
-          <Label className="text-sm font-medium text-foreground font-heading">
-            Opacity: {photoOpacity}%
-          </Label>
+        <div className="flex items-center gap-2">
+          <Grid3x3 className="w-3 h-3 text-amber-600/70" />
+          <Label className="text-xs font-medium text-foreground/80">Position</Label>
         </div>
-        <Slider
-          value={[photoOpacity]}
-          onValueChange={(value) => onOpacityChange(value[0])}
-          max={50}
-          min={0}
-          step={1}
-          className="w-full"
-        />
-      </div>
-
-      {/* Position Grid Selector */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2 mb-3">
-          <Grid3x3 className="w-4 h-4 text-muted-foreground" />
-          <Label className="text-sm font-medium text-foreground font-heading">Position</Label>
-        </div>
-        <div className="grid grid-cols-3 gap-1 p-2 bg-muted/30 rounded-lg">
+        <div className="grid grid-cols-3 gap-1 p-2 bg-amber-50/30 dark:bg-amber-900/10 rounded-md">
           {positions.map((pos) => (
             <button
               key={pos.id}
               onClick={() => onPositionChange(pos.id)}
-              className={`w-8 h-8 rounded border-2 transition-all ${
+              className={`w-5 h-5 rounded transition-all duration-200 hover:scale-110 ${
                 photoPosition === pos.id
-                  ? 'border-ring bg-accent'
-                  : 'border-border hover:border-muted-foreground bg-card'
+                  ? 'bg-amber-500/70 shadow-amber-500/30 shadow-md border border-amber-600/50'
+                  : 'bg-amber-100/50 dark:bg-amber-800/20 hover:bg-amber-200/60 dark:hover:bg-amber-700/30 border border-amber-300/30'
               }`}
               title={pos.label}
             >
               <div className={`w-full h-full rounded-sm ${
-                pos.id.includes('top') ? 'bg-gradient-to-b from-primary/60 to-transparent' :
-                pos.id.includes('bottom') ? 'bg-gradient-to-t from-primary/60 to-transparent' :
-                pos.id.includes('left') ? 'bg-gradient-to-r from-primary/60 to-transparent' :
-                pos.id.includes('right') ? 'bg-gradient-to-l from-primary/60 to-transparent' :
-                'bg-primary/40'
+                pos.id.includes('top') ? 'bg-gradient-to-b from-amber-600/60 to-transparent' :
+                pos.id.includes('bottom') ? 'bg-gradient-to-t from-amber-600/60 to-transparent' :
+                pos.id.includes('left') ? 'bg-gradient-to-r from-amber-600/60 to-transparent' :
+                pos.id.includes('right') ? 'bg-gradient-to-l from-amber-600/60 to-transparent' :
+                'bg-amber-600/40'
               }`} />
             </button>
           ))}
         </div>
       </div>
 
-      {/* Scale and Blend Mode */}
-      <div className="space-y-4">
-        {/* Scale Control */}
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-foreground font-heading">
-            Scale: {photoScale}x
+      {/* Opacity Control - Delicate Golden Slider */}
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <Sliders className="w-3 h-3 text-amber-600/70" />
+          <Label className="text-xs font-medium text-foreground/80">
+            Opacity: {photoOpacity}%
           </Label>
+        </div>
+        <div className="relative">
+          <Slider
+            value={[photoOpacity]}
+            onValueChange={(value) => onOpacityChange(value[0])}
+            max={50}
+            min={0}
+            step={1}
+            className="w-full [&_.relative]:h-1 [&_.relative_.absolute]:bg-amber-100/40 [&_.relative_.absolute]:border [&_.relative_.absolute]:border-amber-300/30 [&_[data-orientation=horizontal]]:bg-amber-500/60 [&_[role=slider]]:w-3 [&_[role=slider]]:h-3 [&_[role=slider]]:bg-amber-500 [&_[role=slider]]:border-2 [&_[role=slider]]:border-amber-600/50 [&_[role=slider]]:shadow-amber-500/30 [&_[role=slider]]:shadow-md hover:[&_[role=slider]]:bg-amber-400 transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* Scale Control - Delicate Golden Slider */}
+      <div className="space-y-3">
+        <Label className="text-xs font-medium text-foreground/80">
+          Scale: {photoScale}x
+        </Label>
+        <div className="relative">
           <Slider
             value={[photoScale]}
             onValueChange={(value) => onScaleChange(value[0])}
             max={2}
             min={0.5}
             step={0.1}
-            className="w-full"
+            className="w-full [&_.relative]:h-1 [&_.relative_.absolute]:bg-amber-100/40 [&_.relative_.absolute]:border [&_.relative_.absolute]:border-amber-300/30 [&_[data-orientation=horizontal]]:bg-amber-500/60 [&_[role=slider]]:w-3 [&_[role=slider]]:h-3 [&_[role=slider]]:bg-amber-500 [&_[role=slider]]:border-2 [&_[role=slider]]:border-amber-600/50 [&_[role=slider]]:shadow-amber-500/30 [&_[role=slider]]:shadow-md hover:[&_[role=slider]]:bg-amber-400 transition-colors"
           />
-        </div>
-
-        {/* Blend Mode */}
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <Palette className="w-4 h-4 text-muted-foreground" />
-            <Label className="text-sm font-medium text-foreground font-heading">Blend Mode</Label>
-          </div>
-          <Select value={blendMode} onValueChange={onBlendModeChange}>
-            <SelectTrigger className="w-full">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {blendModes.map((mode) => (
-                <SelectItem key={mode.id} value={mode.id}>
-                  {mode.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
         </div>
       </div>
 
-      {/* Quick Presets - Span full width on mobile, partial on larger screens */}
-      <div className="lg:col-span-2 xl:col-span-4 space-y-3">
-        <Label className="text-sm font-medium text-foreground font-heading">Quick Styles</Label>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+      {/* Blend Mode - Elegant */}
+      <div className="col-span-2 space-y-3">
+        <div className="flex items-center gap-2">
+          <Palette className="w-3 h-3 text-amber-600/70" />
+          <Label className="text-xs font-medium text-foreground/80">Blend Mode</Label>
+        </div>
+        <Select value={blendMode} onValueChange={onBlendModeChange}>
+          <SelectTrigger className="h-8 text-xs bg-amber-50/30 dark:bg-amber-900/10 border-amber-300/30 hover:bg-amber-100/40 transition-colors">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {blendModes.map((mode) => (
+              <SelectItem key={mode.id} value={mode.id} className="text-xs">
+                {mode.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Quick Presets - Elegant Gallery Grid */}
+      <div className="col-span-3 space-y-3">
+        <Label className="text-xs font-medium text-foreground/80">Quick Styles</Label>
+        <div className="grid grid-cols-4 gap-3">
           <button
             onClick={() => {
               onOpacityChange(15);
@@ -160,9 +161,10 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
               onScaleChange(1.2);
               onBlendModeChange('multiply');
             }}
-            className="px-3 py-2 text-xs bg-card border border-border rounded-md hover:bg-muted transition-colors"
+            className="group relative p-3 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-900/20 dark:to-amber-800/10 border border-amber-300/30 rounded-lg hover:from-amber-100/60 hover:to-amber-200/40 dark:hover:from-amber-800/30 dark:hover:to-amber-700/20 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/20"
           >
-            Subtle Atmosphere
+            <div className="w-full h-8 bg-gradient-to-br from-amber-400/30 to-amber-600/20 rounded-md mb-2 border border-amber-400/30"></div>
+            <span className="text-xs font-medium text-foreground/70 group-hover:text-foreground transition-colors">Subtle Atmosphere</span>
           </button>
           <button
             onClick={() => {
@@ -171,9 +173,10 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
               onScaleChange(0.8);
               onBlendModeChange('overlay');
             }}
-            className="px-3 py-2 text-xs bg-card border border-border rounded-md hover:bg-muted transition-colors"
+            className="group relative p-3 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-900/20 dark:to-amber-800/10 border border-amber-300/30 rounded-lg hover:from-amber-100/60 hover:to-amber-200/40 dark:hover:from-amber-800/30 dark:hover:to-amber-700/20 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/20"
           >
-            Corner Vignette
+            <div className="w-full h-8 bg-gradient-to-tl from-amber-400/50 to-transparent rounded-md mb-2 border border-amber-400/30"></div>
+            <span className="text-xs font-medium text-foreground/70 group-hover:text-foreground transition-colors">Corner Vignette</span>
           </button>
           <button
             onClick={() => {
@@ -182,9 +185,10 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
               onScaleChange(1);
               onBlendModeChange('soft-light');
             }}
-            className="px-3 py-2 text-xs bg-card border border-border rounded-md hover:bg-muted transition-colors"
+            className="group relative p-3 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-900/20 dark:to-amber-800/10 border border-amber-300/30 rounded-lg hover:from-amber-100/60 hover:to-amber-200/40 dark:hover:from-amber-800/30 dark:hover:to-amber-700/20 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/20"
           >
-            Background Art
+            <div className="w-full h-8 bg-gradient-to-br from-amber-500/40 to-amber-600/30 rounded-md mb-2 border border-amber-400/30"></div>
+            <span className="text-xs font-medium text-foreground/70 group-hover:text-foreground transition-colors">Background Art</span>
           </button>
           <button
             onClick={() => {
@@ -193,9 +197,10 @@ const PhotoControlPanel: React.FC<PhotoControlPanelProps> = ({
               onScaleChange(1.5);
               onBlendModeChange('multiply');
             }}
-            className="px-3 py-2 text-xs bg-card border border-border rounded-md hover:bg-muted transition-colors"
+            className="group relative p-3 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-900/20 dark:to-amber-800/10 border border-amber-300/30 rounded-lg hover:from-amber-100/60 hover:to-amber-200/40 dark:hover:from-amber-800/30 dark:hover:to-amber-700/20 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/20"
           >
-            Header Decoration
+            <div className="w-full h-8 bg-gradient-to-b from-amber-400/50 to-transparent rounded-md mb-2 border border-amber-400/30"></div>
+            <span className="text-xs font-medium text-foreground/70 group-hover:text-foreground transition-colors">Header Decoration</span>
           </button>
         </div>
       </div>
