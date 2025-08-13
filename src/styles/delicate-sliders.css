@@ -1,0 +1,30 @@
+/* Delicate Golden Slider Styles */
+@layer components {
+  .delicate-golden-slider {
+    @apply w-full;
+  }
+  
+  .delicate-golden-slider .relative {
+    @apply h-0.5;
+  }
+  
+  .delicate-golden-slider .relative .absolute {
+    @apply bg-amber-100/30 border border-amber-300/20 rounded-full;
+  }
+  
+  .delicate-golden-slider [data-orientation="horizontal"] {
+    @apply bg-gradient-to-r from-amber-400/60 to-amber-500/70 rounded-full;
+  }
+  
+  .delicate-golden-slider [role="slider"] {
+    @apply w-2.5 h-2.5 bg-gradient-to-br from-amber-300 to-amber-500 border border-amber-600/30 shadow-sm shadow-amber-500/20 transition-all duration-200;
+  }
+  
+  .delicate-golden-slider [role="slider"]:hover {
+    @apply bg-gradient-to-br from-amber-200 to-amber-400 shadow-md shadow-amber-500/30 scale-110;
+  }
+  
+  .delicate-golden-slider [role="slider"]:focus-visible {
+    @apply ring-2 ring-amber-400/50 ring-offset-1 ring-offset-background outline-none;
+  }
+}
